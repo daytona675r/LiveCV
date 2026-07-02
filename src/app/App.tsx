@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { Download } from "lucide-react";
@@ -127,19 +127,16 @@ function Page1() {
         </p>
 
         {/* Contact row */}
-        <div style={{ display: "flex", gap: 22, alignItems: "center" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 22px", alignItems: "center" }}>
           {[
             { label: "linkedin.com/in/mariowangen" },
             { label: "github.com/daytona675r" },
             { label: "mario.wangen@live.de" },
             { label: "Dresden, Germany" },
-          ].map(({ label }, i) => (
-            <div key={label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              {i > 0 && (
-                <span style={{ color: BORDER, fontSize: 10, marginRight: 0, userSelect: "none" }}>·</span>
-              )}
-              <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>{label}</span>
-            </div>
+          ].map(({ label }) => (
+            <span key={label} style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>
+              {label}
+            </span>
           ))}
         </div>
       </div>
@@ -563,12 +560,64 @@ function Page2() {
   );
 }
 
+// ─── Responsive scaling ──────────────────────────────────────────────────────
+
+function usePageScale(pageWidth: number, horizontalPadding = 32) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      setScale(Math.min(1, (window.innerWidth - horizontalPadding) / pageWidth));
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [pageWidth, horizontalPadding]);
+
+  return scale;
+}
+
+function ScaledPage({
+  pageRef,
+  scale,
+  children,
+}: {
+  pageRef: React.RefObject<HTMLDivElement | null>;
+  scale: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      style={{
+        width: PAGE_W * scale,
+        height: PAGE_H * scale,
+        overflow: "hidden",
+        boxShadow: "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
+      }}
+    >
+      <div
+        style={{
+          width: PAGE_W,
+          height: PAGE_H,
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
+        }}
+      >
+        <div ref={pageRef}>{children}</div>
+      </div>
+    </div>
+  );
+}
+
 // ─── App shell ─────────────────────────────────────────────────────────────
 
 export default function App() {
   const page1Ref = useRef<HTMLDivElement>(null);
   const page2Ref = useRef<HTMLDivElement>(null);
   const [exporting, setExporting] = useState(false);
+  const scale = usePageScale(PAGE_W);
+  const displayScale = exporting ? 1 : scale;
 
   const exportPDF = useCallback(async () => {
     setExporting(true);
@@ -605,23 +654,18 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center gap-0 py-12"
-      style={{ background: "#111827" }}
+      className="min-h-screen flex flex-col items-center justify-center gap-0 px-4 py-6 sm:px-6 sm:py-12"
+      style={{ background: "#111827", overflowX: "hidden" }}
     >
-      {/* Page 1 */}
-      <div
-        ref={page1Ref}
-        style={{
-          boxShadow: "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
-        }}
-      >
+      <ScaledPage pageRef={page1Ref} scale={displayScale}>
         <Page1 />
-      </div>
+      </ScaledPage>
 
       {/* Page break */}
       <div
         style={{
-          width: PAGE_W,
+          width: PAGE_W * displayScale,
+          maxWidth: "100%",
           height: 20,
           display: "flex",
           alignItems: "center",
@@ -643,24 +687,20 @@ export default function App() {
         <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.06)" }} />
       </div>
 
-      {/* Page 2 */}
-      <div
-        ref={page2Ref}
-        style={{
-          boxShadow: "0 4px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
-        }}
-      >
+      <ScaledPage pageRef={page2Ref} scale={displayScale}>
         <Page2 />
-      </div>
+      </ScaledPage>
 
       {/* Export */}
       <div
         style={{
-          marginTop: 32,
+          marginTop: 24,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: 8,
+          width: "100%",
+          maxWidth: PAGE_W * displayScale,
         }}
       >
         <button
@@ -680,6 +720,7 @@ export default function App() {
             fontWeight: 600,
             cursor: exporting ? "not-allowed" : "pointer",
             letterSpacing: "-0.01em",
+            maxWidth: "100%",
           }}
         >
           <Download size={14} />

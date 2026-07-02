@@ -1,11 +1,26 @@
+# LiveCV
 
-  # MLOps Validation Gates Diagram
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-livecv--phi.vercel.app-000?style=flat&logo=vercel&logoColor=white)](https://livecv-phi.vercel.app)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-  This is a code bundle for MLOps Validation Gates Diagram. The original project is available at https://www.figma.com/design/WnQ4SqQvjcs5UuNhhgEBX0/MLOps-Validation-Gates-Diagram.
+Interactive online CV for Mario Wangen — Senior Software Engineer in AI Platform Engineering.
 
-  ## Running the code
+View the live site at [livecv-phi.vercel.app](https://livecv-phi.vercel.app), or download a print-ready two-page PDF directly from the page.
 
-  Run `npm i` to install the dependencies.
+## Development
 
-  Run `npm run dev` to start the development server.
-  
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Build
+
+```bash
+npm run build
+```

@@ -1,0 +1,30 @@
+---
+description: Always include technology and deployment badges in README files
+globs: README.md
+alwaysApply: false
+---
+
+# README badges
+
+When creating or updating a project README, always include a badge row near the top (directly under the title) using shields.io-style badges.
+
+Include badges for:
+
+1. **Live demo / deployment** — link to the production URL (e.g. Vercel, Netlify)
+2. **Core stack** — every major technology in use (framework, build tool, language, styling, etc.)
+
+Format:
+
+```markdown
+# Project Name
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-<url-host>-000?style=flat&logo=vercel&logoColor=white)](https://...)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev)
+```
+
+Rules:
+
+- Use `style=flat` and official logos where available
+- Link each badge to the relevant project site or live URL
+- Keep version numbers accurate to `package.json` or config files
+- Update badges when the stack or deployment URL changes
