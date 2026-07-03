@@ -11,6 +11,7 @@ const ACCENT = "#2563EB";
 const TEXT = "#111827";
 const TEXT_SEC = "#4B5563";
 const TEXT_MUT = "#9CA3AF";
+const TEXT_QUOTE = "#C4C9D1";
 const BORDER = "#E5E7EB";
 const BORDER_LIGHT = "#F3F4F6";
 const FONT = "'Inter', sans-serif";
@@ -33,6 +34,38 @@ const bodyStyle: React.CSSProperties = {
   fontFamily: FONT,
   margin: 0,
 };
+
+const profileBodyStyle: React.CSSProperties = {
+  ...bodyStyle,
+  lineHeight: 2,
+};
+
+const contactItemStyle: React.CSSProperties = {
+  fontSize: 10,
+  color: TEXT_MUT,
+  fontFamily: FONT,
+  textDecoration: "none",
+};
+
+function ContactLink({ href, label, external }: { href: string; label: string; external?: boolean }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={href}
+      style={{
+        ...contactItemStyle,
+        color: hovered ? ACCENT : TEXT_MUT,
+        textDecoration: hovered ? "underline" : "none",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      {label}
+    </a>
+  );
+}
 
 // ─── Page 1 ────────────────────────────────────────────────────────────────
 
@@ -65,7 +98,7 @@ function Page1() {
   const caseStudies = [
     {
       title: "Designed the model delivery platform",
-      body: "Partnered with ML engineers to design automated model delivery workflows based on MLflow, replacing manual handoffs with reproducible, version-controlled release artifacts.",
+      body: "Partnered with ML engineers to design automated model delivery workflows based on MLflow, replacing manual promotion workflows with reproducible, version-controlled release artifacts.",
     },
     {
       title: "Built confidence into production releases",
@@ -128,16 +161,10 @@ function Page1() {
 
         {/* Contact row */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 22px", alignItems: "center" }}>
-          {[
-            { label: "linkedin.com/in/mariowangen" },
-            { label: "github.com/daytona675r" },
-            { label: "mario.wangen@live.de" },
-            { label: "Dresden, Germany" },
-          ].map(({ label }) => (
-            <span key={label} style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>
-              {label}
-            </span>
-          ))}
+          <ContactLink href="https://linkedin.com/in/mariowangen" label="linkedin.com/in/mariowangen" external />
+          <ContactLink href="https://github.com/daytona675r" label="github.com/daytona675r" external />
+          <ContactLink href="mailto:mario.wangen@live.de" label="mario.wangen@live.de" />
+          <span style={contactItemStyle}>Dresden, Germany</span>
         </div>
       </div>
 
@@ -153,11 +180,23 @@ function Page1() {
           {/* Professional Profile */}
           <div style={{ marginBottom: 30 }}>
             <span style={sLabel}>Professional Profile</span>
-            <p style={bodyStyle}>
-              I've spent more than twenty years building software platforms for environments where reliability matters. Today, I apply that experience to production AI—designing the engineering systems that enable machine learning teams to build, validate, deploy, and operate AI with confidence.
+            <p style={profileBodyStyle}>
+              I've spent more than twenty years building software platforms for environments where reliability matters. Today, I apply that experience to{" "}
+              <strong style={{ fontWeight: 700 }}>production AI</strong>
+              —designing the engineering systems that enable machine learning teams to build, validate, deploy, and operate AI with confidence.
             </p>
-           
-            <p style={{ ...bodyStyle, marginTop: 9, marginBottom: 60, fontWeight: 300, fontSize: 11, color: TEXT_MUT }}>
+
+            <p
+              style={{
+                ...profileBodyStyle,
+                marginTop: 9,
+                marginBottom: 60,
+                fontWeight: 300,
+                fontSize: 11,
+                color: TEXT_QUOTE,
+                fontStyle: "italic",
+              }}
+            >
               Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.
             </p>
           </div>
@@ -210,7 +249,7 @@ function Page1() {
 
             {/* Lead sentence */}
             <p style={{ ...bodyStyle, marginBottom: 20 }}>
-              Building the engineering platform behind production AI systems for medical computer vision — translating ML research into reliable, deployable software.
+              Building the engineering platform powering production AI systems for medical computer vision — translating ML research into reliable, deployable software.
             </p>
 
             {/* Case studies */}
@@ -333,21 +372,25 @@ function Page2() {
     {
       name: "PULSE ContentAgent",
       desc: "Production-oriented multi-agent orchestration platform exploring how complex AI workflows can be engineered as maintainable software systems.",
+      pattern: "State-machine based orchestration",
       tags: ["LangGraph", "Python", "FastAPI", "OpenAI"],
     },
     {
       name: "Production Knowledge Platform",
       desc: "Enterprise RAG architecture separating ingestion, indexing, retrieval and generation into independent services.",
+      pattern: "Decoupled ingestion–retrieval services",
       tags: ["RAG", "LangChain", "PostgreSQL", "AWS"],
     },
     {
       name: "StartupCoach",
       desc: "Context-aware AI coaching using retrieval augmentation and function calling for personalised guidance.",
+      pattern: "Retrieval-augmented generation with tool calling",
       tags: ["OpenAI", "RAG", "FastAPI", "Python"],
     },
     {
       name: "InterviewCoach",
       desc: "Adaptive interview simulation using structured LLM workflows with dynamic follow-up generation.",
+      pattern: "Graph-based adaptive dialogue flow",
       tags: ["LangGraph", "OpenAI", "React", "TypeScript"],
     },
   ];
@@ -467,15 +510,15 @@ function Page2() {
               <div style={{ fontSize: 11, fontWeight: 700, color: TEXT, fontFamily: FONT, marginBottom: 3, letterSpacing: "-0.01em" }}>
                 {p.name}
               </div>
-              <div style={{ fontSize: 10, color: TEXT_SEC, fontFamily: FONT, lineHeight: 1.6, marginBottom: 7 }}>
+              <div style={{ fontSize: 10, color: TEXT_SEC, fontFamily: FONT, lineHeight: 1.6, marginBottom: 5 }}>
                 {p.desc}
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-                {p.tags.map((tag) => (
-                  <span key={tag} style={{ fontSize: 8.5, fontWeight: 500, color: TEXT_MUT, background: BORDER_LIGHT, border: `1px solid ${BORDER}`, borderRadius: 4, padding: "2px 7px", fontFamily: FONT }}>
-                    {tag}
-                  </span>
-                ))}
+              <div style={{ fontSize: 9.5, fontFamily: FONT, lineHeight: 1.5, marginBottom: 6 }}>
+                <span style={{ fontWeight: 600, color: TEXT_MUT }}>Design Pattern: </span>
+                <span style={{ color: TEXT_SEC }}>{p.pattern}</span>
+              </div>
+              <div style={{ fontSize: 8.5, color: TEXT_MUT, fontFamily: FONT, letterSpacing: "0.01em" }}>
+                {p.tags.join(" • ")}
               </div>
             </div>
           ))}
