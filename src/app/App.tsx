@@ -73,7 +73,7 @@ const earlierRoles = [
 const projects = [
   {
     name: "PULSE ContentAgent",
-    desc: "Production-oriented multi-agent orchestration platform exploring how complex AI workflows can be engineered as maintainable software systems.",
+    desc: "Designed to transform fragmented content creation into a structured, repeatable workflow through agent orchestration and evaluation.",
     pattern: "State-machine based orchestration",
     tags: ["LangGraph", "Python", "FastAPI", "OpenAI"],
   },
@@ -216,8 +216,7 @@ function Page1() {
           <div style={{ marginBottom: 30 }}>
             <SectionLabel>Professional Profile</SectionLabel>
             <p style={profileBodyStyle}>
-              I've spent more than twenty years building software platforms for environments where reliability matters. Today, I apply that experience to <strong style={{ fontWeight: 700 }}>production AI</strong>
-              —designing the engineering systems that enable machine learning teams to build, validate, deploy, and operate AI with confidence.
+              I've spent more than twenty years building software platforms for environments where reliability matters. Today, I build the engineering platforms and workflows that help AI teams turn ideas into reliable production systems.
             </p>
             <p style={{ ...profileBodyStyle, marginTop: 9, marginBottom: 60, fontWeight: 300, fontSize: 11, color: TEXT_QUOTE, fontStyle: "italic" }}>
               Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.
