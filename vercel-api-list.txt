@@ -1,0 +1,829 @@
+﻿node.exe : Vercel CLI 54.20.0 (Node.js 22.22.0) | api is in beta ÔÇö https://vercel.com/feedback
+In C:\nvm4w\nodejs\npx.ps1:29 Zeichen:3
++   & $NODE_EXE $NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Vercel CLI 54.2...el.com/feedback:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading API endpoints...
+> 
+> /aliases/{id}/protection-bypass
+>   PATCH    Update the protection bypass for a URL
+> 
+> /projects/{idOrName}/transfer-request
+>   POST     Create project transfer request
+> 
+> /projects/transfer-request/{code}
+>   PUT      Accept project transfer request
+> 
+> /v1/access-groups
+>   GET      List access groups for a team, project or member
+>   POST     Creates an access group
+> 
+> /v1/access-groups/{accessGroupIdOrName}/projects
+>   POST     Create an access group project
+> 
+> /v1/access-groups/{accessGroupIdOrName}/projects/{projectId}
+>   GET      Reads an access group project
+>   PATCH    Update an access group project
+>   DELETE   Delete an access group project
+> 
+> /v1/access-groups/{idOrName}
+>   GET      Reads an access group
+>   POST     Update an access group
+>   DELETE   Deletes an access group
+> 
+> /v1/access-groups/{idOrName}/members
+>   GET      List members of an access group
+> 
+> /v1/access-groups/{idOrName}/projects
+>   GET      List projects of an access group
+> 
+> /v1/billing/buy
+>   POST     Purchase credits
+> 
+> /v1/billing/charges
+>   GET      List FOCUS billing charges
+> 
+> /v1/billing/contract-commitments
+>   GET      List FOCUS contract commitments
+> 
+> /v1/bulk-redirects
+>   GET      Gets project-level redirects.
+>   PUT      Stages new redirects for a project.
+>   PATCH    Edit a project-level redirect.
+>   DELETE   Delete project-level redirects.
+> 
+> /v1/bulk-redirects/restore
+>   POST     Restore staged project-level redirects to their production version.
+> 
+> /v1/bulk-redirects/versions
+>   GET      Get the version history for a project's redirects.
+>   POST     Promote a staging version to production or restore a previous production version.
+> 
+> /v1/connect/authorize/{connector}
+>   POST     Create a Connect authorization request
+> 
+> /v1/connect/connectors
+>   POST     Create a connector
+> 
+> /v1/connect/networks
+>   GET      List Secure Compute networks
+>   POST     Create a Secure Compute network
+> 
+> /v1/connect/networks/{networkId}
+>   GET      Read a Secure Compute network
+>   PATCH    Update a Secure Compute network
+>   DELETE   Delete a Secure Compute network
+> 
+> /v1/connect/token/{connector}
+>   POST     Get a Connect token
+> 
+> /v1/connect/token/{connector}/import
+>   POST     Import Connect tokens
+> 
+> /v1/deployments/{deploymentId}/checks
+>   GET      Retrieve a list of all checks
+>   POST     Creates a new Check
+> 
+> /v1/deployments/{deploymentId}/checks/{checkId}
+>   GET      Get a single check
+>   PATCH    Update a check
+> 
+> /v1/deployments/{deploymentId}/checks/{checkId}/rerequest
+>   POST     Rerequest a check
+> 
+> /v1/deployments/{deploymentId}/feature-flags
+>   GET      Retrieve the feature flags of a deployment
+> 
+> /v1/deployments/{deploymentId}/integrations/{integrationConfigurationId}/resources/{resourceId}/actions/{action}
+>   PATCH    Update deployment integration action
+> 
+> /v1/domains/{domain}/project-domains
+>   GET      List Project Domains by Apex Domain
+> 
+> /v1/domains/records/{recordId}
+>   PATCH    Update an existing DNS record
+> 
+> /v1/drains
+>   GET      Retrieve a list of all Drains
+>   POST     Create a new Drain
+> 
+> /v1/drains/{id}
+>   GET      Find a Drain by id
+>   PATCH    Update an existing Drain
+>   DELETE   Delete a drain
+> 
+> /v1/drains/test
+>   POST     Validate Drain delivery configuration
+> 
+> /v1/edge-cache/dangerously-delete-by-src-images
+>   POST     Dangerously delete by source image
+> 
+> /v1/edge-cache/dangerously-delete-by-tags
+>   POST     Dangerously delete by tag
+> 
+> /v1/edge-cache/invalidate-by-src-images
+>   POST     Invalidate by source image
+> 
+> /v1/edge-cache/invalidate-by-tags
+>   POST     Invalidate by tag
+> 
+> /v1/edge-config
+>   GET      Get Edge Configs
+>   POST     Create an Edge Config
+> 
+> /v1/edge-config/{edgeConfigId}
+>   GET      Get an Edge Config
+>   PUT      Update an Edge Config
+>   DELETE   Delete an Edge Config
+> 
+> /v1/edge-config/{edgeConfigId}/backups
+>   GET      Get Edge Config backups
+> 
+> /v1/edge-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}
+>   GET      Get Edge Config backup
+> 
+> /v1/edge-config/{edgeConfigId}/backups/{edgeConfigBackupVersionId}/restore
+>   POST     Restore Edge Config backup
+> 
+> /v1/edge-config/{edgeConfigId}/item/{edgeConfigItemKey}
+>   GET      Get an Edge Config item
+> 
+> /v1/edge-config/{edgeConfigId}/items
+>   GET      Get Edge Config items
+>   PATCH    Update Edge Config items in batch
+> 
+> /v1/edge-config/{edgeConfigId}/schema
+>   GET      Get Edge Config schema
+>   POST     Update Edge Config schema
+>   DELETE   Delete an Edge Config's schema
+> 
+> /v1/edge-config/{edgeConfigId}/token
+>   POST     Create an Edge Config token
+> 
+> /v1/edge-config/{edgeConfigId}/token/{token}
+>   GET      Get Edge Config token meta data
+> 
+> /v1/edge-config/{edgeConfigId}/tokens
+>   GET      Get all tokens of an Edge Config
+>   DELETE   Delete one or more Edge Config tokens
+> 
+> /v1/env
+>   GET      Lists all Shared Environment Variables for a team
+>   POST     Create one or more shared environment variables
+>   PATCH    Updates one or more shared environment variables
+>   DELETE   Delete one or more Env Var
+> 
+> /v1/env/{id}
+>   GET      Retrieve the decrypted value of a Shared Environment Variable by id.
+> 
+> /v1/env/{id}/unlink/{projectId}
+>   PATCH    Disconnects a shared environment variable for a given project
+> 
+> /v1/events/types
+>   GET      List Event Types
+> 
+> /v1/installations/{integrationConfigurationId}
+>   PATCH    Update Installation
+> 
+> /v1/installations/{integrationConfigurationId}/account
+>   GET      Get Account Information
+> 
+> /v1/installations/{integrationConfigurationId}/billing
+>   POST     Submit Billing Data
+> 
+> /v1/installations/{integrationConfigurationId}/billing/balance
+>   POST     Submit Prepayment Balances
+> 
+> /v1/installations/{integrationConfigurationId}/billing/finalize
+>   POST     Finalize Installation
+> 
+> /v1/installations/{integrationConfigurationId}/billing/invoices
+>   POST     Submit Invoice
+> 
+> /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}
+>   GET      Get Invoice
+> 
+> /v1/installations/{integrationConfigurationId}/billing/invoices/{invoiceId}/actions
+>   POST     Invoice Actions
+> 
+> /v1/installations/{integrationConfigurationId}/events
+>   POST     Create Event
+> 
+> /v1/installations/{integrationConfigurationId}/member/{memberId}
+>   GET      Get Member Information
+> 
+> /v1/installations/{integrationConfigurationId}/products/{integrationProductIdOrSlug}/resources/{resourceId}/secrets
+>   PUT      Deprecated: true. Update Resource Secrets (Deprecated)
+> 
+> /v1/installations/{integrationConfigurationId}/resources
+>   GET      Get Integration Resources
+> 
+> /v1/installations/{integrationConfigurationId}/resources/{resourceId}
+>   GET      Get Integration Resource
+>   PUT      Import Resource
+>   PATCH    Update Resource
+>   DELETE   Delete Integration Resource
+> 
+> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/edge-config
+>   GET      Get the data of a user-provided Edge Config
+>   PUT      Push data into a user-provided Edge Config
+> 
+> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items
+>   POST     Create one or multiple experimentation items
+> 
+> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/experimentation/items/{itemId}
+>   PATCH    Patch an existing experimentation item
+>   DELETE   Delete an existing experimentation item
+> 
+> /v1/installations/{integrationConfigurationId}/resources/{resourceId}/secrets
+>   PUT      Update Resource Secrets
+> 
+> /v1/integrations/configuration/{id}
+>   GET      Retrieve an integration configuration
+>   DELETE   Delete an integration configuration
+> 
+> /v1/integrations/configuration/{id}/products
+>   GET      List products for integration configuration
+> 
+> /v1/integrations/configurations
+>   GET      Get configurations for the authenticated user or team
+> 
+> /v1/integrations/git-namespaces
+>   GET      List git namespaces by provider
+> 
+> /v1/integrations/installations/{integrationConfigurationId}/resources/{resourceId}/connections
+>   POST     Connect integration resource to project
+> 
+> /v1/integrations/integration/{integrationIdOrSlug}/products/{productIdOrSlug}/plans
+>   GET      List integration billing plans
+> 
+> /v1/integrations/log-drains/{id}
+>   DELETE   Deletes the Integration log drain with the provided `id` (deprecated)
+> 
+> /v1/integrations/search-repo
+>   GET      List git repositories linked to namespace by provider
+> 
+> /v1/integrations/sso/token
+>   POST     SSO Token Exchange
+> 
+> /v1/log-drains
+>   GET      Retrieves a list of all the Log Drains (deprecated)
+>   POST     Creates a Configurable Log Drain (deprecated)
+> 
+> /v1/log-drains/{id}
+>   GET      Retrieves a Configurable Log Drain (deprecated)
+>   DELETE   Deletes a Configurable Log Drain (deprecated)
+> 
+> /v1/microfrontends/{deploymentId}/config
+>   GET      Get microfrontends config for a deployment
+> 
+> /v1/microfrontends/group
+>   POST     Create a microfrontends group with applications
+> 
+> /v1/microfrontends/groups
+>   GET      List microfrontends groups
+> 
+> /v1/microfrontends/groups/{groupId}/projects
+>   GET      List projects in a microfrontends group
+> 
+> /v1/microfrontends/projects/{projectIdOrName}/production-mfe-config
+>   GET      Get microfrontends config for a project
+> 
+> /v1/observability/manage/configuration/projects
+>   GET      Lists disabled Observability Plus projects
+> 
+> /v1/observability/manage/configuration/projects/{projectIdOrName}
+>   PUT      Updates a disabled Observability Plus project setting
+> 
+> /v1/projects/{idOrName}/avatar
+>   POST     Upload a project avatar
+> 
+> /v1/projects/{idOrName}/domains/{domain}/move
+>   POST     Move a project domain
+> 
+> /v1/projects/{idOrName}/env
+>   DELETE   Batch remove environment variables
+> 
+> /v1/projects/{idOrName}/env/{id}
+>   GET      Retrieve the decrypted value of an environment variable of a project by id
+> 
+> /v1/projects/{idOrName}/members
+>   GET      List project members
+>   POST     Adds a new member to a project.
+> 
+> /v1/projects/{idOrName}/members/{uid}
+>   DELETE   Remove a Project Member
+> 
+> /v1/projects/{idOrName}/protection-bypass
+>   PATCH    Update Protection Bypass for Automation
+> 
+> /v1/projects/{idOrName}/rolling-release
+>   GET      Get the active rolling release information for a project
+> 
+> /v1/projects/{idOrName}/rolling-release/approve-stage
+>   POST     Update the active rolling release to the next stage for a project
+> 
+> /v1/projects/{idOrName}/rolling-release/billing
+>   GET      Get rolling release billing status
+> 
+> /v1/projects/{idOrName}/rolling-release/complete
+>   POST     Complete the rolling release for the project
+> 
+> /v1/projects/{idOrName}/rolling-release/config
+>   GET      Get rolling release configuration
+>   PATCH    Update the rolling release settings for the project
+>   DELETE   Delete rolling release configuration
+> 
+> /v1/projects/{idOrName}/rolling-release/start
+>   POST     Start a rolling release for the project
+> 
+> /v1/projects/{idOrName}/shared-connect-links
+>   PATCH    Configures Static IPs for a project
+> 
+> /v1/projects/{projectId}/deployments/{deploymentId}/runtime-logs
+>   GET      Get logs for a deployment
+> 
+> /v1/projects/{projectId}/microfrontends
+>   PATCH    Update the microfrontends settings
+> 
+> /v1/projects/{projectId}/pause
+>   POST     Pause a project
+> 
+> /v1/projects/{projectId}/promote/aliases
+>   GET      Gets a list of aliases with status for the current promote
+> 
+> /v1/projects/{projectId}/rollback/{deploymentId}
+>   POST     Point production traffic to a previous production deployment by ID
+> 
+> /v1/projects/{projectId}/rollback/{deploymentId}/update-description
+>   PATCH    Updates the description for a rollback
+> 
+> /v1/projects/{projectId}/routes
+>   GET      Get project routing rules
+>   POST     Add a routing rule
+>   PUT      Stage routing rules
+>   DELETE   Delete routing rules
+> 
+> /v1/projects/{projectId}/routes/{routeId}
+>   PATCH    Edit a routing rule
+> 
+> /v1/projects/{projectId}/routes/generate
+>   POST     Generate a routing rule from natural language
+> 
+> /v1/projects/{projectId}/routes/versions
+>   GET      Get routing rule version history
+>   POST     Promote, restore, or discard a routing rule version
+> 
+> /v1/projects/{projectId}/unpause
+>   POST     Unpause a project
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/flags
+>   GET      List flags
+>   PUT      Create a flag
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}
+>   GET      Get a flag
+>   PATCH    Update a flag
+>   DELETE   Delete a flag
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/flags/{flagIdOrSlug}/versions
+>   GET      List flag versions
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/sdk-keys
+>   GET      Get all SDK keys
+>   PUT      Create an SDK key
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/sdk-keys/{hashKey}
+>   DELETE   Delete an SDK key
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/segments
+>   GET      List segments
+>   PUT      Create a segment
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/segments/{segmentIdOrSlug}
+>   GET      Get a segment
+>   PATCH    Update a segment
+>   DELETE   Delete a segment
+> 
+> /v1/projects/{projectIdOrName}/feature-flags/settings
+>   GET      Get project flag settings
+>   PATCH    Update project flag settings
+> 
+> /v1/query/web-analytics/events/aggregate
+>   GET      Aggregates custom events
+> 
+> /v1/query/web-analytics/events/count
+>   GET      Counts custom events
+> 
+> /v1/query/web-analytics/visits/aggregate
+>   GET      Aggregates page views
+> 
+> /v1/query/web-analytics/visits/count
+>   GET      Counts page views
+> 
+> /v1/registrar/domains/{domain}/auth-code
+>   GET      Get the auth code for a domain
+> 
+> /v1/registrar/domains/{domain}/auto-renew
+>   PATCH    Update auto-renew for a domain
+> 
+> /v1/registrar/domains/{domain}/availability
+>   GET      Get availability for a domain
+> 
+> /v1/registrar/domains/{domain}/buy
+>   POST     Buy a domain
+> 
+> /v1/registrar/domains/{domain}/contact-info/schema
+>   GET      Get contact info schema
+> 
+> /v1/registrar/domains/{domain}/contact-verification
+>   GET      Get contact verification status for a domain
+> 
+> /v1/registrar/domains/{domain}/nameservers
+>   PATCH    Update nameservers for a domain
+> 
+> /v1/registrar/domains/{domain}/price
+>   GET      Get price data for a domain
+> 
+> /v1/registrar/domains/{domain}/renew
+>   POST     Renew a domain
+> 
+> /v1/registrar/domains/{domain}/transfer
+>   GET      Get a domain's transfer status
+>   POST     Transfer-in a domain
+> 
+> /v1/registrar/domains/availability
+>   POST     Get availability for multiple domains
+> 
+> /v1/registrar/domains/buy
+>   POST     Buy multiple domains
+> 
+> /v1/registrar/orders/{orderId}
+>   GET      Get a domain order
+> 
+> /v1/registrar/tlds/{tld}
+>   GET      Get TLD
+> 
+> /v1/registrar/tlds/{tld}/price
+>   GET      Get TLD price data
+> 
+> /v1/registrar/tlds/supported
+>   GET      Get supported TLDs
+> 
+> /v1/security/attack-mode
+>   POST     Update Attack Challenge mode
+> 
+> /v1/security/firewall/attack-status
+>   GET      Read active attack data
+> 
+> /v1/security/firewall/bypass
+>   GET      Read System Bypass
+>   POST     Create System Bypass Rule
+>   DELETE   Remove System Bypass Rule
+> 
+> /v1/security/firewall/config
+>   PUT      Put Firewall Configuration
+>   PATCH    Update Firewall Configuration
+> 
+> /v1/security/firewall/config/{configVersion}
+>   GET      Read Firewall Configuration
+> 
+> /v1/security/firewall/events
+>   GET      Read Firewall Actions by Project
+> 
+> /v1/storage/stores/integration/direct
+>   POST     Create integration store (free and paid plans)
+> 
+> /v1/teams
+>   POST     Create a Team
+> 
+> /v1/teams/{teamId}
+>   DELETE   Delete a Team
+> 
+> /v1/teams/{teamId}/dsync-roles
+>   POST     Update Team Directory Sync Role Mappings
+> 
+> /v1/teams/{teamId}/feature-flags/flags
+>   GET      List all flags for a team
+> 
+> /v1/teams/{teamId}/feature-flags/settings
+>   GET      List team project flag settings
+> 
+> /v1/teams/{teamId}/invites/{inviteId}
+>   DELETE   Delete a Team invite code
+> 
+> /v1/teams/{teamId}/members/{uid}
+>   PATCH    Update a Team Member
+>   DELETE   Remove a Team Member
+> 
+> /v1/teams/{teamId}/members/teams/join
+>   POST     Join a team
+> 
+> /v1/teams/{teamId}/microfrontends/{groupId}
+>   PATCH    Update a microfrontends group
+>   DELETE   Delete a microfrontends group
+> 
+> /v1/teams/{teamId}/request
+>   POST     Request access to a team
+> 
+> /v1/teams/{teamId}/request/{userId}
+>   GET      Get access request status
+> 
+> /v1/user
+>   DELETE   Delete User Account
+> 
+> /v1/vcr/repository
+>   GET      List repositories
+>   POST     Create a repository
+> 
+> /v1/vcr/repository/{idOrName}
+>   GET      Get a repository
+>   DELETE   Delete a repository
+> 
+> /v1/vcr/repository/{idOrName}/images
+>   GET      List repository images
+> 
+> /v1/vcr/repository/{idOrName}/images/{imageId}
+>   GET      Get a repository image
+>   DELETE   Delete a repository image
+> 
+> /v1/vcr/repository/{idOrName}/tags
+>   GET      List repository tags
+> 
+> /v1/vcr/repository/{idOrName}/tags/{tag}
+>   GET      Get a repository tag
+> 
+> /v1/webhooks
+>   GET      Get a list of webhooks
+>   POST     Creates a webhook
+> 
+> /v1/webhooks/{id}
+>   GET      Get a webhook
+>   DELETE   Deletes a webhook
+> 
+> /v10/projects
+>   GET      Retrieve a list of projects
+> 
+> /v10/projects/{idOrName}/domains
+>   POST     Add a domain to a project
+> 
+> /v10/projects/{idOrName}/env
+>   GET      Retrieve the environment variables of a project by id or name
+>   POST     Create one or more environment variables
+> 
+> /v10/projects/{projectId}/promote/{deploymentId}
+>   POST     Point production traffic to a given deployment
+> 
+> /v11/projects
+>   POST     Create a new project
+> 
+> /v12/deployments/{id}/cancel
+>   PATCH    Cancel a deployment
+> 
+> /v13/deployments
+>   POST     Create a new deployment
+> 
+> /v13/deployments/{id}
+>   DELETE   Delete a Deployment
+> 
+> /v13/deployments/{idOrUrl}
+>   GET      Get a deployment by ID or URL
+> 
+> /v2/aliases/{aliasId}
+>   DELETE   Delete an Alias
+> 
+> /v2/deployments/{deploymentId}/check-runs
+>   GET      List check runs for a deployment
+>   POST     Create a check run
+> 
+> /v2/deployments/{deploymentId}/check-runs/{checkRunId}
+>   GET      Get a check run
+>   PATCH    Update a check run
+> 
+> /v2/deployments/{id}/aliases
+>   GET      List Deployment Aliases
+>   POST     Assign an Alias
+> 
+> /v2/domains/{domain}/records
+>   POST     Create a DNS record
+> 
+> /v2/domains/{domain}/records/{recordId}
+>   DELETE   Delete a DNS record
+> 
+> /v2/files
+>   POST     Upload Deployment Files
+> 
+> /v2/integrations/log-drains
+>   GET      Retrieves a list of Integration log drains (deprecated)
+>   POST     Creates a new Integration Log Drain (deprecated)
+> 
+> /v2/projects/{projectIdOrName}/checks
+>   GET      List all checks for a project
+>   POST     Create a check
+> 
+> /v2/projects/{projectIdOrName}/checks/{checkId}
+>   GET      Get a check
+>   PATCH    Update a check
+>   DELETE   Delete a check
+> 
+> /v2/projects/{projectIdOrName}/checks/{checkId}/runs
+>   GET      List runs for a check
+> 
+> /v2/projects/{projectIdOrName}/feature-flags/flags
+>   GET      List flags
+> 
+> /v2/sandboxes
+>   GET      List sandboxes
+>   POST     Create a named sandbox
+> 
+> /v2/sandboxes/{name}
+>   GET      Get a named sandbox
+>   PATCH    Update a sandbox
+>   DELETE   Delete a sandbox
+> 
+> /v2/sandboxes/drives
+>   GET      List drives
+> 
+> /v2/sandboxes/drives/{name}
+>   POST     Get or create a drive
+>   DELETE   Delete a drive
+> 
+> /v2/sandboxes/sessions
+>   GET      List sessions
+> 
+> /v2/sandboxes/sessions/{sessionId}
+>   GET      Get a session
+> 
+> /v2/sandboxes/sessions/{sessionId}/cmd
+>   GET      List commands
+>   POST     Execute a command
+> 
+> /v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}
+>   GET      Get a command
+> 
+> /v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}/kill
+>   POST     Kill a command
+> 
+> /v2/sandboxes/sessions/{sessionId}/cmd/{cmdId}/logs
+>   GET      Stream command logs
+> 
+> /v2/sandboxes/sessions/{sessionId}/extend-timeout
+>   POST     Extend session timeout
+> 
+> /v2/sandboxes/sessions/{sessionId}/fs/mkdir
+>   POST     Create a directory
+> 
+> /v2/sandboxes/sessions/{sessionId}/fs/read
+>   POST     Read a file
+> 
+> /v2/sandboxes/sessions/{sessionId}/fs/write
+>   POST     Write files
+> 
+> /v2/sandboxes/sessions/{sessionId}/network-policy
+>   POST     Update network policy
+> 
+> /v2/sandboxes/sessions/{sessionId}/snapshot
+>   POST     Create a snapshot
+> 
+> /v2/sandboxes/sessions/{sessionId}/stop
+>   POST     Stop a session
+> 
+> /v2/sandboxes/snapshots
+>   GET      List snapshots
+> 
+> /v2/sandboxes/snapshots/{snapshotId}
+>   GET      Get a snapshot
+>   DELETE   Delete a snapshot
+> 
+> /v2/teams
+>   GET      List all teams
+> 
+> /v2/teams/{teamId}
+>   GET      Get a Team
+>   PATCH    Update a Team
+> 
+> /v2/teams/{teamId}/feature-flags/flags
+>   GET      List all flags for a team
+> 
+> /v2/teams/{teamId}/members
+>   POST     Invite a user
+> 
+> /v2/user
+>   GET      Get the User
+> 
+> /v3/deployments/{idOrUrl}/events
+>   GET      Get deployment events
+> 
+> /v3/domains/{domain}
+>   PATCH    Update or move apex domain
+> 
+> /v3/events
+>   GET      List User Events
+> 
+> /v3/teams/{teamId}/members
+>   GET      List team members
+> 
+> /v3/user/tokens
+>   POST     Create an Auth Token
+> 
+> /v3/user/tokens/{tokenId}
+>   DELETE   Delete an authentication token
+> 
+> /v4/aliases
+>   GET      List aliases
+> 
+> /v4/aliases/{idOrAlias}
+>   GET      Get an Alias
+> 
+> /v5/domains
+>   GET      List all the domains
+> 
+> /v5/domains/{domain}
+>   GET      Get Information for a Single Domain
+> 
+> /v5/domains/{domain}/records
+>   GET      List existing DNS records
+> 
+> /v5/user/tokens/{tokenId}
+>   GET      Get Auth Token Metadata
+> 
+> /v6/deployments/{id}/files
+>   GET      List Deployment Files
+> 
+> /v6/domains/{domain}
+>   DELETE   Remove a domain by name
+> 
+> /v6/domains/{domain}/config
+>   GET      Get a Domain's configuration
+> 
+> /v6/user/tokens
+>   GET      List Auth Tokens
+> 
+> /v7/deployments
+>   GET      List deployments
+> 
+> /v7/domains
+>   POST     Add an existing domain to the Vercel platform
+> 
+> /v8/artifacts
+>   POST     Query information about an artifact
+> 
+> /v8/artifacts/{hash}
+>   GET      Download a cache artifact
+>   PUT      Upload a cache artifact
+> 
+> /v8/artifacts/events
+>   POST     Record an artifacts cache usage event
+> 
+> /v8/artifacts/status
+>   GET      Get status of Remote Caching for this principal
+> 
+> /v8/certs
+>   POST     Issue a new cert
+>   PUT      Upload a cert
+> 
+> /v8/certs/{id}
+>   GET      Get cert by id
+>   DELETE   Remove cert
+> 
+> /v8/deployments/{id}/files/{fileId}
+>   GET      Get Deployment File Contents
+> 
+> /v9/domains/{domain}/claim
+>   POST     Claim Domain Ownership
+> 
+> /v9/domains/{domain}/verification
+>   GET      Get Domain Verification Record
+> 
+> /v9/projects/{idOrName}
+>   GET      Find a project by id or name
+>   PATCH    Update an existing project
+>   DELETE   Delete a Project
+> 
+> /v9/projects/{idOrName}/custom-environments
+>   GET      Retrieve custom environments
+>   POST     Create a custom environment for the current project.
+> 
+> /v9/projects/{idOrName}/custom-environments/{environmentSlugOrId}
+>   GET      Retrieve a custom environment
+>   PATCH    Update a custom environment
+>   DELETE   Remove a custom environment
+> 
+> /v9/projects/{idOrName}/domains
+>   GET      Retrieve project domains by project by id or name
+> 
+> /v9/projects/{idOrName}/domains/{domain}
+>   GET      Get a project domain
+>   PATCH    Update a project domain
+>   DELETE   Remove a domain from a project
+> 
+> /v9/projects/{idOrName}/domains/{domain}/verify
+>   POST     Verify project domain
+> 
+> /v9/projects/{idOrName}/env/{id}
+>   PATCH    Edit an environment variable
+>   DELETE   Remove an environment variable
+> 
+> 244 routes, 331 endpoints
