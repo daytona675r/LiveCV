@@ -112,7 +112,7 @@ const stack = [
   { cat: "AI / ML", items: ["MLflow", "LangGraph", "LangChain", "OpenAI API", "DVC"] },
   { cat: "Infrastructure", items: ["Kubernetes", "Terraform", "Docker", "AWS", "S3"] },
   { cat: "Languages", items: ["Python", "TypeScript", ".NET"] },
-  { cat: "Frameworks & Tools", items: ["FastAPI", "React", "PostgreSQL", "Pixi", "Git"] },
+  { cat: "Frameworks & Tools", items: ["FastAPI", "React", "Angular", "PostgreSQL", "Pixi", "Git"] },
 ];
 
 const sLabel: React.CSSProperties = {
@@ -216,7 +216,7 @@ function Page1() {
           <div style={{ marginBottom: 30 }}>
             <SectionLabel>Professional Profile</SectionLabel>
             <p style={profileBodyStyle}>
-              I've spent more than twenty years building software platforms for environments where reliability matters. Today, I build the engineering platforms and workflows that help AI teams turn ideas into reliable production systems.
+              I've spent more than twenty years building software platforms for environments where reliability matters. Today I work at the intersection of software engineering and AI, designing reliable platforms and products that turn complex requirements into production-ready systems.
             </p>
             <p style={{ ...profileBodyStyle, marginTop: 9, marginBottom: 60, fontWeight: 300, fontSize: 11, color: TEXT_QUOTE, fontStyle: "italic" }}>
               Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.
@@ -523,7 +523,7 @@ function PdfDocument() {
             <View style={{ marginBottom: pt(30) }}>
               <PdfSectionLabel>Professional Profile</PdfSectionLabel>
               <Text style={pdfStyles.profileBody}>
-                I've spent more than twenty years building software platforms for environments where reliability matters. Today, I apply that experience to <Text style={{ fontWeight: 700 }}>production AI</Text>—designing the engineering systems that enable machine learning teams to build, validate, deploy, and operate AI with confidence.
+                I've spent more than twenty years building software platforms for environments where reliability matters. Today I work at the intersection of software engineering and AI, designing reliable platforms and products that turn complex requirements into production-ready systems.
               </Text>
               <Text style={pdfStyles.quote}>Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.</Text>
             </View>
