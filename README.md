@@ -6,9 +6,18 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
-Interactive online CV for Mario Wangen — Senior Software Engineer in AI Platform Engineering.
+Interactive online CV for Mario Wangen — Senior Software Engineer — with focused variants built from one shared career history and design.
 
 View the live site at [livecv-mariowangen.vercel.app](https://livecv-mariowangen.vercel.app), or download a print-ready two-page PDF directly from the page.
+
+## CV variants
+
+- `/` — AI Infrastructure & MLOps
+- `/fullstack` — Full-Stack & Product Engineering
+- `/ai` — Applied AI & LLM Systems
+- `/fde` — AI Solutions & Product Delivery
+
+Each route provides matching metadata and a variant-specific PDF download. Vercel rewrites direct route requests to the single-page application entry point.
 
 ## Development
 

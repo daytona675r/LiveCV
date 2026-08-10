@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Document, Page as PdfPage, PDFDownloadLink, StyleSheet, Text, View, Link } from "@react-pdf/renderer";
 import { Download } from "lucide-react";
+import { CvContent, education, earlierRoles, getCvContent } from "./cvContent";
 
 const PAGE_W = 794;
 const PAGE_H = 1123;
@@ -17,103 +18,6 @@ const TEXT_QUOTE = "#C4C9D1";
 const BORDER = "#E5E7EB";
 const BORDER_LIGHT = "#F3F4F6";
 const FONT = "'Inter', sans-serif";
-
-const capabilities = [
-  {
-    cat: "AI Platforms",
-    items: ["MLflow model lifecycle", "Validation gate design", "Golden snapshot testing", "Reproducible pipelines", "CI dataset architecture"],
-  },
-  {
-    cat: "AI Systems",
-    items: ["LangGraph / agent orchestration", "RAG architecture", "LLM integration", "Retrieval pipeline design"],
-  },
-  {
-    cat: "Cloud & Infrastructure",
-    items: ["Kubernetes", "Terraform", "Docker / container ops", "AWS · S3"],
-  },
-  {
-    cat: "Platform Engineering",
-    items: ["Python", "CI/CD design", "FastAPI · REST", "System architecture"],
-  },
-];
-
-const caseStudies = [
-  {
-    title: "Designed the model delivery platform",
-    body: "Partnered with ML engineers to design automated model delivery workflows based on MLflow, replacing manual promotion workflows with reproducible, version-controlled release artifacts.",
-  },
-  {
-    title: "Built confidence into production releases",
-    body: "Introduced multi-stage validation gates and golden snapshot testing — a per-sample behavioral baseline that catches prediction regressions that aggregate metrics miss entirely.",
-  },
-  {
-    title: "Infrastructure as an engineering product",
-    body: "Built Kubernetes- and Terraform-based infrastructure supporting production AI workloads, designed to be maintained by the next engineer rather than operated through tribal knowledge.",
-  },
-  {
-    title: "Reduced operational friction",
-    body: "Treated internal AI infrastructure as an engineering product: CI datasets, automated deployment pipelines, and a single alias flip as the only human step in promoting a model to production.",
-  },
-];
-
-const schlegelHighlights = [
-  "Developed enterprise desktop and SaaS applications throughout the complete software lifecycle.",
-  "Established CI/CD pipelines, containerised deployments, and automated development workflows.",
-  "Worked directly with customers to translate complex engineering requirements into maintainable software solutions.",
-  "Built a strong foundation in designing software intended to remain maintainable over many years.",
-];
-
-const earlierRoles = [
-  { company: "Indanet AG", role: "Software Engineer", desc: "Security and disruption management solutions for public transportation." },
-  { company: "MAP&GUIDE GmbH", role: "Software Engineer", desc: "Navigation software and GPS systems." },
-  { company: "M.ABLE GmbH", role: "Software Engineer", desc: "Mobile CRM solutions for BMW." },
-  { company: "SOFiSTiK AG", role: "Software Engineer", desc: "Structural engineering and BIM software." },
-];
-
-const projects = [
-  {
-    name: "PULSE ContentAgent",
-    desc: "Designed to transform fragmented content creation into a structured, repeatable workflow through agent orchestration and evaluation.",
-    pattern: "State-machine based orchestration",
-    tags: ["LangGraph", "Python", "FastAPI", "OpenAI"],
-  },
-  {
-    name: "Production Knowledge Platform",
-    desc: "Enterprise RAG architecture separating ingestion, indexing, retrieval and generation into independent services.",
-    pattern: "Decoupled ingestion–retrieval services",
-    tags: ["RAG", "LangChain", "PostgreSQL", "AWS"],
-  },
-  {
-    name: "StartupCoach",
-    desc: "Context-aware AI coaching using retrieval augmentation and function calling for personalised guidance.",
-    pattern: "Retrieval-augmented generation with tool calling",
-    tags: ["OpenAI", "RAG", "FastAPI", "Python"],
-  },
-  {
-    name: "InterviewCoach",
-    desc: "Adaptive interview simulation using structured LLM workflows with dynamic follow-up generation.",
-    pattern: "Graph-based adaptive dialogue flow",
-    tags: ["LangGraph", "OpenAI", "React", "TypeScript"],
-  },
-];
-
-const education = [
-  {
-    school: "Turing College",
-    degree: "AI Engineering",
-    desc: "Modern LLM applications, retrieval systems, agentic workflows, production AI engineering, and end-to-end AI application development.",
-    accent: true,
-  },
-  { school: "Academy of Administration and Economics, Munich", degree: "Business Information Systems", desc: null, accent: false },
-  { school: "Eckert Schools", degree: "IT Specialist – Application Development", desc: null, accent: false },
-];
-
-const stack = [
-  { cat: "AI / ML", items: ["MLflow", "LangGraph", "LangChain", "OpenAI API", "DVC"] },
-  { cat: "Infrastructure", items: ["Kubernetes", "Terraform", "Docker", "AWS", "S3"] },
-  { cat: "Languages", items: ["Python", "TypeScript", ".NET"] },
-  { cat: "Frameworks & Tools", items: ["FastAPI", "React", "Angular", "PostgreSQL", "Pixi", "Git"] },
-];
 
 const sLabel: React.CSSProperties = {
   fontSize: 8.5,
@@ -170,7 +74,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return <span style={sLabel}>{children}</span>;
 }
 
-function Page1() {
+function Page1({ content }: { content: CvContent }) {
   const PH = 52;
   const PV = 44;
   const BODY_W = PAGE_W - PH * 2;
@@ -195,10 +99,10 @@ function Page1() {
           Mario Wangen
         </h1>
         <p style={{ fontSize: 14.5, fontWeight: 400, color: TEXT_SEC, margin: "0 0 5px", lineHeight: 1.45, fontFamily: FONT, maxWidth: 500 }}>
-          Building the engineering platforms that enable AI teams to ship reliable software.
+          {content.hero}
         </p>
         <p style={{ fontSize: 11, color: TEXT_MUT, margin: "0 0 18px", fontFamily: FONT, letterSpacing: "0.01em" }}>
-          Senior Software Engineer · AI Platform Engineering · Production AI Systems · MLOps
+          {content.headline}
         </p>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 22px", alignItems: "center" }}>
@@ -216,10 +120,10 @@ function Page1() {
           <div style={{ marginBottom: 30 }}>
             <SectionLabel>Professional Profile</SectionLabel>
             <p style={profileBodyStyle}>
-              I've spent more than twenty years building software platforms for environments where reliability matters. Today I work at the intersection of software engineering and AI, designing reliable platforms and products that turn complex requirements into production-ready systems.
+              {content.profile}
             </p>
             <p style={{ ...profileBodyStyle, marginTop: 9, marginBottom: 60, fontWeight: 300, fontSize: 11, color: TEXT_QUOTE, fontStyle: "italic" }}>
-              Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.
+              {content.profileNote}
             </p>
           </div>
 
@@ -237,11 +141,11 @@ function Page1() {
             </div>
 
             <p style={{ ...bodyStyle, marginBottom: 20 }}>
-              Designed and evolved the engineering platform supporting production AI systems in healthcare, enabling machine learning teams to move from research to reliable production through automation, reproducibility, and platform engineering.
+              {content.currentRoleSummary}
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 17 }}>
-              {caseStudies.map((item, i) => (
+              {content.caseStudies.map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: 14 }}>
                   <div style={{ width: 2, flexShrink: 0, background: ACCENT, borderRadius: 2, alignSelf: "stretch", minHeight: 40 }} />
                   <div>
@@ -257,7 +161,7 @@ function Page1() {
         <div style={{ width: RIGHT_W, flexShrink: 0 }}>
           <SectionLabel>Core Capabilities</SectionLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-            {capabilities.map(({ cat, items }) => (
+            {content.capabilities.map(({ cat, items }) => (
               <div key={cat}>
                 <div style={{ fontSize: 10.5, fontWeight: 600, color: TEXT, fontFamily: FONT, marginBottom: 8, letterSpacing: "-0.005em" }}>{cat}</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -277,7 +181,7 @@ function Page1() {
   );
 }
 
-function Page2() {
+function Page2({ content }: { content: CvContent }) {
   const PH = 52;
   const PV = 44;
 
@@ -312,10 +216,10 @@ function Page2() {
             <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>· Engineering Software · Structural Analysis</span>
           </div>
           <p style={{ ...bodyStyle, fontSize: 10.5, marginBottom: 10 }}>
-            Designed and delivered engineering software for structural analysis and civil engineering projects over fifteen years. My role naturally expanded to encompass architecture, DevOps, automation, and technical leadership across the full software lifecycle.
+            {content.schlegelSummary}
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            {schlegelHighlights.map((h, i) => (
+            {content.schlegelHighlights.map((h, i) => (
               <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
                 <div style={{ width: 3, height: 3, borderRadius: "50%", background: BORDER, flexShrink: 0, marginTop: 6 }} />
                 <span style={{ fontSize: 10.5, color: TEXT_SEC, fontFamily: FONT, lineHeight: 1.65 }}>{h}</span>
@@ -335,15 +239,15 @@ function Page2() {
             ))}
           </div>
           <p style={{ ...bodyStyle, fontSize: 10, marginTop: 8, color: TEXT_MUT }}>
-            Earlier roles established a broad foundation across enterprise software, embedded systems, GIS, mobile applications, and customer-focused product development.
+            {content.earlierExperienceSummary}
           </p>
         </div>
       </div>
 
-      <div style={{ marginBottom: 22 }}>
+      <div style={{ marginBottom: 18 }}>
         <SectionLabel>Selected Engineering Systems</SectionLabel>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px 36px" }}>
-          {projects.map((p) => (
+          {content.projects.map((p) => (
             <div key={p.name}>
               <div style={{ fontSize: 11, fontWeight: 700, color: TEXT, fontFamily: FONT, marginBottom: 3, letterSpacing: "-0.01em" }}>{p.name}</div>
               <div style={{ fontSize: 10, color: TEXT_SEC, fontFamily: FONT, lineHeight: 1.6, marginBottom: 5 }}>{p.desc}</div>
@@ -357,7 +261,7 @@ function Page2() {
         </div>
       </div>
 
-      <div style={{ marginBottom: 22 }}>
+      <div style={{ marginBottom: 12 }}>
         <SectionLabel>Education &amp; Professional Development</SectionLabel>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {education.map((e, i) => (
@@ -375,7 +279,7 @@ function Page2() {
       <div>
         <SectionLabel>Technology Stack</SectionLabel>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 40px" }}>
-          {stack.map(({ cat, items }) => (
+          {content.stack.map(({ cat, items }) => (
             <div key={cat}>
               <div style={{ fontSize: 9, fontWeight: 500, color: TEXT, fontFamily: FONT, marginBottom: 9, letterSpacing: "0.01em" }}>{cat}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -407,9 +311,10 @@ function usePageScale(pageWidth: number, horizontalPadding = 32) {
   return scale;
 }
 
-function ScaledPage({ scale, children }: { scale: number; children: React.ReactNode }) {
+function ScaledPage({ scale, pageNumber, children }: { scale: number; pageNumber: number; children: React.ReactNode }) {
   return (
     <div
+      data-cv-page={pageNumber}
       style={{
         width: PAGE_W * scale,
         height: PAGE_H * scale,
@@ -466,6 +371,8 @@ const pdfStyles = StyleSheet.create({
   page2Divider: { height: pt(1), backgroundColor: BORDER, marginBottom: pt(24) },
   block24: { marginBottom: pt(24) },
   block22: { marginBottom: pt(22) },
+  block18: { marginBottom: pt(18) },
+  block12: { marginBottom: pt(12) },
   schlegelTitle: { fontSize: pt(12.5), fontWeight: 700, color: TEXT, letterSpacing: pt(-0.125) },
   smallCompany: { fontSize: pt(11), color: ACCENT, fontWeight: 700, marginRight: pt(7) },
   listItem: { flexDirection: "row", alignItems: "flex-start", marginBottom: pt(4) },
@@ -500,14 +407,14 @@ function PdfSectionLabel({ children }: { children: string }) {
   return <Text style={pdfStyles.sectionLabel}>{children}</Text>;
 }
 
-function PdfDocument() {
+function PdfDocument({ content }: { content: CvContent }) {
   return (
-    <Document title="Mario Wangen CV" author="Mario Wangen" subject="CV" creator="Mario Wangen CV App">
+    <Document title={content.pageTitle} author="Mario Wangen" subject="CV" creator="Mario Wangen CV App">
       <PdfPage size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.header}>
           <Text style={pdfStyles.name}>Mario Wangen</Text>
-          <Text style={pdfStyles.headline}>Building the engineering platforms that enable AI teams to ship reliable software.</Text>
-          <Text style={pdfStyles.subhead}>Senior Software Engineer · AI Platform Engineering · Production AI Systems · MLOps</Text>
+          <Text style={pdfStyles.headline}>{content.hero}</Text>
+          <Text style={pdfStyles.subhead}>{content.headline}</Text>
           <View style={pdfStyles.contactRow}>
             <Link src="https://linkedin.com/in/mariowangen" style={pdfStyles.contactItem}>linkedin.com/in/mariowangen</Link>
             <Link src="https://github.com/daytona675r" style={pdfStyles.contactItem}>github.com/daytona675r</Link>
@@ -523,9 +430,9 @@ function PdfDocument() {
             <View style={{ marginBottom: pt(30) }}>
               <PdfSectionLabel>Professional Profile</PdfSectionLabel>
               <Text style={pdfStyles.profileBody}>
-                I've spent more than twenty years building software platforms for environments where reliability matters. Today I work at the intersection of software engineering and AI, designing reliable platforms and products that turn complex requirements into production-ready systems.
+                {content.profile}
               </Text>
-              <Text style={pdfStyles.quote}>Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.</Text>
+              <Text style={pdfStyles.quote}>{content.profileNote}</Text>
             </View>
 
             <View>
@@ -541,10 +448,10 @@ function PdfDocument() {
                 </View>
               </View>
 
-              <Text style={[pdfStyles.body, { marginBottom: pt(20) }]}>Designed and evolved the engineering platform supporting production AI systems in healthcare, enabling machine learning teams to move from research to reliable production through automation, reproducibility, and platform engineering.</Text>
+              <Text style={[pdfStyles.body, { marginBottom: pt(20) }]}>{content.currentRoleSummary}</Text>
 
               <View>
-                {caseStudies.map((item, i) => (
+                {content.caseStudies.map((item, i) => (
                   <View key={i} style={pdfStyles.caseItem}>
                     <View style={pdfStyles.accentBar} />
                     <View style={pdfStyles.caseContent}>
@@ -559,7 +466,7 @@ function PdfDocument() {
 
           <View style={pdfStyles.rightCol}>
             <PdfSectionLabel>Core Capabilities</PdfSectionLabel>
-            {capabilities.map(({ cat, items }) => (
+            {content.capabilities.map(({ cat, items }) => (
               <View key={cat} style={pdfStyles.capBlock}>
                 <Text style={pdfStyles.capTitle}>{cat}</Text>
                 {items.map((item) => (
@@ -592,8 +499,8 @@ function PdfDocument() {
               <Text style={pdfStyles.smallCompany}>Ingenieurbüro Schlegel</Text>
               <Text style={pdfStyles.roleMeta}>· Engineering Software · Structural Analysis</Text>
             </View>
-            <Text style={[pdfStyles.body, { fontSize: pt(10.5), marginBottom: pt(10) }]}>Designed and delivered engineering software for structural analysis and civil engineering projects over fifteen years. My role naturally expanded to encompass architecture, DevOps, automation, and technical leadership across the full software lifecycle.</Text>
-            {schlegelHighlights.map((h, i) => (
+            <Text style={[pdfStyles.body, { fontSize: pt(10.5), marginBottom: pt(10) }]}>{content.schlegelSummary}</Text>
+            {content.schlegelHighlights.map((h, i) => (
               <View key={i} style={pdfStyles.listItem}>
                 <View style={[pdfStyles.bullet, { marginTop: pt(6), marginRight: pt(9) }]} />
                 <Text style={pdfStyles.listText}>{h}</Text>
@@ -609,14 +516,14 @@ function PdfDocument() {
                 <Text style={pdfStyles.earlierDesc}>{r.desc}</Text>
               </View>
             ))}
-            <Text style={pdfStyles.mutedNote}>Earlier roles established a broad foundation across enterprise software, embedded systems, GIS, mobile applications, and customer-focused product development.</Text>
+            <Text style={pdfStyles.mutedNote}>{content.earlierExperienceSummary}</Text>
           </View>
         </View>
 
-        <View style={pdfStyles.block22}>
+        <View style={pdfStyles.block18}>
           <PdfSectionLabel>Selected Engineering Systems</PdfSectionLabel>
           <View style={pdfStyles.projectGrid}>
-            {projects.map((p, i) => (
+            {content.projects.map((p, i) => (
               <View key={p.name} style={i % 2 === 0 ? pdfStyles.projectCard : pdfStyles.projectCardRight}>
                 <Text style={pdfStyles.projectName}>{p.name}</Text>
                 <Text style={pdfStyles.projectDesc}>{p.desc}</Text>
@@ -627,7 +534,7 @@ function PdfDocument() {
           </View>
         </View>
 
-        <View style={pdfStyles.block22}>
+        <View style={pdfStyles.block12}>
           <PdfSectionLabel>Education &amp; Professional Development</PdfSectionLabel>
           {education.map((e, i) => (
             <View key={e.school} style={[pdfStyles.educationItem, i === education.length - 1 ? { borderBottomWidth: 0 } : null]}>
@@ -643,8 +550,8 @@ function PdfDocument() {
         <View>
           <PdfSectionLabel>Technology Stack</PdfSectionLabel>
           <View style={pdfStyles.stackRow}>
-            {stack.map(({ cat, items }, i) => (
-              <View key={cat} style={i === stack.length - 1 ? pdfStyles.stackColLast : pdfStyles.stackCol}>
+            {content.stack.map(({ cat, items }, i) => (
+              <View key={cat} style={i === content.stack.length - 1 ? pdfStyles.stackColLast : pdfStyles.stackCol}>
                 <Text style={pdfStyles.stackCat}>{cat}</Text>
                 {items.map((item) => <Text key={item} style={pdfStyles.stackItem}>{item}</Text>)}
               </View>
@@ -658,14 +565,21 @@ function PdfDocument() {
 
 export default function App() {
   const scale = usePageScale(PAGE_W);
+  const content = getCvContent(window.location.pathname);
+
+  useEffect(() => {
+    document.title = content.pageTitle;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", content.metaDescription);
+  }, [content]);
 
   return (
     <div
+      data-cv-variant={content.variant}
       className="min-h-screen flex flex-col items-center justify-center gap-0 px-4 py-6 sm:px-6 sm:py-12"
       style={{ background: "#111827", overflowX: "hidden" }}
     >
-      <ScaledPage scale={scale}>
-        <Page1 />
+      <ScaledPage scale={scale} pageNumber={1}>
+        <Page1 content={content} />
       </ScaledPage>
 
       <div style={{ width: PAGE_W * scale, maxWidth: "100%", height: 20, display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
@@ -674,14 +588,15 @@ export default function App() {
         <div style={{ height: 1, flex: 1, background: "rgba(255,255,255,0.06)" }} />
       </div>
 
-      <ScaledPage scale={scale}>
-        <Page2 />
+      <ScaledPage scale={scale} pageNumber={2}>
+        <Page2 content={content} />
       </ScaledPage>
 
       <div style={{ marginTop: 24, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: "100%", maxWidth: PAGE_W * scale }}>
-        <PDFDownloadLink document={<PdfDocument />} fileName="mario-wangen-cv.pdf">
+        <PDFDownloadLink document={<PdfDocument content={content} />} fileName={content.pdfFileName}>
           {({ loading }) => (
             <button
+              data-testid="download-cv"
               disabled={loading}
               style={{
                 display: "flex",
