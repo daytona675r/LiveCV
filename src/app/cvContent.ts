@@ -1,4 +1,4 @@
-export type CvVariant = "base" | "fullstack" | "ai" | "fde";
+export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "fde";
 
 export type CapabilityGroup = {
   cat: string;
@@ -221,6 +221,50 @@ const ai: CvContent = {
   pdfFileName: "Mario_Wangen_CV_Applied_AI.pdf",
 };
 
+const atlantic: CvContent = {
+  ...ai,
+  variant: "atlantic",
+  route: "/ai/atlantic",
+  pageTitle: "Mario Wangen — Senior Software Engineer | Applied AI, RAG & Cloud Systems",
+  metaDescription: "Senior Software Engineer with experience across Applied AI, RAG, MLOps, cloud infrastructure and production software systems.",
+  headline: "Senior Software Engineer | Applied AI, RAG & Cloud Systems",
+  hero: "Building practical AI systems from retrieval and APIs to reliable cloud deployment.",
+  profile: "For more than twenty years, I've built production software across engineering, enterprise SaaS, and healthcare. Today I apply that background to AI systems, combining RAG and agent workflows with Python APIs, cloud infrastructure, and the delivery practices required to run them reliably.",
+  profileNote: "My professional work spans MLOps and AI infrastructure; personal projects explore retrieval, LLM orchestration, and evaluation across the complete system.",
+  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI systems, combining reproducible MLflow-based workflows with multi-stage validation, model lifecycle management, and cloud-native delivery on AWS.",
+  capabilities: [
+    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain · LangGraph", "LLM applications", "Agent workflows"] },
+    { cat: "Software & APIs", items: ["Python · FastAPI", "REST API design", "PostgreSQL", "TypeScript · React", "System architecture"] },
+    { cat: "MLOps & AI Infrastructure", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "Model promotion", "CI dataset architecture"] },
+    { cat: "Cloud, Platform & Delivery", items: ["AWS · S3", "Kubernetes · Docker", "Terraform · IaC", "CI/CD automation", "Environment automation"] },
+  ],
+  caseStudies: [baseCaseStudies[0], baseCaseStudies[1], baseCaseStudies[2], baseCaseStudies[3]],
+  projects: [
+    {
+      ...projectCatalog.knowledge,
+      desc: "RAG system separating document ingestion, indexing, retrieval, and contextual generation into independent services for clear API integration.",
+      pattern: "Decoupled document ingestion and retrieval",
+    },
+    {
+      ...projectCatalog.pulse,
+      desc: "Structured LLM workflow with staged orchestration and evaluation, designed to keep complex content generation repeatable and easier to validate.",
+      pattern: "State-machine orchestration with evaluation stages",
+    },
+    {
+      ...projectCatalog.atlas,
+      desc: "Personal MLOps reference implementation demonstrating reproducible training, validation, model lifecycle management, infrastructure as code, and automated delivery.",
+    },
+    projectCatalog.startupCoach,
+  ],
+  stack: [
+    { cat: "Applied AI & Retrieval", items: ["RAG", "LangChain", "LangGraph", "OpenAI API", "Agent workflows"] },
+    { cat: "Software & APIs", items: ["Python", "FastAPI", "REST APIs", "PostgreSQL", "TypeScript"] },
+    { cat: "MLOps & AI Infrastructure", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
+    { cat: "Cloud, Platform & Delivery", items: ["AWS", "Kubernetes", "Terraform", "Docker", "CI/CD"] },
+  ],
+  pdfFileName: "Mario_Wangen_CV_Atlantic_AI.pdf",
+};
+
 const fde: CvContent = {
   ...base,
   variant: "fde",
@@ -249,12 +293,13 @@ const fde: CvContent = {
   pdfFileName: "Mario_Wangen_CV_AI_Solutions.pdf",
 };
 
-export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, fde };
+export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, fde };
 
 const routeVariants: Record<string, CvVariant> = {
   "/": "base",
   "/fullstack": "fullstack",
   "/ai": "ai",
+  "/ai/atlantic": "atlantic",
   "/fde": "fde",
 };
 

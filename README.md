@@ -15,6 +15,7 @@ View the live site at [livecv-mariowangen.vercel.app](https://livecv-mariowangen
 - `/` — AI Infrastructure & MLOps
 - `/fullstack` — Full-Stack & Product Engineering
 - `/ai` — Applied AI & LLM Systems
+- `/ai/atlantic` — Applied AI, RAG & Cloud Systems (Atlantic Ventures)
 - `/fde` — AI Solutions & Product Delivery
 
 Each route provides matching metadata and a variant-specific PDF download. Vercel rewrites direct route requests to the single-page application entry point.
