@@ -1,4 +1,4 @@
-export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "fde";
+export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde";
 
 export type CapabilityGroup = {
   cat: string;
@@ -265,6 +265,58 @@ const atlantic: CvContent = {
   pdfFileName: "Mario_Wangen_CV_Atlantic_AI.pdf",
 };
 
+const bike24: CvContent = {
+  ...base,
+  variant: "bike24",
+  route: "/mlops/bike24",
+  pageTitle: "Mario Wangen — Senior Software Engineer | MLOps & Applied AI Systems",
+  metaDescription: "Senior Software Engineer combining MLOps, AI infrastructure, RAG and production software engineering.",
+  headline: "Senior Software Engineer | MLOps & Applied AI Systems",
+  hero: "Engineering the infrastructure and workflows that move AI from experimentation to reliable production.",
+  profile: "For more than twenty years, I've built software systems where reliability and maintainability matter. Today I work across MLOps, AI infrastructure, and applied AI, building the engineering systems that move machine-learning workloads from experimentation into reliable production.",
+  profileNote: "My professional work covers reproducible MLflow workflows, multi-stage validation, Kubernetes, Terraform, Docker, AWS, and CI/CD; personal projects explore RAG, retrieval, LLM orchestration, and evaluation.",
+  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI systems, combining reproducible MLflow-based workflows with automated validation, model lifecycle management, and cloud-native delivery on AWS.",
+  capabilities: [
+    { cat: "MLOps & AI Infrastructure", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "Model promotion", "Deployment automation"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain · LangGraph", "LLM applications", "Agent workflows"] },
+    { cat: "Cloud & Platform Engineering", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "Environment automation"] },
+    { cat: "Software & Delivery", items: ["Python · FastAPI", "PostgreSQL · SQL", "REST API design", "CI/CD automation", "System architecture"] },
+  ],
+  caseStudies: [
+    baseCaseStudies[0],
+    {
+      title: "Built validation into the ML lifecycle",
+      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
+    },
+    baseCaseStudies[2],
+    baseCaseStudies[3],
+  ],
+  projects: [
+    {
+      ...projectCatalog.knowledge,
+      desc: "RAG system separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed retrieval workflows.",
+      pattern: "Decoupled document ingestion and retrieval",
+    },
+    {
+      ...projectCatalog.pulse,
+      desc: "Structured LLM workflow with staged orchestration and evaluation, designed to keep complex content generation repeatable and easier to validate.",
+      pattern: "State-machine orchestration with evaluation stages",
+    },
+    {
+      ...projectCatalog.atlas,
+      desc: "Personal MLOps reference implementation demonstrating reproducible training, validation, model lifecycle management, infrastructure as code, and automated delivery.",
+    },
+    projectCatalog.startupCoach,
+  ],
+  stack: [
+    { cat: "MLOps & AI Infrastructure", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG", "Retrieval pipelines", "LangChain", "LangGraph", "OpenAI API"] },
+    { cat: "Cloud & Platform", items: ["Kubernetes", "Terraform", "Docker", "AWS", "S3"] },
+    { cat: "Software & Delivery", items: ["Python", "FastAPI", "PostgreSQL", "REST APIs", "CI/CD"] },
+  ],
+  pdfFileName: "Mario_Wangen_CV_BIKE24_MLOps.pdf",
+};
+
 const fde: CvContent = {
   ...base,
   variant: "fde",
@@ -293,13 +345,14 @@ const fde: CvContent = {
   pdfFileName: "Mario_Wangen_CV_AI_Solutions.pdf",
 };
 
-export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, fde };
+export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde };
 
 const routeVariants: Record<string, CvVariant> = {
   "/": "base",
   "/fullstack": "fullstack",
   "/ai": "ai",
   "/ai/atlantic": "atlantic",
+  "/mlops/bike24": "bike24",
   "/fde": "fde",
 };
 
