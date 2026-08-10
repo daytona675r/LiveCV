@@ -63,8 +63,8 @@ export const education = [
 const projectCatalog = {
   atlas: {
     name: "Atlas",
-    desc: "Model delivery platform supporting production AI workflows through reproducible release artifacts, validation gates, and automated deployment.",
-    pattern: "Versioned model lifecycle with automated validation",
+    desc: "Personal reference implementation of production-oriented MLOps patterns, informed by practical experience building AI infrastructure and ML delivery systems.",
+    pattern: "Reproducible training, validation, and model promotion",
     tags: ["MLflow", "Kubernetes", "Terraform", "DVC"],
   },
   pulse: {
@@ -114,20 +114,20 @@ const baseCapabilities: CapabilityGroup[] = [
 
 const baseCaseStudies: CaseStudy[] = [
   {
-    title: "Atlas — model delivery platform",
-    body: "Partnered with ML engineers to design automated model delivery workflows based on MLflow, replacing manual promotion workflows with reproducible, version-controlled release artifacts.",
+    title: "Built the MLOps delivery workflow",
+    body: "Built MLflow-based workflows spanning reproducible training, validation, model promotion, and deployment, replacing manual handoffs with version-controlled release artifacts.",
   },
   {
-    title: "Built confidence into production releases",
-    body: "Introduced multi-stage validation gates and golden snapshot testing — a per-sample behavioral baseline that catches prediction regressions that aggregate metrics miss entirely.",
+    title: "Built validation into the ML lifecycle",
+    body: "Introduced gates across data, engineering pipelines, trained-model quality, and deployment, including golden snapshot testing to catch behavioral regressions before production.",
   },
   {
     title: "Infrastructure as an engineering product",
-    body: "Built Kubernetes- and Terraform-based infrastructure supporting production AI workloads, designed to be maintained by the next engineer rather than operated through tribal knowledge.",
+    body: "Built Kubernetes infrastructure and Terraform-based infrastructure as code for production AI workloads, with Docker and environment automation designed for long-term maintainability.",
   },
   {
     title: "Reduced operational friction",
-    body: "Treated internal AI infrastructure as an engineering product: CI datasets, automated deployment pipelines, and a single alias flip as the only human step in promoting a model to production.",
+    body: "Treated AI infrastructure as an engineering product, using CI datasets and CI/CD automation so a single alias change remained the only human step in model promotion.",
   },
 ];
 
@@ -154,7 +154,7 @@ const base: CvContent = {
   hero: "Building the engineering platforms that enable AI teams to ship reliable software.",
   profile: "I've spent more than twenty years building software platforms for environments where reliability matters. Today I work at the intersection of software engineering and AI, designing reliable platforms and products that turn complex requirements into production-ready systems.",
   profileNote: "Helping machine learning teams move from experimentation to production through engineering discipline, automation, and platform thinking.",
-  currentRoleSummary: "Designed and evolved the engineering platform supporting production AI systems in healthcare, enabling machine learning teams to move from research to reliable production through automation, reproducibility, and platform engineering.",
+  currentRoleSummary: "Designed and evolved the MLOps and AI infrastructure supporting production healthcare AI systems, spanning reproducible training, validation, model promotion, deployment, and the platform automation around that lifecycle.",
   capabilities: baseCapabilities,
   caseStudies: baseCaseStudies,
   schlegelSummary: "Designed and delivered engineering software for structural analysis and civil engineering projects over fifteen years. My role naturally expanded to encompass architecture, DevOps, automation, and technical leadership across the full software lifecycle.",
@@ -175,7 +175,7 @@ const fullstack: CvContent = {
   hero: "Building reliable software products from architecture to production.",
   profile: "For more than twenty years, I've built and evolved software products across engineering, enterprise SaaS, and healthcare. My background spans full-stack development, architecture, APIs, cloud platforms, and CI/CD, with a focus on maintainability, reliability, and taking features from requirements through production.",
   profileNote: "AI is now another part of that toolbox—not a replacement for solid software engineering.",
-  currentRoleSummary: "Designed and evolved the engineering platform behind production AI systems in healthcare, applying software architecture, automation, APIs, and infrastructure engineering to move demanding workflows into reliable production.",
+  currentRoleSummary: "Designed and evolved the software, MLOps, and infrastructure platform behind production healthcare AI systems, applying architecture, APIs, automation, and infrastructure as code to move demanding workflows into reliable production.",
   capabilities: [
     { cat: "Software Engineering", items: [".NET", "Python", "TypeScript", "System architecture", "REST APIs"] },
     { cat: "Web & Product Engineering", items: ["React", "Angular", "FastAPI", "PostgreSQL", "Enterprise SaaS"] },
@@ -203,7 +203,7 @@ const ai: CvContent = {
   hero: "Building practical AI systems around retrieval, agents and production-grade software engineering.",
   profile: "For more than twenty years, I've built production software; today I apply that engineering discipline to modern AI systems. I design RAG applications, agent workflows, evaluation and orchestration layers, plus the APIs and infrastructure around them, with a focus on turning promising prototypes into reliable products.",
   profileNote: "My focus is engineering useful systems around foundation models—not building the models themselves.",
-  currentRoleSummary: "Designed and evolved the engineering platform supporting production AI systems in healthcare, connecting model lifecycle, validation, automation, and infrastructure so machine learning work can move reliably from research into production.",
+  currentRoleSummary: "Designed and evolved the MLOps and AI infrastructure foundation for production healthcare AI systems, connecting reproducible training, multi-stage validation, model lifecycle management, and deployment automation.",
   capabilities: [
     { cat: "Applied AI", items: ["LLM applications", "LangGraph orchestration", "Agent workflows", "Tool calling"] },
     { cat: "RAG & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain", "PostgreSQL"] },
@@ -231,7 +231,7 @@ const fde: CvContent = {
   hero: "Turning complex requirements into reliable software and AI solutions.",
   profile: "For more than twenty years, I've worked on complex software products where understanding the problem is as important as writing the code. I shape ambiguous technical or domain requirements into practical solutions and carry them through architecture, integration, and production.",
   profileNote: "Production AI and ML systems now extend a broad software, infrastructure, and delivery toolbox.",
-  currentRoleSummary: "Designed and evolved the engineering platform supporting production AI systems in healthcare, translating model-delivery and validation needs into maintainable workflows, infrastructure, and production operations.",
+  currentRoleSummary: "Turned complex ML delivery and operational requirements into a maintainable MLOps system for production healthcare AI, spanning validation, model promotion, infrastructure automation, and deployment.",
   capabilities: [
     { cat: "Solution Engineering", items: ["Requirements analysis", "Problem decomposition", "System architecture", "Maintainable solution design"] },
     { cat: "Product Delivery", items: ["End-to-end implementation", "Full software lifecycle", "CI/CD design", "Workflow automation"] },
