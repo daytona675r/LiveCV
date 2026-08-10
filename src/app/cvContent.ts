@@ -274,7 +274,7 @@ const bike24: CvContent = {
   headline: "Senior Software Engineer | MLOps & Applied AI Systems",
   hero: "Engineering the infrastructure and workflows that move AI from experimentation to reliable production.",
   profile: "For more than twenty years, I've built software systems where reliability and maintainability matter. Today I work across MLOps, AI infrastructure, and applied AI, building the engineering systems that move machine-learning workloads from experimentation into reliable production.",
-  profileNote: "My professional work covers reproducible MLflow workflows, multi-stage validation, Kubernetes, Terraform, Docker, AWS, and CI/CD; personal projects explore RAG, retrieval, LLM orchestration, and evaluation.",
+  profileNote: "My professional work covers reproducible MLflow workflows, multi-stage validation, Kubernetes, Terraform, Docker, AWS, and CI/CD; freelance projects explore RAG, retrieval, LLM orchestration, and evaluation.",
   currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI systems, combining reproducible MLflow-based workflows with automated validation, model lifecycle management, and cloud-native delivery on AWS.",
   capabilities: [
     { cat: "MLOps & AI Infrastructure", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "Model promotion", "Deployment automation"] },
