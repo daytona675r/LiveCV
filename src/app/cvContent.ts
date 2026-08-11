@@ -1,4 +1,4 @@
-export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde";
+export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde" | "telekom";
 
 export type CapabilityGroup = {
   cat: string;
@@ -345,7 +345,73 @@ const fde: CvContent = {
   pdfFileName: "Mario_Wangen_CV_AI_Solutions.pdf",
 };
 
-export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde };
+const telekom: CvContent = {
+  ...fde,
+  variant: "telekom",
+  route: "/fde/telekom-mms",
+  pageTitle: "Mario Wangen — Senior Software Engineer | AI Platforms & Solution Architecture",
+  metaDescription: "Senior Software Engineer combining solution architecture, MLOps, RAG and production AI platform engineering.",
+  headline: "Senior Software Engineer | AI Platforms & Solution Architecture",
+  hero: "Designing reliable AI systems from architecture and infrastructure to production.",
+  profile: "For more than twenty years, I've designed and built production software across engineering, enterprise SaaS, and healthcare. My work has increasingly moved toward the engineering around AI: MLOps, cloud infrastructure, reproducible ML workflows, and the systems required to take AI applications reliably into production.",
+  profileNote: "Today I combine that platform background with hands-on RAG, vector retrieval, and agentic LLM systems, turning complex requirements into practical architectures and staying close to the implementation through production.",
+  currentRoleSummary: "Designed and evolved the MLOps and AI infrastructure supporting production healthcare AI, connecting reproducible ML workflows, multi-stage validation, model lifecycle management, and cloud-native delivery on AWS into a reliable path from experimentation to production.",
+  capabilities: [
+    { cat: "AI Solution Architecture", items: ["System architecture", "Requirements-to-solution design", "APIs · Integration", "End-to-end delivery", "Python · .NET"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "ChromaDB · Vector retrieval", "LangChain · LangGraph", "LLM applications", "RAG workflow observability using LangSmith tracing"] },
+    { cat: "MLOps & AI Platforms", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "CPU/GPU environment design", "Model promotion"] },
+    { cat: "Cloud, DevOps & Infrastructure", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "TeamCity · CI/CD", "Environment automation"] },
+  ],
+  caseStudies: [
+    {
+      title: "Engineered the MLOps delivery system",
+      body: "Built MLflow-based workflows spanning reproducible training, validation, model promotion, and deployment, with TeamCity automating software delivery and MLOps workflows.",
+    },
+    {
+      title: "Built validation into the ML lifecycle",
+      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
+    },
+    {
+      title: "Provisioned resource-aware ML environments",
+      body: "Designed CPU- and GPU-specific Coder environments using Terraform templates, matching lightweight validation workloads to CPU resources and full training workloads to GPU-backed environments.",
+    },
+    baseCaseStudies[2],
+  ],
+  schlegelSummary: "Designed and delivered enterprise desktop and SaaS applications for structural and civil engineering over fifteen years, with responsibility spanning system architecture, implementation, DevOps, and automation across the full software lifecycle.",
+  schlegelHighlights: [
+    "Shaped application architecture and translated complex engineering requirements into maintainable software solutions.",
+    "Built and evolved TeamCity-based CI/CD pipelines, containerised deployments, and automated development workflows.",
+    "Worked directly with customers to turn domain requirements into practical software designs.",
+    "Maintained hands-on implementation responsibility across long-lived enterprise products.",
+  ],
+  projects: [
+    {
+      ...projectCatalog.knowledge,
+      desc: "RAG architecture separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed integration.",
+      pattern: "Decoupled document ingestion and retrieval",
+    },
+    {
+      ...projectCatalog.pulse,
+      desc: "Structured LangGraph workflow combining ChromaDB-backed vector retrieval with staged orchestration and evaluation boundaries to make non-deterministic behavior easier to validate.",
+      pattern: "Staged orchestration with retrieval and evaluation",
+      tags: ["LangGraph", "ChromaDB", "Python", "FastAPI"],
+    },
+    {
+      ...projectCatalog.atlas,
+      desc: "Personal MLOps reference implementation demonstrating reproducible training, multi-stage validation, model lifecycle management, infrastructure as code, and automated delivery.",
+    },
+    projectCatalog.startupCoach,
+  ],
+  stack: [
+    { cat: "Architecture & Software", items: ["Python", "FastAPI", ".NET", "TypeScript", "REST APIs"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG", "ChromaDB", "LangChain", "LangGraph", "LangSmith"] },
+    { cat: "MLOps & AI Platforms", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
+    { cat: "Cloud & DevOps", items: ["Kubernetes", "Terraform", "Docker", "AWS", "TeamCity · CI/CD"] },
+  ],
+  pdfFileName: "Mario_Wangen_CV_Telekom_MMS_AI_Architecture.pdf",
+};
+
+export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde, telekom };
 
 const routeVariants: Record<string, CvVariant> = {
   "/": "base",
@@ -354,6 +420,7 @@ const routeVariants: Record<string, CvVariant> = {
   "/ai/atlantic": "atlantic",
   "/mlops/bike24": "bike24",
   "/fde": "fde",
+  "/fde/telekom-mms": "telekom",
 };
 
 export function getCvContent(pathname: string): CvContent {

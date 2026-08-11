@@ -18,6 +18,7 @@ View the live site at [livecv-mariowangen.vercel.app](https://livecv-mariowangen
 - `/ai/atlantic` — Applied AI, RAG & Cloud Systems (Atlantic Ventures)
 - `/mlops/bike24` — MLOps & Applied AI Systems (BIKE24)
 - `/fde` — AI Solutions & Product Delivery
+- `/fde/telekom-mms` — AI Platforms & Solution Architecture (Telekom MMS)
 
 Each route provides matching metadata and a variant-specific PDF download. Vercel rewrites direct route requests to the single-page application entry point.
 
