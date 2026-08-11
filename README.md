@@ -17,6 +17,7 @@ View the live site at [livecv-mariowangen.vercel.app](https://livecv-mariowangen
 - `/ai` — Applied AI & LLM Systems
 - `/ai/atlantic` — Applied AI, RAG & Cloud Systems (Atlantic Ventures)
 - `/mlops/bike24` — MLOps & Applied AI Systems (BIKE24)
+- `/mlops/sva` — AI Platforms, MLOps & Applied AI (SVA)
 - `/fde` — AI Solutions & Product Delivery
 - `/fde/telekom-mms` — AI Platforms & Solution Architecture (Telekom MMS)
 

@@ -1,4 +1,4 @@
-export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde" | "telekom";
+export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde" | "telekom" | "sva";
 
 export type CapabilityGroup = {
   cat: string;
@@ -411,7 +411,73 @@ const telekom: CvContent = {
   pdfFileName: "Mario_Wangen_CV_Telekom_MMS_AI_Architecture.pdf",
 };
 
-export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde, telekom };
+const sva: CvContent = {
+  ...base,
+  variant: "sva",
+  route: "/mlops/sva",
+  pageTitle: "Mario Wangen — Senior Software Engineer | AI Platforms, MLOps & Applied AI",
+  metaDescription: "Senior Software Engineer combining MLOps, AI infrastructure, RAG, cloud platforms and production software engineering.",
+  headline: "Senior Software Engineer | AI Platforms, MLOps & Applied AI",
+  hero: "Engineering reliable AI systems from infrastructure and ML workflows to retrieval and production.",
+  profile: "For more than twenty years, I've built production software and engineering platforms across enterprise applications, SaaS, and healthcare. Today my work sits at the intersection of MLOps, AI infrastructure, and applied AI: building reproducible ML workflows, Kubernetes environments, automated delivery systems, and the engineering required to move AI reliably into production.",
+  profileNote: "Alongside that professional platform work, freelance projects explore RAG, ChromaDB vector search, and agentic LLM workflows—experience spanning both the infrastructure beneath AI and the applications running on top of it.",
+  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI, connecting reproducible ML workflows, automated validation, model lifecycle management, and cloud-native delivery on AWS into a reliable path from experimentation to production.",
+  capabilities: [
+    { cat: "AI Platforms & MLOps", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "CPU/GPU environment design", "Model promotion"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "ChromaDB · Vector search", "LangChain · LangGraph", "LLM applications", "LangSmith tracing"] },
+    { cat: "Cloud & Infrastructure", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "Coder environments", "Environment automation"] },
+    { cat: "Software Engineering & Delivery", items: ["Python · FastAPI", "System architecture", "Requirements analysis · APIs", "PostgreSQL · SQL", "TeamCity · CI/CD"] },
+  ],
+  caseStudies: [
+    {
+      title: "Engineered the MLOps delivery system",
+      body: "Built MLflow-based workflows spanning reproducible training, validation, model promotion, and deployment, with TeamCity automating software delivery and MLOps workflows.",
+    },
+    {
+      title: "Built validation into the ML lifecycle",
+      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
+    },
+    {
+      title: "Provisioned resource-aware ML environments",
+      body: "Designed CPU- and GPU-specific Coder environments using Terraform templates, matching lightweight validation workloads to CPU resources and full training workloads to GPU-backed environments.",
+    },
+    baseCaseStudies[2],
+  ],
+  schlegelSummary: "Designed and delivered enterprise desktop and SaaS applications for structural and civil engineering over fifteen years, with responsibility spanning system architecture, implementation, DevOps, and automation across the full software lifecycle.",
+  schlegelHighlights: [
+    "Shaped application architecture and translated complex engineering requirements into maintainable software solutions.",
+    "Built and evolved TeamCity-based CI/CD pipelines, containerised deployments, and automated development workflows.",
+    "Worked directly with customers to turn domain requirements into practical software designs.",
+    "Maintained hands-on implementation responsibility across long-lived enterprise products.",
+  ],
+  projects: [
+    {
+      ...projectCatalog.knowledge,
+      desc: "RAG architecture separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed integration.",
+      pattern: "Decoupled document ingestion and retrieval",
+    },
+    {
+      ...projectCatalog.pulse,
+      desc: "Structured LangGraph workflow combining ChromaDB-backed vector retrieval with staged orchestration and evaluation boundaries to make non-deterministic behavior easier to validate.",
+      pattern: "Staged orchestration with retrieval and evaluation",
+      tags: ["LangGraph", "ChromaDB", "Python", "FastAPI"],
+    },
+    {
+      ...projectCatalog.atlas,
+      desc: "Personal MLOps reference implementation demonstrating reproducible training, multi-stage validation, model lifecycle management, infrastructure as code, and automated delivery.",
+    },
+    projectCatalog.startupCoach,
+  ],
+  stack: [
+    { cat: "AI Platforms & MLOps", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
+    { cat: "Applied AI & Retrieval", items: ["RAG", "ChromaDB", "LangChain", "LangGraph", "LangSmith"] },
+    { cat: "Cloud & Infrastructure", items: ["Kubernetes", "Terraform", "Docker", "AWS", "Coder"] },
+    { cat: "Software & Delivery", items: ["Python", "FastAPI", ".NET", "PostgreSQL", "TeamCity · CI/CD"] },
+  ],
+  pdfFileName: "Mario_Wangen_CV_SVA_AI_Platforms.pdf",
+};
+
+export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde, telekom, sva };
 
 const routeVariants: Record<string, CvVariant> = {
   "/": "base",
@@ -421,6 +487,7 @@ const routeVariants: Record<string, CvVariant> = {
   "/mlops/bike24": "bike24",
   "/fde": "fde",
   "/fde/telekom-mms": "telekom",
+  "/mlops/sva": "sva",
 };
 
 export function getCvContent(pathname: string): CvContent {
