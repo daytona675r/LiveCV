@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/ai", "destination": "/applied-ai", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

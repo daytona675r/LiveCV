@@ -1,7 +1,13 @@
 
   import { createRoot } from "react-dom/client";
   import App from "./app/App.tsx";
+  import { getCvRedirect } from "./app/cvContent.ts";
   import "./styles/index.css";
 
-  createRoot(document.getElementById("root")!).render(<App />);
-  
+  const redirectPath = getCvRedirect(window.location.pathname);
+
+  if (redirectPath) {
+    window.location.replace(`${redirectPath}${window.location.search}${window.location.hash}`);
+  } else {
+    createRoot(document.getElementById("root")!).render(<App />);
+  }

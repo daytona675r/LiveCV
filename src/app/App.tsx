@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Document, Page as PdfPage, PDFDownloadLink, StyleSheet, Text, View, Link } from "@react-pdf/renderer";
 import { Download } from "lucide-react";
-import { CvContent, education, earlierRoles, getCvContent } from "./cvContent";
+import { careerFacts, CvContent, education, earlierRoles, getCvContent } from "./cvContent";
 
 const PAGE_W = 794;
 const PAGE_H = 1123;
@@ -96,7 +96,7 @@ function Page1({ content }: { content: CvContent }) {
     >
       <div style={{ marginBottom: 24 }}>
         <h1 style={{ fontSize: 28, fontWeight: 500, color: TEXT, letterSpacing: "-0.03em", lineHeight: 1, margin: "0 0 11px", fontFamily: FONT }}>
-          Mario Wangen
+          {careerFacts.person.name}
         </h1>
         <p style={{ fontSize: 14.5, fontWeight: 400, color: TEXT_SEC, margin: "0 0 5px", lineHeight: 1.45, fontFamily: FONT, maxWidth: 500 }}>
           {content.hero}
@@ -106,10 +106,10 @@ function Page1({ content }: { content: CvContent }) {
         </p>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 22px", alignItems: "center" }}>
-          <ContactLink href="https://linkedin.com/in/mariowangen" label="linkedin.com/in/mariowangen" external />
-          <ContactLink href="https://github.com/daytona675r" label="github.com/daytona675r" external />
-          <ContactLink href="mailto:mario.wangen@live.de" label="mario.wangen@live.de" />
-          <span style={contactItemStyle}>Dresden, Germany</span>
+          <ContactLink href={careerFacts.person.linkedin} label="linkedin.com/in/mariowangen" external />
+          <ContactLink href={careerFacts.person.github} label="github.com/daytona675r" external />
+          <ContactLink href={`mailto:${careerFacts.person.email}`} label={careerFacts.person.email} />
+          <span style={contactItemStyle}>{careerFacts.person.location}</span>
         </div>
       </div>
 
@@ -131,12 +131,12 @@ function Page1({ content }: { content: CvContent }) {
             <SectionLabel>Professional Experience</SectionLabel>
             <div style={{ marginBottom: 16 }}>
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 3 }}>
-                <span style={{ fontSize: 13, fontWeight: 700, color: TEXT, fontFamily: FONT, letterSpacing: "-0.01em" }}>Senior Software Engineer – AI Platform Engineering</span>
-                <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>2026 — Present</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: TEXT, fontFamily: FONT, letterSpacing: "-0.01em" }}>{careerFacts.currentRole.title}</span>
+                <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>{careerFacts.currentRole.dates}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                <span style={{ fontSize: 11.5, color: ACCENT, fontWeight: 600, fontFamily: FONT }}>Cancilico</span>
-                <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>· AI Infrastructure for Medical Computer Vision · Hybrid</span>
+                <span style={{ fontSize: 11.5, color: ACCENT, fontWeight: 600, fontFamily: FONT }}>{careerFacts.currentRole.company}</span>
+                <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>· {careerFacts.currentRole.context}</span>
               </div>
             </div>
 
@@ -199,7 +199,7 @@ function Page2({ content }: { content: CvContent }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 18 }}>
-        <span style={{ fontSize: 11.5, fontWeight: 600, color: TEXT_MUT, fontFamily: FONT }}>Mario Wangen</span>
+        <span style={{ fontSize: 11.5, fontWeight: 600, color: TEXT_MUT, fontFamily: FONT }}>{careerFacts.person.name}</span>
         <span style={{ fontSize: 9, color: TEXT_MUT, fontFamily: FONT, letterSpacing: "0.08em" }}>2 / 2</span>
       </div>
       <div style={{ height: 1, background: BORDER, marginBottom: 24 }} />
@@ -208,12 +208,12 @@ function Page2({ content }: { content: CvContent }) {
         <SectionLabel>Professional Experience (continued)</SectionLabel>
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 2 }}>
-            <span style={{ fontSize: 12.5, fontWeight: 700, color: TEXT, fontFamily: FONT, letterSpacing: "-0.01em" }}>Senior Software Engineer</span>
-            <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>2010 — 2025</span>
+            <span style={{ fontSize: 12.5, fontWeight: 700, color: TEXT, fontFamily: FONT, letterSpacing: "-0.01em" }}>{careerFacts.previousRole.title}</span>
+            <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>{careerFacts.previousRole.dates}</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 8 }}>
-            <span style={{ fontSize: 11, color: ACCENT, fontWeight: 600, fontFamily: FONT }}>Ingenieurbüro Schlegel</span>
-            <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>· Engineering Software · Structural Analysis</span>
+            <span style={{ fontSize: 11, color: ACCENT, fontWeight: 600, fontFamily: FONT }}>{careerFacts.previousRole.company}</span>
+            <span style={{ fontSize: 10, color: TEXT_MUT, fontFamily: FONT }}>· {careerFacts.previousRole.context}</span>
           </div>
           <p style={{ ...bodyStyle, fontSize: 10.5, marginBottom: 10 }}>
             {content.schlegelSummary}
@@ -409,17 +409,17 @@ function PdfSectionLabel({ children }: { children: string }) {
 
 function PdfDocument({ content }: { content: CvContent }) {
   return (
-    <Document title={content.pageTitle} author="Mario Wangen" subject="CV" creator="Mario Wangen CV App">
+    <Document title={content.pageTitle} author={careerFacts.person.name} subject="CV" creator="Mario Wangen CV App">
       <PdfPage size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.header}>
-          <Text style={pdfStyles.name}>Mario Wangen</Text>
+          <Text style={pdfStyles.name}>{careerFacts.person.name}</Text>
           <Text style={pdfStyles.headline}>{content.hero}</Text>
           <Text style={pdfStyles.subhead}>{content.headline}</Text>
           <View style={pdfStyles.contactRow}>
-            <Link src="https://linkedin.com/in/mariowangen" style={pdfStyles.contactItem}>linkedin.com/in/mariowangen</Link>
-            <Link src="https://github.com/daytona675r" style={pdfStyles.contactItem}>github.com/daytona675r</Link>
-            <Link src="mailto:mario.wangen@live.de" style={pdfStyles.contactItem}>mario.wangen@live.de</Link>
-            <Text style={pdfStyles.contactItem}>Dresden, Germany</Text>
+            <Link src={careerFacts.person.linkedin} style={pdfStyles.contactItem}>linkedin.com/in/mariowangen</Link>
+            <Link src={careerFacts.person.github} style={pdfStyles.contactItem}>github.com/daytona675r</Link>
+            <Link src={`mailto:${careerFacts.person.email}`} style={pdfStyles.contactItem}>{careerFacts.person.email}</Link>
+            <Text style={pdfStyles.contactItem}>{careerFacts.person.location}</Text>
           </View>
         </View>
 
@@ -439,12 +439,12 @@ function PdfDocument({ content }: { content: CvContent }) {
               <PdfSectionLabel>Professional Experience</PdfSectionLabel>
               <View style={{ marginBottom: pt(16) }}>
                 <View style={pdfStyles.roleRow}>
-                  <Text style={pdfStyles.roleTitle}>Senior Software Engineer – AI Platform Engineering</Text>
-                  <Text style={pdfStyles.date}>2026 — Present</Text>
+                  <Text style={pdfStyles.roleTitle}>{careerFacts.currentRole.title}</Text>
+                  <Text style={pdfStyles.date}>{careerFacts.currentRole.dates}</Text>
                 </View>
                 <View style={pdfStyles.metaRow}>
-                  <Text style={pdfStyles.company}>Cancilico</Text>
-                  <Text style={pdfStyles.roleMeta}>· AI Infrastructure for Medical Computer Vision · Hybrid</Text>
+                  <Text style={pdfStyles.company}>{careerFacts.currentRole.company}</Text>
+                  <Text style={pdfStyles.roleMeta}>· {careerFacts.currentRole.context}</Text>
                 </View>
               </View>
 
@@ -483,7 +483,7 @@ function PdfDocument({ content }: { content: CvContent }) {
 
       <PdfPage size="A4" style={pdfStyles.page}>
         <View style={pdfStyles.topMiniHeader}>
-          <Text style={pdfStyles.miniName}>Mario Wangen</Text>
+          <Text style={pdfStyles.miniName}>{careerFacts.person.name}</Text>
           <Text style={pdfStyles.pageNum}>2 / 2</Text>
         </View>
         <View style={pdfStyles.page2Divider} />
@@ -492,12 +492,12 @@ function PdfDocument({ content }: { content: CvContent }) {
           <PdfSectionLabel>Professional Experience (continued)</PdfSectionLabel>
           <View style={{ marginBottom: pt(16) }}>
             <View style={[pdfStyles.roleRow, { marginBottom: pt(2) }]}>
-              <Text style={pdfStyles.schlegelTitle}>Senior Software Engineer</Text>
-              <Text style={pdfStyles.date}>2010 — 2025</Text>
+                <Text style={pdfStyles.schlegelTitle}>{careerFacts.previousRole.title}</Text>
+                <Text style={pdfStyles.date}>{careerFacts.previousRole.dates}</Text>
             </View>
             <View style={[pdfStyles.metaRow, { marginBottom: pt(8) }]}>
-              <Text style={pdfStyles.smallCompany}>Ingenieurbüro Schlegel</Text>
-              <Text style={pdfStyles.roleMeta}>· Engineering Software · Structural Analysis</Text>
+              <Text style={pdfStyles.smallCompany}>{careerFacts.previousRole.company}</Text>
+              <Text style={pdfStyles.roleMeta}>· {careerFacts.previousRole.context}</Text>
             </View>
             <Text style={[pdfStyles.body, { fontSize: pt(10.5), marginBottom: pt(10) }]}>{content.schlegelSummary}</Text>
             {content.schlegelHighlights.map((h, i) => (
@@ -563,9 +563,8 @@ function PdfDocument({ content }: { content: CvContent }) {
   );
 }
 
-export default function App() {
+function CvView({ content }: { content: CvContent }) {
   const scale = usePageScale(PAGE_W);
-  const content = getCvContent(window.location.pathname);
 
   useEffect(() => {
     document.title = content.pageTitle;
@@ -626,4 +625,27 @@ export default function App() {
       </div>
     </div>
   );
+}
+
+function NotFound() {
+  useEffect(() => {
+    document.title = "CV view not found — Mario Wangen";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", "This CV view is not available.");
+  }, []);
+
+  return (
+    <main className="min-h-screen flex items-center justify-center px-6" style={{ background: "#111827", color: "#F9FAFB", fontFamily: FONT }}>
+      <div style={{ maxWidth: 520, textAlign: "center" }}>
+        <p style={{ color: "#60A5FA", fontSize: 12, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 16 }}>CV view not found</p>
+        <h1 style={{ fontSize: 32, lineHeight: 1.2, marginBottom: 14 }}>This professional view is no longer available.</h1>
+        <p style={{ color: "#9CA3AF", lineHeight: 1.7, marginBottom: 24 }}>Visit the primary AI Infrastructure &amp; MLOps CV instead.</p>
+        <a href="/" style={{ color: "#60A5FA", textDecoration: "underline", textUnderlineOffset: 4 }}>Open the primary CV</a>
+      </div>
+    </main>
+  );
+}
+
+export default function App() {
+  const content = getCvContent(window.location.pathname);
+  return content ? <CvView content={content} /> : <NotFound />;
 }

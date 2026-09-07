@@ -1,4 +1,4 @@
-export type CvVariant = "base" | "fullstack" | "ai" | "atlantic" | "bike24" | "fde" | "telekom" | "sva";
+export type CvView = "mlops" | "fullstack" | "applied-ai" | "fde";
 
 export type CapabilityGroup = {
   cat: string;
@@ -23,7 +23,7 @@ export type StackGroup = {
 };
 
 export type CvContent = {
-  variant: CvVariant;
+  variant: CvView;
   route: string;
   pageTitle: string;
   metaDescription: string;
@@ -42,23 +42,46 @@ export type CvContent = {
   pdfFileName: string;
 };
 
-export const earlierRoles = [
-  { company: "Indanet AG", role: "Software Engineer", desc: "Security and disruption management solutions for public transportation." },
-  { company: "MAP&GUIDE GmbH", role: "Software Engineer", desc: "Navigation software and GPS systems." },
-  { company: "M.ABLE GmbH", role: "Software Engineer", desc: "Mobile CRM solutions for BMW." },
-  { company: "SOFiSTiK AG", role: "Software Engineer", desc: "Structural engineering and BIM software." },
-];
-
-export const education = [
-  {
-    school: "Turing College",
-    degree: "AI Engineering",
-    desc: "Modern LLM applications, retrieval systems, agentic workflows, production AI engineering, and end-to-end AI application development.",
-    accent: true,
+export const careerFacts = {
+  person: {
+    name: "Mario Wangen",
+    location: "Dresden, Germany",
+    email: "mario.wangen@live.de",
+    linkedin: "https://linkedin.com/in/mariowangen",
+    github: "https://github.com/daytona675r",
   },
-  { school: "Academy of Administration and Economics, Munich", degree: "Business Information Systems", desc: null, accent: false },
-  { school: "Eckert Schools", degree: "IT Specialist – Application Development", desc: null, accent: false },
-];
+  currentRole: {
+    title: "Senior Software Engineer – AI Platform Engineering",
+    company: "Cancilico",
+    dates: "2026 — Present",
+    context: "AI Infrastructure for Medical Computer Vision · Hybrid",
+  },
+  previousRole: {
+    title: "Senior Software Engineer",
+    company: "Ingenieurbüro Schlegel",
+    dates: "2010 — 2025",
+    context: "Engineering Software · Structural Analysis",
+  },
+  earlierRoles: [
+    { company: "Indanet AG", role: "Software Engineer", desc: "Security and disruption management solutions for public transportation." },
+    { company: "MAP&GUIDE GmbH", role: "Software Engineer", desc: "Navigation software and GPS systems." },
+    { company: "M.ABLE GmbH", role: "Software Engineer", desc: "Mobile CRM solutions for BMW." },
+    { company: "SOFiSTiK AG", role: "Software Engineer", desc: "Structural engineering and BIM software." },
+  ],
+  education: [
+    {
+      school: "Turing College",
+      degree: "AI Engineering",
+      desc: "Modern LLM applications, retrieval systems, agentic workflows, production AI engineering, and end-to-end AI application development.",
+      accent: true,
+    },
+    { school: "Academy of Administration and Economics, Munich", degree: "Business Information Systems", desc: null, accent: false },
+    { school: "Eckert Schools", degree: "IT Specialist – Application Development", desc: null, accent: false },
+  ],
+};
+
+export const earlierRoles = careerFacts.earlierRoles;
+export const education = careerFacts.education;
 
 const projectCatalog = {
   atlas: {
@@ -69,9 +92,9 @@ const projectCatalog = {
   },
   pulse: {
     name: "PULSE ContentAgent",
-    desc: "Designed to transform fragmented content creation into a structured, repeatable workflow through agent orchestration and evaluation.",
-    pattern: "State-machine based orchestration",
-    tags: ["LangGraph", "Python", "FastAPI", "OpenAI"],
+    desc: "Designed to transform fragmented content creation into a structured, repeatable workflow through LangGraph orchestration, structured outputs, ChromaDB-backed retrieval, and evaluation boundaries.",
+    pattern: "Staged orchestration with retrieval and evaluation",
+    tags: ["LangGraph", "ChromaDB", "Python", "FastAPI"],
   },
   knowledge: {
     name: "Production Knowledge Platform",
@@ -96,7 +119,7 @@ const projectCatalog = {
 const baseCapabilities: CapabilityGroup[] = [
   {
     cat: "AI Platforms",
-    items: ["MLflow model lifecycle", "Validation gate design", "Golden snapshot testing", "Reproducible pipelines", "CI dataset architecture"],
+    items: ["MLflow model lifecycle", "Validation gate design", "Golden snapshot testing", "Reproducible pipelines", "Model promotion"],
   },
   {
     cat: "AI Systems",
@@ -104,11 +127,11 @@ const baseCapabilities: CapabilityGroup[] = [
   },
   {
     cat: "Cloud & Infrastructure",
-    items: ["Kubernetes", "Terraform", "Docker / container ops", "AWS · S3"],
+    items: ["Kubernetes", "Terraform · IaC", "Docker / container ops", "AWS · S3", "CPU/GPU environments"],
   },
   {
     cat: "Platform Engineering",
-    items: ["Python", "CI/CD design", "FastAPI · REST", "System architecture"],
+    items: ["Python", "TeamCity · CI/CD", "FastAPI · REST", "System architecture"],
   },
 ];
 
@@ -127,7 +150,7 @@ const baseCaseStudies: CaseStudy[] = [
   },
   {
     title: "Reduced operational friction",
-    body: "Treated AI infrastructure as an engineering product, using CI datasets and CI/CD automation so a single alias change remained the only human step in model promotion.",
+    body: "Used TeamCity automation and CI datasets to streamline model promotion, and designed CPU- and GPU-specific Coder environments around validation and training workloads.",
   },
 ];
 
@@ -146,9 +169,9 @@ const baseStack: StackGroup[] = [
 ];
 
 const base: CvContent = {
-  variant: "base",
+  variant: "mlops",
   route: "/",
-  pageTitle: "Mario Wangen — Senior Software Engineer",
+  pageTitle: "Mario Wangen — Senior Software Engineer | AI Infrastructure & MLOps",
   metaDescription: "Mario Wangen, Senior Software Engineer focused on AI infrastructure, MLOps, and reliable production systems.",
   headline: "Senior Software Engineer | AI Infrastructure & MLOps",
   hero: "Building the engineering platforms that enable AI teams to ship reliable software.",
@@ -177,144 +200,48 @@ const fullstack: CvContent = {
   profileNote: "AI is now another part of that toolbox—not a replacement for solid software engineering.",
   currentRoleSummary: "Designed and evolved the software, MLOps, and infrastructure platform behind production healthcare AI systems, applying architecture, APIs, automation, and infrastructure as code to move demanding workflows into reliable production.",
   capabilities: [
-    { cat: "Software Engineering", items: [".NET", "Python", "TypeScript", "System architecture", "REST APIs"] },
+    { cat: "Software Engineering", items: ["C# · .NET", "Python", "TypeScript", "System architecture", "REST APIs"] },
     { cat: "Web & Product Engineering", items: ["React", "Angular", "FastAPI", "PostgreSQL", "Enterprise SaaS"] },
-    { cat: "Cloud & Delivery", items: ["AWS · S3", "Docker", "Kubernetes", "Terraform", "CI/CD design"] },
+    { cat: "Cloud & Delivery", items: ["AWS · S3", "Docker", "Kubernetes", "Terraform", "TeamCity · CI/CD"] },
     { cat: "Applied AI", items: ["LLM integration", "RAG architecture", "Agent orchestration", "MLflow lifecycle"] },
   ],
   caseStudies: [baseCaseStudies[2], baseCaseStudies[0], baseCaseStudies[3], baseCaseStudies[1]],
   projects: [projectCatalog.interviewCoach, projectCatalog.pulse, projectCatalog.knowledge, projectCatalog.startupCoach],
   stack: [
-    { cat: "Software Engineering", items: [".NET", "Python", "TypeScript", "System architecture", "REST APIs"] },
+    { cat: "Software Engineering", items: ["C# · .NET", "Python", "TypeScript", "System architecture", "REST APIs"] },
     { cat: "Web & Product", items: ["React", "Angular", "FastAPI", "PostgreSQL", "SaaS applications"] },
-    { cat: "Cloud & Delivery", items: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"] },
+    { cat: "Cloud & Delivery", items: ["AWS", "Docker", "Kubernetes", "Terraform", "TeamCity · CI/CD"] },
     { cat: "Applied AI", items: ["OpenAI API", "LangGraph", "LangChain", "RAG", "MLflow"] },
   ],
   pdfFileName: "Mario_Wangen_CV_Fullstack.pdf",
 };
 
-const ai: CvContent = {
+const appliedAi: CvContent = {
   ...base,
-  variant: "ai",
-  route: "/ai",
-  pageTitle: "Mario Wangen — Senior Software Engineer | Applied AI & LLM Systems",
+  variant: "applied-ai",
+  route: "/applied-ai",
+  pageTitle: "Mario Wangen — Senior Software Engineer | Applied AI, RAG & LLM Systems",
   metaDescription: "Mario Wangen, Senior Software Engineer building practical LLM, RAG, agent, evaluation, and production AI systems.",
-  headline: "Senior Software Engineer | Applied AI & LLM Systems",
+  headline: "Senior Software Engineer | Applied AI, RAG & LLM Systems",
   hero: "Building practical AI systems around retrieval, agents and production-grade software engineering.",
   profile: "For more than twenty years, I've built production software; today I apply that engineering discipline to modern AI systems. I design RAG applications, agent workflows, evaluation and orchestration layers, plus the APIs and infrastructure around them, with a focus on turning promising prototypes into reliable products.",
   profileNote: "My focus is engineering useful systems around foundation models—not building the models themselves.",
   currentRoleSummary: "Designed and evolved the MLOps and AI infrastructure foundation for production healthcare AI systems, connecting reproducible training, multi-stage validation, model lifecycle management, and deployment automation.",
   capabilities: [
     { cat: "Applied AI", items: ["LLM applications", "LangGraph orchestration", "Agent workflows", "Tool calling"] },
-    { cat: "RAG & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain", "PostgreSQL"] },
-    { cat: "AI Quality", items: ["Evaluation workflows", "Validation gates", "Golden snapshot testing", "MLflow lifecycle"] },
+    { cat: "RAG & Retrieval", items: ["RAG architecture", "Vector retrieval", "ChromaDB", "LangChain"] },
+    { cat: "AI Quality", items: ["Evaluation workflows", "Structured outputs", "Validation gates", "MLflow lifecycle"] },
     { cat: "Software & Production", items: ["Python · FastAPI", "TypeScript · React", "Docker · Kubernetes", "AWS · CI/CD"] },
   ],
   caseStudies: [baseCaseStudies[1], baseCaseStudies[0], baseCaseStudies[3], baseCaseStudies[2]],
   projects: [projectCatalog.pulse, projectCatalog.knowledge, projectCatalog.startupCoach, projectCatalog.atlas],
   stack: [
     { cat: "Applied AI", items: ["OpenAI API", "LangGraph", "LangChain", "Tool calling", "Agent workflows"] },
-    { cat: "RAG & Quality", items: ["RAG", "Retrieval pipelines", "Evaluation", "Validation gates", "DVC"] },
+    { cat: "RAG & Quality", items: ["RAG", "ChromaDB", "Vector retrieval", "Evaluation", "Structured outputs"] },
     { cat: "Software Engineering", items: ["Python", "FastAPI", "TypeScript", "React", "PostgreSQL"] },
     { cat: "Production", items: ["MLflow", "Docker", "Kubernetes", "AWS", "CI/CD"] },
   ],
   pdfFileName: "Mario_Wangen_CV_Applied_AI.pdf",
-};
-
-const atlantic: CvContent = {
-  ...ai,
-  variant: "atlantic",
-  route: "/ai/atlantic",
-  pageTitle: "Mario Wangen — Senior Software Engineer | Applied AI, RAG & Cloud Systems",
-  metaDescription: "Senior Software Engineer with experience across Applied AI, RAG, MLOps, cloud infrastructure and production software systems.",
-  headline: "Senior Software Engineer | Applied AI, RAG & Cloud Systems",
-  hero: "Building practical AI systems from retrieval and APIs to reliable cloud deployment.",
-  profile: "For more than twenty years, I've built production software across engineering, enterprise SaaS, and healthcare. Today I apply that background to AI systems, combining RAG and agent workflows with Python APIs, cloud infrastructure, and the delivery practices required to run them reliably.",
-  profileNote: "My professional work spans MLOps and AI infrastructure; personal projects explore retrieval, LLM orchestration, and evaluation across the complete system.",
-  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI systems, combining reproducible MLflow-based workflows with multi-stage validation, model lifecycle management, and cloud-native delivery on AWS.",
-  capabilities: [
-    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain · LangGraph", "LLM applications", "Agent workflows"] },
-    { cat: "Software & APIs", items: ["Python · FastAPI", "REST API design", "PostgreSQL", "TypeScript · React", "System architecture"] },
-    { cat: "MLOps & AI Infrastructure", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "Model promotion", "CI dataset architecture"] },
-    { cat: "Cloud, Platform & Delivery", items: ["AWS · S3", "Kubernetes · Docker", "Terraform · IaC", "CI/CD automation", "Environment automation"] },
-  ],
-  caseStudies: [baseCaseStudies[0], baseCaseStudies[1], baseCaseStudies[2], baseCaseStudies[3]],
-  projects: [
-    {
-      ...projectCatalog.knowledge,
-      desc: "RAG system separating document ingestion, indexing, retrieval, and contextual generation into independent services for clear API integration.",
-      pattern: "Decoupled document ingestion and retrieval",
-    },
-    {
-      ...projectCatalog.pulse,
-      desc: "Structured LLM workflow with staged orchestration and evaluation, designed to keep complex content generation repeatable and easier to validate.",
-      pattern: "State-machine orchestration with evaluation stages",
-    },
-    {
-      ...projectCatalog.atlas,
-      desc: "Personal MLOps reference implementation demonstrating reproducible training, validation, model lifecycle management, infrastructure as code, and automated delivery.",
-    },
-    projectCatalog.startupCoach,
-  ],
-  stack: [
-    { cat: "Applied AI & Retrieval", items: ["RAG", "LangChain", "LangGraph", "OpenAI API", "Agent workflows"] },
-    { cat: "Software & APIs", items: ["Python", "FastAPI", "REST APIs", "PostgreSQL", "TypeScript"] },
-    { cat: "MLOps & AI Infrastructure", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
-    { cat: "Cloud, Platform & Delivery", items: ["AWS", "Kubernetes", "Terraform", "Docker", "CI/CD"] },
-  ],
-  pdfFileName: "Mario_Wangen_CV_Atlantic_AI.pdf",
-};
-
-const bike24: CvContent = {
-  ...base,
-  variant: "bike24",
-  route: "/mlops/bike24",
-  pageTitle: "Mario Wangen — Senior Software Engineer | MLOps & Applied AI Systems",
-  metaDescription: "Senior Software Engineer combining MLOps, AI infrastructure, RAG and production software engineering.",
-  headline: "Senior Software Engineer | MLOps & Applied AI Systems",
-  hero: "Engineering the infrastructure and workflows that move AI from experimentation to reliable production.",
-  profile: "For more than twenty years, I've built software systems where reliability and maintainability matter. Today I work across MLOps, AI infrastructure, and applied AI, building the engineering systems that move machine-learning workloads from experimentation into reliable production.",
-  profileNote: "My professional work covers reproducible MLflow workflows, multi-stage validation, Kubernetes, Terraform, Docker, AWS, and CI/CD; freelance projects explore RAG, retrieval, LLM orchestration, and evaluation.",
-  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI systems, combining reproducible MLflow-based workflows with automated validation, model lifecycle management, and cloud-native delivery on AWS.",
-  capabilities: [
-    { cat: "MLOps & AI Infrastructure", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "Model promotion", "Deployment automation"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "Retrieval pipelines", "LangChain · LangGraph", "LLM applications", "Agent workflows"] },
-    { cat: "Cloud & Platform Engineering", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "Environment automation"] },
-    { cat: "Software & Delivery", items: ["Python · FastAPI", "PostgreSQL · SQL", "REST API design", "CI/CD automation", "System architecture"] },
-  ],
-  caseStudies: [
-    baseCaseStudies[0],
-    {
-      title: "Built validation into the ML lifecycle",
-      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
-    },
-    baseCaseStudies[2],
-    baseCaseStudies[3],
-  ],
-  projects: [
-    {
-      ...projectCatalog.knowledge,
-      desc: "RAG system separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed retrieval workflows.",
-      pattern: "Decoupled document ingestion and retrieval",
-    },
-    {
-      ...projectCatalog.pulse,
-      desc: "Structured LLM workflow with staged orchestration and evaluation, designed to keep complex content generation repeatable and easier to validate.",
-      pattern: "State-machine orchestration with evaluation stages",
-    },
-    {
-      ...projectCatalog.atlas,
-      desc: "Personal MLOps reference implementation demonstrating reproducible training, validation, model lifecycle management, infrastructure as code, and automated delivery.",
-    },
-    projectCatalog.startupCoach,
-  ],
-  stack: [
-    { cat: "MLOps & AI Infrastructure", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG", "Retrieval pipelines", "LangChain", "LangGraph", "OpenAI API"] },
-    { cat: "Cloud & Platform", items: ["Kubernetes", "Terraform", "Docker", "AWS", "S3"] },
-    { cat: "Software & Delivery", items: ["Python", "FastAPI", "PostgreSQL", "REST APIs", "CI/CD"] },
-  ],
-  pdfFileName: "Mario_Wangen_CV_BIKE24_MLOps.pdf",
 };
 
 const fde: CvContent = {
@@ -329,7 +256,7 @@ const fde: CvContent = {
   profileNote: "Production AI and ML systems now extend a broad software, infrastructure, and delivery toolbox.",
   currentRoleSummary: "Turned complex ML delivery and operational requirements into a maintainable MLOps system for production healthcare AI, spanning validation, model promotion, infrastructure automation, and deployment.",
   capabilities: [
-    { cat: "Solution Engineering", items: ["Requirements analysis", "Problem decomposition", "System architecture", "Maintainable solution design"] },
+    { cat: "Solution Engineering", items: ["Requirements analysis", "Problem decomposition", "System architecture", "Customer collaboration"] },
     { cat: "Product Delivery", items: ["End-to-end implementation", "Full software lifecycle", "CI/CD design", "Workflow automation"] },
     { cat: "Software & Integration", items: ["Python · .NET · TypeScript", "FastAPI · REST", "React · PostgreSQL", "Enterprise SaaS"] },
     { cat: "AI & Production", items: ["LLM · RAG systems", "MLflow lifecycle", "Kubernetes · Terraform", "AWS · Docker"] },
@@ -345,152 +272,29 @@ const fde: CvContent = {
   pdfFileName: "Mario_Wangen_CV_AI_Solutions.pdf",
 };
 
-const telekom: CvContent = {
-  ...fde,
-  variant: "telekom",
-  route: "/fde/telekom-mms",
-  pageTitle: "Mario Wangen — Senior Software Engineer | AI Platforms & Solution Architecture",
-  metaDescription: "Senior Software Engineer combining solution architecture, MLOps, RAG and production AI platform engineering.",
-  headline: "Senior Software Engineer | AI Platforms & Solution Architecture",
-  hero: "Designing reliable AI systems from architecture and infrastructure to production.",
-  profile: "For more than twenty years, I've designed and built production software across engineering, enterprise SaaS, and healthcare. My work has increasingly moved toward the engineering around AI: MLOps, cloud infrastructure, reproducible ML workflows, and the systems required to take AI applications reliably into production.",
-  profileNote: "Today I combine that platform background with hands-on RAG, vector retrieval, and agentic LLM systems, turning complex requirements into practical architectures and staying close to the implementation through production.",
-  currentRoleSummary: "Designed and evolved the MLOps and AI infrastructure supporting production healthcare AI, connecting reproducible ML workflows, multi-stage validation, model lifecycle management, and cloud-native delivery on AWS into a reliable path from experimentation to production.",
-  capabilities: [
-    { cat: "AI Solution Architecture", items: ["System architecture", "Requirements-to-solution design", "APIs · Integration", "End-to-end delivery", "Python · .NET"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "ChromaDB · Vector retrieval", "LangChain · LangGraph", "LLM applications", "RAG workflow observability using LangSmith tracing"] },
-    { cat: "MLOps & AI Platforms", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "CPU/GPU environment design", "Model promotion"] },
-    { cat: "Cloud, DevOps & Infrastructure", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "TeamCity · CI/CD", "Environment automation"] },
-  ],
-  caseStudies: [
-    {
-      title: "Engineered the MLOps delivery system",
-      body: "Built MLflow-based workflows spanning reproducible training, validation, model promotion, and deployment, with TeamCity automating software delivery and MLOps workflows.",
-    },
-    {
-      title: "Built validation into the ML lifecycle",
-      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
-    },
-    {
-      title: "Provisioned resource-aware ML environments",
-      body: "Designed CPU- and GPU-specific Coder environments using Terraform templates, matching lightweight validation workloads to CPU resources and full training workloads to GPU-backed environments.",
-    },
-    baseCaseStudies[2],
-  ],
-  schlegelSummary: "Designed and delivered enterprise desktop and SaaS applications for structural and civil engineering over fifteen years, with responsibility spanning system architecture, implementation, DevOps, and automation across the full software lifecycle.",
-  schlegelHighlights: [
-    "Shaped application architecture and translated complex engineering requirements into maintainable software solutions.",
-    "Built and evolved TeamCity-based CI/CD pipelines, containerised deployments, and automated development workflows.",
-    "Worked directly with customers to turn domain requirements into practical software designs.",
-    "Maintained hands-on implementation responsibility across long-lived enterprise products.",
-  ],
-  projects: [
-    {
-      ...projectCatalog.knowledge,
-      desc: "RAG architecture separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed integration.",
-      pattern: "Decoupled document ingestion and retrieval",
-    },
-    {
-      ...projectCatalog.pulse,
-      desc: "Structured LangGraph workflow combining ChromaDB-backed vector retrieval with staged orchestration and evaluation boundaries to make non-deterministic behavior easier to validate.",
-      pattern: "Staged orchestration with retrieval and evaluation",
-      tags: ["LangGraph", "ChromaDB", "Python", "FastAPI"],
-    },
-    {
-      ...projectCatalog.atlas,
-      desc: "Personal MLOps reference implementation demonstrating reproducible training, multi-stage validation, model lifecycle management, infrastructure as code, and automated delivery.",
-    },
-    projectCatalog.startupCoach,
-  ],
-  stack: [
-    { cat: "Architecture & Software", items: ["Python", "FastAPI", ".NET", "TypeScript", "REST APIs"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG", "ChromaDB", "LangChain", "LangGraph", "LangSmith"] },
-    { cat: "MLOps & AI Platforms", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
-    { cat: "Cloud & DevOps", items: ["Kubernetes", "Terraform", "Docker", "AWS", "TeamCity · CI/CD"] },
-  ],
-  pdfFileName: "Mario_Wangen_CV_Telekom_MMS_AI_Architecture.pdf",
-};
+export const cvViews = {
+  mlops: base,
+  fullstack,
+  "applied-ai": appliedAi,
+  fde,
+} satisfies Record<CvView, CvContent>;
 
-const sva: CvContent = {
-  ...base,
-  variant: "sva",
-  route: "/mlops/sva",
-  pageTitle: "Mario Wangen — Senior Software Engineer | AI Platforms, MLOps & Applied AI",
-  metaDescription: "Senior Software Engineer combining MLOps, AI infrastructure, RAG, cloud platforms and production software engineering.",
-  headline: "Senior Software Engineer | AI Platforms, MLOps & Applied AI",
-  hero: "Engineering reliable AI systems from infrastructure and ML workflows to retrieval and production.",
-  profile: "For more than twenty years, I've built production software and engineering platforms across enterprise applications, SaaS, and healthcare. Today my work sits at the intersection of MLOps, AI infrastructure, and applied AI: building reproducible ML workflows, Kubernetes environments, automated delivery systems, and the engineering required to move AI reliably into production.",
-  profileNote: "Alongside that professional platform work, freelance projects explore RAG, ChromaDB vector search, and agentic LLM workflows—experience spanning both the infrastructure beneath AI and the applications running on top of it.",
-  currentRoleSummary: "Designed and evolved MLOps and AI infrastructure supporting production healthcare AI, connecting reproducible ML workflows, automated validation, model lifecycle management, and cloud-native delivery on AWS into a reliable path from experimentation to production.",
-  capabilities: [
-    { cat: "AI Platforms & MLOps", items: ["MLflow model lifecycle", "Reproducible ML workflows", "Multi-stage validation", "CPU/GPU environment design", "Model promotion"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG architecture", "ChromaDB · Vector search", "LangChain · LangGraph", "LLM applications", "LangSmith tracing"] },
-    { cat: "Cloud & Infrastructure", items: ["Kubernetes · Docker", "Terraform · IaC", "AWS · S3", "Coder environments", "Environment automation"] },
-    { cat: "Software Engineering & Delivery", items: ["Python · FastAPI", "System architecture", "Requirements analysis · APIs", "PostgreSQL · SQL", "TeamCity · CI/CD"] },
-  ],
-  caseStudies: [
-    {
-      title: "Engineered the MLOps delivery system",
-      body: "Built MLflow-based workflows spanning reproducible training, validation, model promotion, and deployment, with TeamCity automating software delivery and MLOps workflows.",
-    },
-    {
-      title: "Built validation into the ML lifecycle",
-      body: "Built multi-stage validation into the ML delivery lifecycle, preventing models from progressing toward production before data, engineering pipeline, trained-model quality, and deployment checks succeeded.",
-    },
-    {
-      title: "Provisioned resource-aware ML environments",
-      body: "Designed CPU- and GPU-specific Coder environments using Terraform templates, matching lightweight validation workloads to CPU resources and full training workloads to GPU-backed environments.",
-    },
-    baseCaseStudies[2],
-  ],
-  schlegelSummary: "Designed and delivered enterprise desktop and SaaS applications for structural and civil engineering over fifteen years, with responsibility spanning system architecture, implementation, DevOps, and automation across the full software lifecycle.",
-  schlegelHighlights: [
-    "Shaped application architecture and translated complex engineering requirements into maintainable software solutions.",
-    "Built and evolved TeamCity-based CI/CD pipelines, containerised deployments, and automated development workflows.",
-    "Worked directly with customers to turn domain requirements into practical software designs.",
-    "Maintained hands-on implementation responsibility across long-lived enterprise products.",
-  ],
-  projects: [
-    {
-      ...projectCatalog.knowledge,
-      desc: "RAG architecture separating document ingestion, indexing, retrieval, and contextual generation into independent services with API-backed integration.",
-      pattern: "Decoupled document ingestion and retrieval",
-    },
-    {
-      ...projectCatalog.pulse,
-      desc: "Structured LangGraph workflow combining ChromaDB-backed vector retrieval with staged orchestration and evaluation boundaries to make non-deterministic behavior easier to validate.",
-      pattern: "Staged orchestration with retrieval and evaluation",
-      tags: ["LangGraph", "ChromaDB", "Python", "FastAPI"],
-    },
-    {
-      ...projectCatalog.atlas,
-      desc: "Personal MLOps reference implementation demonstrating reproducible training, multi-stage validation, model lifecycle management, infrastructure as code, and automated delivery.",
-    },
-    projectCatalog.startupCoach,
-  ],
-  stack: [
-    { cat: "AI Platforms & MLOps", items: ["MLflow", "Reproducible workflows", "Validation gates", "DVC", "Model promotion"] },
-    { cat: "Applied AI & Retrieval", items: ["RAG", "ChromaDB", "LangChain", "LangGraph", "LangSmith"] },
-    { cat: "Cloud & Infrastructure", items: ["Kubernetes", "Terraform", "Docker", "AWS", "Coder"] },
-    { cat: "Software & Delivery", items: ["Python", "FastAPI", ".NET", "PostgreSQL", "TeamCity · CI/CD"] },
-  ],
-  pdfFileName: "Mario_Wangen_CV_SVA_AI_Platforms.pdf",
-};
-
-export const cvVariants: Record<CvVariant, CvContent> = { base, fullstack, ai, atlantic, bike24, fde, telekom, sva };
-
-const routeVariants: Record<string, CvVariant> = {
-  "/": "base",
+export const cvRoutes = {
+  "/": "mlops",
   "/fullstack": "fullstack",
-  "/ai": "ai",
-  "/ai/atlantic": "atlantic",
-  "/mlops/bike24": "bike24",
+  "/applied-ai": "applied-ai",
   "/fde": "fde",
-  "/fde/telekom-mms": "telekom",
-  "/mlops/sva": "sva",
-};
+} satisfies Record<string, CvView>;
 
-export function getCvContent(pathname: string): CvContent {
-  const normalizedPath = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
-  return cvVariants[routeVariants[normalizedPath] ?? "base"];
+function normalizePath(pathname: string): string {
+  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+}
+
+export function getCvRedirect(pathname: string): string | undefined {
+  return normalizePath(pathname) === "/ai" ? "/applied-ai" : undefined;
+}
+
+export function getCvContent(pathname: string): CvContent | undefined {
+  const view = cvRoutes[normalizePath(pathname) as keyof typeof cvRoutes];
+  return view ? cvViews[view] : undefined;
 }
