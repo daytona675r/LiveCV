@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const args = process.argv.slice(2);
 let profileImport;
-if (args.length === 0 || (args.length === 2 && args[0] === '--view' && ['canonical', 'fullstack', 'applied-ai', 'fde'].includes(args[1]))) {
+if (args.length === 0 || (args.length === 2 && args[0] === '--view' && ['canonical', 'devops', 'fullstack', 'applied-ai', 'fde'].includes(args[1]))) {
   const view = args[1] ?? 'canonical';
   profileImport = `import { cvViews } from './src/app/cvViews'; const profile = { content: cvViews[${JSON.stringify(view)}] };`;
 } else if (args.length === 2 && args[0] === '--profile' && /^[a-z0-9][a-z0-9-]*$/.test(args[1])) {
@@ -16,7 +16,7 @@ if (args.length === 0 || (args.length === 2 && args[0] === '--view' && ['canonic
   if (path.dirname(profile) !== privateRoot) throw new Error('Profile must be inside profiles/private.');
   profileImport = `import profile from ${JSON.stringify(profile)};`;
 } else {
-  throw new Error('Usage: npm run cv:pdf -- [--view canonical|fullstack|applied-ai|fde | --profile <local-profile-name>]');
+  throw new Error('Usage: npm run cv:pdf -- [--view canonical|devops|fullstack|applied-ai|fde | --profile <local-profile-name>]');
 }
 const output = path.join(root, 'output');
 await mkdir(output, { recursive: true });

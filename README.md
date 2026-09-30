@@ -21,6 +21,7 @@ The canonical layout uses a roughly 67/33 narrative/supporting-rail split. Page 
 | Route | Presentation |
 | --- | --- |
 | `/` | Canonical career narrative (`canonical`) |
+| `/devops` | Platform, delivery and operations emphasis |
 | `/fullstack` | Product and full-stack emphasis |
 | `/applied-ai` | Applied AI emphasis within the same engineering career |
 | `/fde` | Requirements-to-production emphasis |
@@ -51,6 +52,7 @@ After content changes, inspect all PDF pages and the browser preview. Do not hid
 npm run cv:pdf
 
 # Other public presentations
+npm run cv:pdf -- --view devops
 npm run cv:pdf -- --view fullstack
 npm run cv:pdf -- --view applied-ai
 npm run cv:pdf -- --view fde

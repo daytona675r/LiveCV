@@ -34,6 +34,11 @@ export const layout = {
 export function CvPages({ content, primitives }: { content: CvContent; primitives: CvPrimitives }) {
   const { Box, Text, Link, Page } = primitives;
   const { person, education, engineeringScope } = careerData;
+  const capabilityRail = content.capabilityRail ?? engineeringScope;
+  const page1StackCategories = content.page1StackCategories ?? ['Software Engineering', 'Delivery & Platform', 'AI Systems'];
+  const page2StackCategories = content.page2StackCategories ?? ['Architecture & Data', 'Engineering Practice'];
+  const bodyStyle = content.variant === 'devops' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : layout.body;
+  const chapterStyle = content.variant === 'devops' ? { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 } : layout.chapter;
   const Label = ({ children }: { children: string }) => <Text heading={2} style={layout.label}>{children}</Text>;
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
     <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -42,10 +47,10 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
     </Box>
     <Text style={layout.roleTitle}>{role.title}</Text>
     {Boolean(role.context) && <Text style={layout.context}>{role.context}</Text>}
-    {role.paragraphs.map((p, i) => <Text key={i} style={layout.body}>{p}</Text>)}
+    {role.paragraphs.map((p, i) => <Text key={i} style={bodyStyle}>{p}</Text>)}
     {role.chapters?.map(ch => <Box key={ch.title}>
-      <Text heading={3} style={layout.chapter}>{ch.title}</Text>
-      {ch.paragraphs.map((p, i) => <Text key={i} style={i === 1 && ch.title.startsWith('Product') ? { ...layout.body, color: '#667182' } : layout.body}>{p}</Text>)}
+      <Text heading={3} style={chapterStyle}>{ch.title}</Text>
+      {ch.paragraphs.map((p, i) => <Text key={i} style={i === 1 && ch.title.startsWith('Product') ? { ...bodyStyle, color: '#667182' } : bodyStyle}>{p}</Text>)}
     </Box>)}
   </Box>;
   const Group = ({ group }: { group: CapabilityGroup }) => <Box style={{ marginBottom: 20 }}>
@@ -72,7 +77,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         <Box style={layout.main}>
           <Box style={{ marginBottom: 12 }}>
             <Label>PROFESSIONAL PROFILE</Label>
-            {content.profile.split('\n\n').map((p, i) => <Text key={i} style={layout.body}>{p}</Text>)}
+            {content.profile.split('\n\n').map((p, i) => <Text key={i} style={bodyStyle}>{p}</Text>)}
           </Box>
           <Label>PROFESSIONAL EXPERIENCE</Label>
           <Role role={content.roles[0]} />
@@ -80,10 +85,10 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         <Box style={layout.rail}>
           <Box style={{ marginBottom: 24 }}>
             <Label>ENGINEERING CAPABILITIES</Label>
-            {engineeringScope.map(s => <Text key={s} style={layout.railText}>{s}</Text>)}
+            {capabilityRail.map(s => <Text key={s} style={layout.railText}>{s}</Text>)}
           </Box>
           <Label>TECHNOLOGY</Label>
-          {content.stack.filter(g => ['Software Engineering', 'Delivery & Platform', 'AI Systems'].includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
+          {content.stack.filter(g => page1StackCategories.includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
         </Box>
       </Box>
     </Page>
@@ -95,7 +100,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         </Box>
         <Box style={layout.rail}>
           <Label>TECHNOLOGY & PRACTICE</Label>
-          {content.stack.filter(g => ['Architecture & Data', 'Engineering Practice'].includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
+          {content.stack.filter(g => page2StackCategories.includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
 
         </Box>
       </Box>

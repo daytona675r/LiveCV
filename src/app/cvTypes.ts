@@ -8,7 +8,7 @@ export type Education = {
   desc: string | null; accent: boolean;
 };
 
-export type CvView = "canonical" | "fullstack" | "applied-ai" | "fde";
+export type CvView = "canonical" | "devops" | "fullstack" | "applied-ai" | "fde";
 
 export type CapabilityGroup = {
   cat: string;
@@ -51,5 +51,7 @@ export type CvContent = {
   projects: Project[];
   stack: StackGroup[];
   pdfFileName: string;
+  capabilityRail?: string[];
+  page1StackCategories?: string[];
+  page2StackCategories?: string[];
 };
-

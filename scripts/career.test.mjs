@@ -10,8 +10,11 @@ async function model() {
 
 test('all public presentations share the same factual career records and identity', async () => {
   const { careerData, cvViews } = await model();
-  for (const view of Object.values(cvViews)) {
-    assert.equal(view.roles, careerData.roles);
+  for (const [name, view] of Object.entries(cvViews)) {
+    if (name === 'devops') {
+      assert.notEqual(view.roles, careerData.roles);
+      assert.deepEqual(view.roles.map(r => [r.company, r.title, r.dates]), careerData.roles.map(r => [r.company, r.title, r.dates]));
+    } else assert.equal(view.roles, careerData.roles);
     assert.equal(view.headline, 'Senior Software Engineer');
   }
   assert.deepEqual(careerData.roles.map(r => [r.company, r.title, r.dates]), [
@@ -43,6 +46,7 @@ test('root is canonical and legacy redirect preserves its route contract', async
   const { cvViews, getCvContent, getCvRedirect } = await model();
   assert.equal(getCvContent('/'), cvViews.canonical);
   assert.equal(getCvContent('/fullstack/'), cvViews.fullstack);
+  assert.equal(getCvContent('/devops/'), cvViews.devops);
   assert.equal(getCvContent('/mlops'), undefined);
   assert.equal(getCvRedirect('/ai/'), '/applied-ai');
 });

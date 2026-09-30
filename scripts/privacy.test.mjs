@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 test('public route inventory and unknown-profile behavior stay closed', async () => {
   const result = await build({ absWorkingDir: root, entryPoints: ['src/app/cvContent.ts'], bundle: true, write: false, format: 'esm' });
   const { cvRoutes, getCvContent } = await import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].contents).toString('base64')}`);
-  assert.deepEqual(Object.keys(cvRoutes), ['/', '/fullstack', '/applied-ai', '/fde']);
+  assert.deepEqual(Object.keys(cvRoutes), ['/', '/devops', '/fullstack', '/applied-ai', '/fde']);
   assert.equal(getCvContent('/private/example'), undefined);
   assert.equal(getCvContent('/example-application'), undefined);
 });
