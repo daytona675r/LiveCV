@@ -6,3 +6,8 @@ dist
 .env.*
 !.env.example
 .vercel
+
+# Local application profiles and generated documents
+profiles/private/
+output/
+documents/

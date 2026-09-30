@@ -1,7 +1,7 @@
 
   import { createRoot } from "react-dom/client";
   import App from "./app/App.tsx";
-  import { getCvRedirect } from "./app/cvContent.ts";
+  import { getCvRedirect } from "./app/cvViews.ts";
   import "./styles/index.css";
 
   const redirectPath = getCvRedirect(window.location.pathname);

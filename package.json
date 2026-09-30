@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "test": "node --test scripts/*.test.mjs",
+    "test:pdf": "node scripts/check-pdf.mjs",
+    "dev": "vite",
+    "cv:pdf": "node scripts/cv-pdf.mjs",
+    "application:merge": "node scripts/merge-pdfs.mjs"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -72,7 +76,8 @@
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
     "tailwindcss": "4.1.12",
-    "vite": "6.3.5"
+    "vite": "6.3.5",
+    "esbuild": "0.25.12"
   },
   "peerDependencies": {
     "react": "18.3.1",
