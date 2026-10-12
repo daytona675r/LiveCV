@@ -11,7 +11,7 @@ async function model() {
 test('all public presentations share the same factual career records and identity', async () => {
   const { careerData, cvViews } = await model();
   for (const [name, view] of Object.entries(cvViews)) {
-    if (name === 'devops') {
+    if (name === 'devops' || name === 'fullstack') {
       assert.notEqual(view.roles, careerData.roles);
       assert.deepEqual(view.roles.map(r => [r.company, r.title, r.dates]), careerData.roles.map(r => [r.company, r.title, r.dates]));
     } else assert.equal(view.roles, careerData.roles);
@@ -37,6 +37,7 @@ test('canonical preserves the training boundary and preserves unfinished project
   assert.match(current, /manually initiated by the ML team/);
   assert.match(current, /classification and detection/);
   assert.match(current, /golden-snapshot/i);
+  assert.match(current, /CI\/CD backbone/);
   assert.doesNotMatch(current, /Atlas/);
   assert.match(c.projects[0].desc, /in development/);
   assert.match(c.projects[0].desc, /planned/);
@@ -49,4 +50,20 @@ test('root is canonical and legacy redirect preserves its route contract', async
   assert.equal(getCvContent('/devops/'), cvViews.devops);
   assert.equal(getCvContent('/mlops'), undefined);
   assert.equal(getCvRedirect('/ai/'), '/applied-ai');
+});
+
+test('fullstack is a reusable architecture and delivery overlay', async () => {
+  const { cvViews } = await model();
+  const view = cvViews.fullstack;
+  assert.equal(view.route, '/fullstack');
+  assert.equal(view.pdfFileName, 'Mario_Wangen_CV_Fullstack.pdf');
+  assert.match(view.hero, /architecture, APIs, full-stack implementation/);
+  assert.match(view.profile, /system architecture, domain and data models, backend APIs/);
+  assert.deepEqual(view.projects.map(p => p.name), ['PULSE', 'Spurwerk']);
+  const roles = JSON.stringify(view.roles);
+  assert.match(roles, /CI\/CD backbone/);
+  assert.match(roles, /FastAPI-based inference service/);
+  assert.match(roles, /service-based web architectures/);
+  assert.match(roles, /REST APIs/);
+  assert.doesNotMatch(roles, /Rust|gRPC|GraphQL|OpenShift|Edge AI|Team Lead|Engineering Manager/);
 });

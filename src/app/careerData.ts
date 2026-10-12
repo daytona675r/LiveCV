@@ -17,8 +17,8 @@ export const roles: CareerRole[] = [
       {
         title: 'Product Reliability & Delivery Foundations',
         paragraphs: [
-          'Joined an already feature-rich healthcare AI platform whose main constraint was reliability. Built the unit, integration and end-to-end testing foundation, introduced robust Playwright interaction and locator conventions, and integrated the suites into TeamCity CI/CD as delivery gates.',
-          'The tests exposed a substantial stability backlog and became an engineering feedback system and dependable baseline for subsequent development.',
+          'Built the CI/CD backbone for an existing multi-service healthcare AI application, integrating unit, integration and end-to-end tests into a staged pipeline that validated the application, built its service containers, brought the connected system up against the database and produced a tested, deployment-ready release. Harbor-based delivery then completed the reproducible path from code change to deployable containerized system.',
+          'The resulting pipeline exposed previously hidden stability defects, turning testing from an isolated activity into a continuous engineering feedback loop and release gate.',
         ],
       },
       {

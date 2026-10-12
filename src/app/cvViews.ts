@@ -90,14 +90,63 @@ const devops: CvContent = {
   pdfFileName: 'Mario_Wangen_CV_DevOps.pdf',
 };
 
+const fullstackRoles = applyRoleOverrides(careerData.roles, {
+  cancilico: {
+    context: 'Healthcare AI · Software Engineering · Platform & MLOps',
+    chapters: [
+      {
+        title: 'Product Reliability & Delivery Foundations',
+        paragraphs: [
+          'Built the CI/CD backbone for an existing multi-service healthcare AI application with two web frontends, backend services, a database and a separate inference service. Integrated unit, integration and end-to-end tests into a staged pipeline that validated the connected application, built its service containers, brought the system up against the database and produced a tested, deployment-ready release. Harbor-based delivery completed the reproducible path from code change to deployable containerized system.',
+          'The resulting pipeline exposed previously hidden stability defects, turning testing from an isolated activity into a continuous engineering feedback loop and release gate.',
+        ],
+      },
+      {
+        title: 'MLOps Architecture & Model Delivery',
+        paragraphs: [
+          'Designed and built the delivery architecture around the ML team’s classification and detection models, connecting versioned model artifacts, validation workflows and a FastAPI-based inference service into a controlled delivery process. Separate smoke and full-training workflows and source-of-truth tracking cover code, environments, datasets, runs, models and deployments, with staged validation through deployability and golden-snapshot regression.',
+          'Full training and hyperparameter sweeps remain initiated by the ML team; validation, candidate handling, promotion and downstream delivery are automated. Approved models and their FastAPI inference service are packaged into versioned Docker images, published through Harbor and delivered through reproducible TeamCity workflows.',
+          'Extended the surrounding platform with Kubernetes-hosted services, Terraform-based Infrastructure as Code and Coder environments. MLflow provides run/metric visibility and traceability of automated model decisions; architecture and operating workflows were documented continuously.',
+        ],
+      },
+    ],
+  },
+  schlegel: {
+    paragraphs: [
+      'Developed and evolved four core structural-engineering applications and several smaller products over fifteen years, translating complex engineering domains into maintainable software and data structures.',
+      'Modernized tightly coupled .NET/WPF applications through MVVM and clearer separation of business logic, UI and data access. Co-designed and implemented the multi-year transition from desktop software to service-based web architectures: central engineering data, dedicated backend services and REST APIs, and application-specific web frontends. Existing desktop clients were progressively connected to the same backend calculation services, allowing the architecture to evolve without a disruptive rewrite.',
+      'Hands-on implementation spanned C#/.NET, backend services and APIs, web/full-stack development, Python, Docker, databases and interactive 3D visualization. Alongside implementation, contributed to architecture decisions, code reviews, technical standards and documentation as the team grew from three developers to a distributed European group of around eight.',
+    ],
+  },
+});
+
+const fullstackStack: StackGroup[] = [
+  { cat: 'Software Engineering', items: ['C# / .NET', 'Python', 'TypeScript', 'React', 'Angular', 'Nuxt', 'FastAPI', 'REST APIs'] },
+  { cat: 'Delivery & Platform', items: ['Git / GitHub', 'TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'AWS', 'Harbor', 'Coder'] },
+  { cat: 'AI / ML Integration', items: ['PyTorch', 'MLflow', 'MLOps', 'FastAPI', 'LangGraph', 'RAG'] },
+  { cat: 'Architecture / Engineering Practice', items: ['System design', 'service-based architecture', 'relational modeling', 'SQL', 'REST APIs', 'RPC', 'distributed state', 'automated testing', 'architecture documentation', 'code review', 'technical standards', 'reproducibility', 'recovery', 'TLS / certificate trust'] },
+];
+
+const fullstack: CvContent = {
+  ...canonical,
+  variant: 'fullstack', route: '/fullstack',
+  hero: 'Building and evolving complex software systems across architecture, APIs, full-stack implementation and reliable delivery.',
+  profile: 'Senior software engineer with more than 20 years of experience building and evolving production systems across mobile applications, engineering software, enterprise SaaS and healthcare AI. My work spans system architecture, domain and data models, backend APIs, web applications and the engineering foundations required for reliable delivery.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. In recent years, that scope has extended into cloud-native platforms, MLOps and AI-enabled systems.',
+  roles: fullstackRoles,
+  projects: [careerData.projects.pulse, careerData.projects.spurwerk],
+  stack: fullstackStack,
+  capabilityRail: ['System Architecture', 'API & Integration Design', 'Full-Stack Engineering', 'Data & Domain Modeling', 'Testing & Quality Systems', 'Code Review & Technical Standards', 'CI/CD & Delivery', 'Production AI / ML Integration'],
+  page1StackCategories: ['Software Engineering', 'Delivery & Platform', 'AI / ML Integration'],
+  page2StackCategories: ['Architecture / Engineering Practice'],
+  pdfFileName: 'Mario_Wangen_CV_Fullstack.pdf',
+};
+
 // Public views are emphasis overlays, never alternate employment histories.
 // Keeping the same role references prevents factual divergence between routes.
 export const cvViews: Record<CvView, CvContent> = {
   canonical,
   devops,
-  fullstack: { ...canonical, variant: 'fullstack', route: '/fullstack',
-    hero: 'Building and evolving software products across domain models, user interfaces, backend services and reliable delivery.',
-    pdfFileName: 'Mario_Wangen_CV_Fullstack.pdf' },
+  fullstack,
   'applied-ai': { ...canonical, variant: 'applied-ai', route: '/applied-ai',
     hero: 'Bringing long-standing software engineering discipline to practical AI systems, workflows and reliable model delivery.',
     stack: [careerData.capabilities[3], ...careerData.capabilities.filter(c => c !== careerData.capabilities[3])],
