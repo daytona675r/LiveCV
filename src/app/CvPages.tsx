@@ -4,8 +4,8 @@ import type { CareerRole, CvContent, CapabilityGroup, CvLabels } from './cvTypes
 
 // One editorial tree in PDF points for both HTML preview and React-PDF.
 export type LayoutStyle = Record<string, string | number>;
-type PrimitiveProps = { children?: ReactNode; style?: LayoutStyle; inline?: boolean; heading?: 1 | 2 | 3; href?: string; pageNumber?: number };
-export type CvPrimitives = { Box: ComponentType<PrimitiveProps>; Text: ComponentType<PrimitiveProps>; Link: ComponentType<PrimitiveProps>; Page: ComponentType<PrimitiveProps> };
+type PrimitiveProps = { children?: ReactNode; style?: LayoutStyle; inline?: boolean; heading?: 1 | 2 | 3; href?: string; pageNumber?: number; src?: string };
+export type CvPrimitives = { Box: ComponentType<PrimitiveProps>; Text: ComponentType<PrimitiveProps>; Link: ComponentType<PrimitiveProps>; Image: ComponentType<PrimitiveProps>; Page: ComponentType<PrimitiveProps> };
 export const A4 = { width: 595.28, height: 841.89 };
 export const layout = {
   page: { paddingTop: 30, paddingBottom: 30, paddingLeft: 37, paddingRight: 37, backgroundColor: '#ffffff', color: '#414B59', fontFamily: 'Helvetica' },
@@ -29,10 +29,11 @@ export const layout = {
   columns: { flexDirection: 'row', columnGap: 24 },
   main: { width: 335 },
   rail: { width: 162.28 },
+  portrait: { width: 64, height: 80, objectFit: 'cover', borderRadius: 2 },
 } satisfies Record<string, LayoutStyle>;
 
 export function CvPages({ content, primitives }: { content: CvContent; primitives: CvPrimitives }) {
-  const { Box, Text, Link, Page } = primitives;
+  const { Box, Text, Link, Image, Page } = primitives;
   const { person, education, engineeringScope } = careerData;
   const labels: CvLabels = content.labels ?? { profile: 'PROFESSIONAL PROFILE', experience: 'PROFESSIONAL EXPERIENCE', capabilities: 'ENGINEERING CAPABILITIES', technology: 'TECHNOLOGY', technologyPractice: 'TECHNOLOGY & PRACTICE', earlyExperience: 'EARLY ENGINEERING FOUNDATIONS', education: 'EDUCATION', selectedWork: 'SELECTED ENGINEERING WORK', download: 'Download CV as PDF', preparing: 'Preparing PDF…', downloadError: 'PDF generation failed — reload to retry' };
   const capabilityRail = content.capabilityRail ?? engineeringScope;
@@ -64,14 +65,19 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
   </>;
   return <>
     <Page pageNumber={1} style={layout.page}>
-      <Text heading={1} style={layout.name}>{person.name}</Text>
-      <Text style={layout.title}>{content.headline}</Text>
-      <Text style={layout.value}>{content.hero}</Text>
-      <Box style={layout.contacts}>
-        <Link style={layout.contact} href={person.linkedin}>linkedin.com/in/mariowangen</Link>
-        <Link style={layout.contact} href={person.github}>github.com/daytona675r</Link>
-        <Link style={layout.contact} href={`mailto:${person.email}`}>{person.email}</Link>
-        <Text style={layout.contact}>{content.location ?? person.location}</Text>
+      <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <Box style={{ width: content.portraitSrc ? 450 : '100%' }}>
+          <Text heading={1} style={layout.name}>{person.name}</Text>
+          <Text style={layout.title}>{content.headline}</Text>
+          <Text style={layout.value}>{content.hero}</Text>
+          <Box style={layout.contacts}>
+            <Link style={layout.contact} href={person.linkedin}>linkedin.com/in/mariowangen</Link>
+            <Link style={layout.contact} href={person.github}>github.com/daytona675r</Link>
+            <Link style={layout.contact} href={`mailto:${person.email}`}>{person.email}</Link>
+            <Text style={layout.contact}>{content.location ?? person.location}</Text>
+          </Box>
+        </Box>
+        {content.portraitSrc && <Image src={content.portraitSrc} style={layout.portrait} />}
       </Box>
       <Box style={layout.rule} />
       <Box style={layout.columns}>

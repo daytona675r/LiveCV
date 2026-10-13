@@ -58,6 +58,7 @@ export type CvContent = {
   stack: StackGroup[];
   pdfFileName: string;
   locale?: CvLocale;
+  portraitSrc?: string;
   labels?: CvLabels;
   location?: string;
   displayDates?: Record<string, string>;

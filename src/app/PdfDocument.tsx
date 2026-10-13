@@ -1,5 +1,5 @@
 import React from 'react';
-import { Document, Page, Text, View, Link } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Link, Image } from '@react-pdf/renderer';
 import { CvPages, type CvPrimitives } from './CvPages';
 import { careerData } from './careerData';
 import type { CvContent } from './cvTypes';
@@ -10,6 +10,7 @@ const primitives: CvPrimitives = {
   Box: ({ style, children }) => <View style={style}>{children}</View>,
   Text: ({ style, children }) => <Text style={style}>{children}</Text>,
   Link: ({ style, children, href }) => <Link src={href} style={style}>{children}</Link>,
+  Image: ({ style, src }) => <Image src={src ? `public/${src}` : undefined} style={style} />,
   Page: ({ style, children }) => <Page size="A4" style={style}>{children}</Page>,
 };
 export function PdfDocument(props: { content: CvContent; presentation?: PdfPresentation; careerDetails?: PdfCareerDetails }) {

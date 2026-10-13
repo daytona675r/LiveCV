@@ -239,6 +239,7 @@ const germanCanonical: CvContent = {
   page1StackCategories: ['Software Engineering', 'Delivery & Plattform', 'AI-/ML-Integration'],
   page2StackCategories: ['Architektur & Engineering-Praxis'],
   labels: germanLabels,
+  portraitSrc: 'mario-wangen-portrait-cv.jpg',
   location: 'Dresden, Deutschland',
   displayDates: { cancilico: '01/2026 — heute' },
   educationMeta: { 'Turing College': '04/2025 — 08/2025 · 96/100', 'Academy of Administration and Economics, Munich': '2005 — 2008 · berufsbegleitend · Wirtschaftsinformatiker (VWA)', 'Eckert Schools': '2000 — 2004 · Abschlussnote: 1,09' },

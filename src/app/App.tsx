@@ -34,6 +34,7 @@ export default function App() {
       ? <span style={css(style)}>{children}</span>
       : <div data-cv-text style={{ whiteSpace: 'pre-wrap', flexShrink: 0, ...css(style) }}>{children}</div>,
     Link: ({ style, children, href }) => <a href={href} style={css(style)}>{children}</a>,
+    Image: ({ style, src }) => <img src={src ? `/${src}` : undefined} alt="Mario Wangen" style={{ display: 'block', ...css(style) }} />,
     Page: ({ style, children, pageNumber }) => <section className="page-frame" aria-label={`CV page ${pageNumber}`} style={{ width: A4.width * scale, height: A4.height * scale }}>
       <div data-cv-page={pageNumber} className="cv-page" style={{ ...css(style), width: A4.width, height: A4.height, transform: `scale(${scale})`, transformOrigin: 'top left' }}>{children}</div>
     </section>,
