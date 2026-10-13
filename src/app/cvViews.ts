@@ -6,7 +6,7 @@ const germanLabels: CvLabels = {
   profile: 'PROFIL', experience: 'BERUFSERFAHRUNG', capabilities: 'ENGINEERING-KOMPETENZEN',
   technology: 'TECHNOLOGIEN', technologyPractice: 'TECHNOLOGIEN & PRAXIS',
   earlyExperience: 'WEITERE BERUFSERFAHRUNG', education: 'AUSBILDUNG & QUALIFIKATION',
-  selectedWork: 'AUSGEWÄHLTE ENGINEERING-PROJEKTE', download: 'Lebenslauf als PDF herunterladen',
+  selectedWork: 'AUSGEWÄHLTE PROJEKTE', download: 'Lebenslauf als PDF herunterladen',
   preparing: 'PDF wird vorbereitet…', downloadError: 'PDF-Erstellung fehlgeschlagen — bitte Seite neu laden',
 };
 

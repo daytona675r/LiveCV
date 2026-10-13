@@ -69,7 +69,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         <Box style={{ width: content.portraitSrc ? 450 : '100%' }}>
           <Text heading={1} style={layout.name}>{person.name}</Text>
           <Text style={layout.title}>{content.headline}</Text>
-          <Text style={layout.value}>{content.hero}</Text>
+          <Text style={content.route === '/de/fullstack' ? { ...layout.value, fontSize: 10.2, letterSpacing: -0.1 } : layout.value}>{content.hero}</Text>
           <Box style={layout.contacts}>
             <Link style={layout.contact} href={person.linkedin}>linkedin.com/in/mariowangen</Link>
             <Link style={layout.contact} href={person.github}>github.com/daytona675r</Link>
