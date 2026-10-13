@@ -36,8 +36,8 @@ const devopsRoles = applyRoleOverrides(careerData.roles, {
       {
         title: 'Product Reliability & CI/CD',
         paragraphs: [
-          'Joined an already feature-rich, containerized healthcare AI platform whose immediate engineering constraint was reliability rather than missing functionality. Built the testing foundation across unit, integration and end-to-end levels, introduced robust UI/test conventions and integrated the suites into TeamCity CI/CD as automated quality and delivery gates. The resulting coverage exposed a substantial stability backlog and became a dependable feedback system for subsequent development.',
-          'Implemented much of the CI/CD orchestration through Bash-based automation: preparing permissions and runtime environments, generating configuration dynamically, starting containers, executing build and application steps, evaluating logs and waiting for endpoint health before dependent stages could continue.',
+          'Built the CI/CD backbone for an existing multi-service healthcare AI application, integrating unit, integration and end-to-end validation with container builds, database-backed system startup and release gating to produce a tested deployment candidate. Harbor-based delivery completed the reproducible path from code change to deployable containerized system.',
+          'Implemented much of the pipeline orchestration through Bash-based automation: preparing permissions and runtime environments, generating configuration dynamically, starting containers, executing build and application steps, evaluating logs and waiting for endpoint health before dependent stages could continue. The resulting pipeline exposed previously hidden stability defects and established automated validation as a continuous engineering feedback loop and release gate.',
         ],
       },
       {
@@ -115,6 +115,7 @@ const fullstackRoles = applyRoleOverrides(careerData.roles, {
     paragraphs: [
       'Developed and evolved four core structural-engineering applications and several smaller products over fifteen years, translating complex engineering domains into maintainable software and data structures.',
       'Modernized tightly coupled .NET/WPF applications through MVVM and clearer separation of business logic, UI and data access. Co-designed and implemented the multi-year transition from desktop software to service-based web architectures: central engineering data, dedicated backend services and REST APIs, and application-specific web frontends. Existing desktop clients were progressively connected to the same backend calculation services, allowing the architecture to evolve without a disruptive rewrite.',
+      'Established source control, automated builds and TeamCity CI/CD where those foundations had not previously existed; during the later SaaS transition, delivery evolved toward Git, Docker and automated deployment into Kubernetes/Azure environments.',
       'Hands-on implementation spanned C#/.NET, backend services and APIs, web/full-stack development, Python, Docker, databases and interactive 3D visualization. Alongside implementation, contributed to architecture decisions, code reviews, technical standards and documentation as the team grew from three developers to a distributed European group of around eight.',
     ],
   },
@@ -130,6 +131,8 @@ const fullstackStack: StackGroup[] = [
 const fullstack: CvContent = {
   ...canonical,
   variant: 'fullstack', route: '/fullstack',
+  pageTitle: 'Mario Wangen — Senior Software Engineer | Full-Stack & Architecture',
+  metaDescription: 'Senior Software Engineer with more than 20 years of experience across system architecture, APIs, full-stack development, CI/CD, cloud-native delivery and production AI integration.',
   hero: 'Building and evolving complex software systems across architecture, APIs, full-stack implementation and reliable delivery.',
   profile: 'Senior software engineer with more than 20 years of experience building and evolving production systems across mobile applications, engineering software, enterprise SaaS and healthcare AI. My work spans system architecture, domain and data models, backend APIs, web applications and the engineering foundations required for reliable delivery.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. In recent years, that scope has extended into cloud-native platforms, MLOps and AI-enabled systems.',
   roles: fullstackRoles,

@@ -37,7 +37,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
   const capabilityRail = content.capabilityRail ?? engineeringScope;
   const page1StackCategories = content.page1StackCategories ?? ['Software Engineering', 'Delivery & Platform', 'AI Systems'];
   const page2StackCategories = content.page2StackCategories ?? ['Architecture & Data', 'Engineering Practice'];
-  const bodyStyle = content.variant === 'devops' || content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
+  const bodyStyle = content.variant === 'devops' ? { ...layout.body, fontSize: 9.1, lineHeight: 1.24, marginBottom: 5 } : content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
   const chapterStyle = { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 };
   const Label = ({ children }: { children: string }) => <Text heading={2} style={layout.label}>{children}</Text>;
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
