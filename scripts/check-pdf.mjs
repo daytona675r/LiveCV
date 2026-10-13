@@ -9,7 +9,7 @@ await mkdir(output, { recursive: true });
 const filenames = {
   canonical: 'Mario_Wangen_CV.pdf', devops: 'Mario_Wangen_CV_DevOps.pdf', fullstack: 'Mario_Wangen_CV_Fullstack.pdf',
   'applied-ai': 'Mario_Wangen_CV_Applied_AI.pdf', fde: 'Mario_Wangen_CV_AI_Solutions.pdf',
-  'de-canonical': 'Mario_Wangen_CV_DE.pdf', 'de-fullstack': 'Mario_Wangen_CV_Fullstack_DE.pdf',
+  'de-canonical': 'Mario_Wangen_CV_DE.pdf', 'de-fullstack': 'Mario_Wangen_CV_Fullstack_DE.pdf', 'de-devops': 'Mario_Wangen_CV_DevOps_DE.pdf',
 };
 
 for (const view of Object.keys(filenames)) {

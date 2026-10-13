@@ -124,6 +124,7 @@ const fullstackRoles = applyRoleOverrides(careerData.roles, {
     ],
   },
   schlegel: {
+    context: 'Engineering-Software · Tragwerksplanung',
     paragraphs: [
       'Developed and evolved four core structural-engineering applications and several smaller products over fifteen years, translating complex engineering domains into maintainable software and data structures.',
       'Modernized tightly coupled .NET/WPF applications through MVVM and clearer separation of business logic, UI and data access. Co-designed and implemented the multi-year transition from desktop software to service-based web architectures: central engineering data, dedicated backend services and REST APIs, and application-specific web frontends. Existing desktop clients were progressively connected to the same backend calculation services, allowing the architecture to evolve without a disruptive rewrite.',
@@ -186,6 +187,7 @@ const germanRoles = applyRoleOverrides(careerData.roles, {
     ],
   },
   indanet: {
+    context: 'Leitstellen- und Störungsmanagement im öffentlichen Nahverkehr',
     paragraphs: [
       'Entwicklung operativer Leitstellen- und Störungsmanagementsysteme für den öffentlichen Nahverkehr, in denen Vorfälle, Notrufe, Kameras, Einsatzpersonal und Ereignishistorien koordiniert und dokumentiert wurden. Aufbau des GIS als zentrale Bedien- und Systemschicht für Stationen, Vorfälle, Kameras und mobiles Einsatzpersonal.',
       'Konzeption und Implementierung RPC-basierter Backup-, Replikations- und Wiederherstellungsmechanismen mit Behandlung von Verbindungsabbrüchen, redundanten oder widersprüchlichen Datenzuständen und wiederholten Wiederherstellungsversuchen bis zum wiederhergestellten Betriebszustand. Produktive Einführungen erforderten umfangreiche Tests, Code Reviews und kontrollierte Wartungsfenster, da Fehler den laufenden ÖPNV-Betrieb unmittelbar beeinträchtigen konnten.',
@@ -260,6 +262,71 @@ const germanFullstack: CvContent = {
   pdfFileName: 'Mario_Wangen_CV_Fullstack_DE.pdf',
 };
 
+const germanDevopsRoles = applyRoleOverrides(careerData.roles, {
+  cancilico: {
+    context: 'Healthcare AI · Software Engineering · Plattform & MLOps',
+    chapters: [
+      {
+        title: 'Produktstabilität & CI/CD',
+        paragraphs: [
+          'Aufbau des CI/CD-Backbones für eine bestehende Multi-Service-Healthcare-AI-Anwendung. Integration von Unit-, Integrations- und End-to-End-Validierung mit Container-Builds, datenbankgestütztem Systemstart und Release-Gates zu einem durchgängigen, getesteten Auslieferungskandidaten. Die Veröffentlichung der Container-Images über Harbor schloss den reproduzierbaren Weg von der Codeänderung bis zum auslieferbaren System.',
+          'Umsetzung großer Teile der Pipeline-Orchestrierung mit Bash/Shell: Vorbereitung von Berechtigungen und Laufzeitumgebungen, dynamische Konfiguration, Start von Containern, Ausführung von Build- und Anwendungsschritten, Log-Auswertung sowie Warten auf Endpoint-Health-Checks vor abhängigen Stufen. Die Pipeline machte zuvor verborgene Stabilitätsprobleme sichtbar und etablierte automatisierte Validierung als kontinuierliche Feedbackschleife und Release-Gate.',
+        ],
+      },
+      {
+        title: 'Plattform Engineering & automatisierte Modellbereitstellung',
+        paragraphs: [
+          'Entwurf und Aufbau des MLOps-Delivery-Systems rund um die Klassifikations- und Detektionsmodelle des ML-Teams. Separate Smoke- und Full-Training-Workflows, die durchgängige Nachverfolgbarkeit von Code, Umgebungen, Datensätzen, Runs, Modellen und Deployments sowie gestufte Validierung von der Datenintegrität bis zur Bereitstellung und Golden-Snapshot-Regression.',
+          'Vollständige Trainingsläufe und Hyperparameter-Sweeps werden vom ML-Team gestartet; Validierung, Verwaltung der Modellkandidaten, Freigabe und nachgelagerte Auslieferung sind automatisiert. Freigegebene Modelle und ihr FastAPI-Inference-Service werden als versionierte Docker-Images paketiert, über Harbor veröffentlicht und über reproduzierbare TeamCity-Workflows ausgeliefert.',
+          'Erweiterung der Plattform um Services in Kubernetes, Terraform-basiertes Infrastructure as Code und Coder-Umgebungen für CPU- und GPU-Workloads. MLflow schafft Run-/Metrik-Transparenz und Nachvollziehbarkeit automatisierter Modellentscheidungen. Architektur und Betriebsabläufe wurden fortlaufend dokumentiert und in einem Handbuch für das ML-Team zusammengeführt.',
+        ],
+      },
+    ],
+  },
+  schlegel: {
+    context: 'Engineering-Software · Tragwerksplanung',
+    paragraphs: [
+      'Entwicklung und kontinuierliche Weiterentwicklung von vier zentralen Anwendungen für die Tragwerksplanung sowie mehreren kleineren Produkten über fünfzehn Jahre. Überführung komplexer Engineering-Domänen in wartbare Software- und Datenstrukturen.',
+      'Modernisierung eng gekoppelter .NET/WPF-Anwendungen durch MVVM und eine klarere Trennung von Geschäftslogik, UI und Datenzugriff sowie Einführung zuvor fehlender Engineering-Grundlagen.',
+      'Einführung von Subversion-basierter Quellcodeverwaltung, automatisierten Builds und TeamCity CI/CD einschließlich automatisierter nächtlicher Erstellung installierbarer Anwendungs-Builds. Während der späteren SaaS-Transformation Weiterentwicklung dieser Auslieferung in Richtung Git, Docker und servicebasierter Anwendungen mit automatisierten TeamCity-Builds und -Deployments für Kubernetes-/Azure-Umgebungen.',
+      'Hands-on-Entwicklung mit C#/.NET, Backend-APIs, Web-/Full-Stack-Technologien, Python, Datenbanken und interaktiver 3D-Visualisierung. Parallel dazu Mitwirkung an Architekturentscheidungen, Reviews, technischen Standards und Dokumentation, während das Team von drei Entwicklern zu einer verteilten europäischen Gruppe von rund acht Personen wuchs.',
+    ],
+  },
+  indanet: {
+    context: 'Leitstellen- und Störungsmanagement im öffentlichen Nahverkehr',
+    paragraphs: [
+      'Entwicklung operativer Leitstellen- und Störungsmanagementsysteme für den öffentlichen Nahverkehr. Aufbau des GIS als zentrale Bedien- und Systemschicht für Stationen, Ereignisse, Kameras und mobiles Einsatzpersonal.',
+      'Konzeption und Implementierung RPC-basierter Backup-, Replikations- und Wiederherstellungsmechanismen mit Behandlung von Verbindungsabbrüchen, redundanten oder widersprüchlichen Datenzuständen und automatisierten Wiederholungsversuchen bis zum wiederhergestellten Betriebszustand. Produktive Einführungen erforderten umfangreiche Tests, Code Reviews und kontrollierte Wartungsfenster, da Fehler den laufenden ÖPNV-Betrieb unmittelbar beeinträchtigen konnten.',
+    ],
+  },
+  mapguide: { context: '', paragraphs: ['Mitarbeit an der Feature-Entwicklung mobiler Navigationssoftware und GPS-Produkte.'] },
+  mable: { context: 'Mobile CRM', paragraphs: ['Entwicklung eines frühen mobilen CRM-Systems für den Außendienst im Startup-Umfeld. Konzeption und Implementierung der Synchronisation zwischen Mobilgeräten und zentralem Datenbestand unter unzuverlässigen 2G-Netzbedingungen. Umsetzung eines datensatzbezogenen Abgleichs mit Vorrang zentraler Daten und zeitstempelbasierter Konfliktbehandlung zur konsistenten Zusammenführung unterbrochener oder verzögerter mobiler Aktualisierungen.'] },
+});
+
+const germanDevopsStack: StackGroup[] = [
+  { cat: 'Delivery & Plattform', items: ['TeamCity', 'Bash / Shell', 'Linux', 'Git / GitHub', 'Docker', 'Kubernetes', 'Terraform', 'Infrastructure as Code', 'Harbor', 'Coder'] },
+  { cat: 'Cloud & Infrastruktur', items: ['Azure', 'AWS', 'selbstverwaltete Umgebungen', 'Storage-Integration', 'TLS / Zertifikate'] },
+  { cat: 'Software Engineering', items: ['C# / .NET', 'Python', 'TypeScript', 'React', 'Angular', 'Nuxt', 'FastAPI', 'REST'] },
+  { cat: 'Betrieb & Qualität', items: ['Unit / Integration / E2E', 'Endpoint Health Checks', 'Log-basierte Validierung', 'Recovery', 'MLflow Metrics & Tracking'] },
+  { cat: 'AI-Systeme', items: ['PyTorch', 'MLflow', 'MLOps', 'LangGraph', 'RAG', 'LLM APIs'] },
+];
+
+const germanDevops: CvContent = {
+  ...germanCanonical,
+  variant: 'devops', route: '/de/devops',
+  pageTitle: 'Mario Wangen — Senior Software Engineer | Platform & DevOps',
+  metaDescription: 'Senior Software Engineer mit langjähriger Erfahrung in Softwareentwicklung, CI/CD, Plattformautomatisierung, Kubernetes, Infrastructure as Code und zuverlässigen produktiven Systemen.',
+  hero: 'Entwicklung zuverlässiger Softwaresysteme – von Architektur und Implementierung über CI/CD und Plattformautomatisierung bis zum produktiven Betrieb.',
+  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in der Entwicklung und Weiterentwicklung produktiver Systeme. Neben der Anwendungsentwicklung gehörten dabei wiederholt auch die Engineering- und Plattformgrundlagen zu meinem Verantwortungsbereich: automatisierte Tests, CI/CD, Container-Plattformen, Infrastructure as Code, Recovery und reproduzierbare Deployments.\n\nIch bleibe hands-on in der Implementierung und übernehme zugleich Verantwortung für Gesamtsysteme, technische Entscheidungen und die Engineering-Grundlagen, auf denen andere Entwickler und Teams aufbauen. In den vergangenen Jahren hat sich dieser Schwerpunkt weiter in Richtung cloud-native Plattformen, MLOps und AI-gestützte Systeme entwickelt.',
+  roles: germanDevopsRoles,
+  projects: [germanProjects.spurwerk, germanProjects.pulse],
+  stack: germanDevopsStack,
+  capabilityRail: ['Systemarchitektur', 'CI/CD & Delivery', 'Plattform Engineering', 'Infrastructure as Code', 'Container-Plattformen', 'Deployment-Automatisierung', 'Zuverlässigkeit & Recovery', 'Testing & Qualitätssysteme', 'Cloud-Infrastruktur', 'Produktive AI / MLOps'],
+  page1StackCategories: ['Delivery & Plattform', 'Cloud & Infrastruktur', 'Software Engineering'],
+  page2StackCategories: ['Betrieb & Qualität', 'AI-Systeme'],
+  pdfFileName: 'Mario_Wangen_CV_DevOps_DE.pdf',
+};
+
 // Public views are emphasis overlays, never alternate employment histories.
 // Keeping the same role references prevents factual divergence between routes.
 export const cvViews: Record<CvView, CvContent> = {
@@ -276,12 +343,12 @@ export const cvViews: Record<CvView, CvContent> = {
 };
 
 export const cvRoutes = { '/': 'canonical', '/devops': 'devops', '/fullstack': 'fullstack', '/applied-ai': 'applied-ai', '/fde': 'fde' } satisfies Record<string, CvView>;
-export const localizedCvViews = { 'de:canonical': germanCanonical, 'de:fullstack': germanFullstack } satisfies Record<string, CvContent>;
+export const localizedCvViews = { 'de:canonical': germanCanonical, 'de:fullstack': germanFullstack, 'de:devops': germanDevops } satisfies Record<string, CvContent>;
 const normalizePath = (p: string) => p.length > 1 ? p.replace(/\/+$/, '') : p;
 export function getCvRedirect(p: string): string | undefined { return normalizePath(p) === '/ai' ? '/applied-ai' : undefined; }
 export function getCvContent(p: string): CvContent | undefined {
   const path = normalizePath(p);
-  if (path === '/de' || path === '/de/fullstack') return localizedCvViews[path === '/de' ? 'de:canonical' : 'de:fullstack'];
+  if (path === '/de' || path === '/de/fullstack' || path === '/de/devops') return localizedCvViews[path === '/de' ? 'de:canonical' : path === '/de/fullstack' ? 'de:fullstack' : 'de:devops'];
   const key = cvRoutes[path as keyof typeof cvRoutes];
   return key ? cvViews[key] : undefined;
 }
