@@ -1,7 +1,14 @@
 import { careerData } from './careerData';
-import type { CareerChapter, CareerRole, CvContent, CvView, StackGroup } from './cvTypes';
+import type { CareerChapter, CareerRole, CvContent, CvLabels, CvView, StackGroup } from './cvTypes';
 
 const profile = 'Senior software engineer with more than 20 years of experience building and evolving production systems across mobile applications, engineering software, enterprise SaaS and healthcare AI.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. In recent years, that scope has extended into cloud-native platforms, MLOps and AI-enabled systems.';
+const germanLabels: CvLabels = {
+  profile: 'PROFIL', experience: 'BERUFSERFAHRUNG', capabilities: 'ENGINEERING-KOMPETENZEN',
+  technology: 'TECHNOLOGIEN', technologyPractice: 'TECHNOLOGIEN & PRAXIS',
+  earlyExperience: 'WEITERE BERUFSERFAHRUNG', education: 'AUSBILDUNG & QUALIFIKATION',
+  selectedWork: 'AUSGEWÄHLTE ENGINEERING-PROJEKTE', download: 'Lebenslauf als PDF herunterladen',
+  preparing: 'PDF wird vorbereitet…', downloadError: 'PDF-Erstellung fehlgeschlagen — bitte Seite neu laden',
+};
 
 type RoleNarrativeOverride = { context?: string; paragraphs?: string[]; chapters?: CareerChapter[] };
 function applyRoleOverrides(roles: CareerRole[], overrides: Record<string, RoleNarrativeOverride>): CareerRole[] {
@@ -97,7 +104,7 @@ const fullstackRoles = applyRoleOverrides(careerData.roles, {
       {
         title: 'Product Reliability & Delivery Foundations',
         paragraphs: [
-          'Built the CI/CD backbone for an existing multi-service healthcare AI application with two web frontends, backend services, a database and a separate inference service. Integrated unit, integration and end-to-end tests into a staged pipeline that validated the connected application, built its service containers, brought the system up against the database and produced a tested, deployment-ready release. Harbor-based delivery completed the reproducible path from code change to deployable containerized system.',
+          'Built the CI/CD backbone for an existing multi-service healthcare AI application with two web frontends, backend services, a database and a separate inference service. Also contributed to a real-time physician chat using persistent WebSocket connections alongside the application’s REST-based services. Integrated unit, integration and end-to-end tests into a staged pipeline that validated the connected application, built its service containers, brought the system up against the database and produced a tested, deployment-ready release. Harbor-based delivery completed the reproducible path from code change to deployable containerized system.',
           'The resulting pipeline exposed previously hidden stability defects, turning testing from an isolated activity into a continuous engineering feedback loop and release gate.',
         ],
       },
@@ -125,7 +132,7 @@ const fullstackStack: StackGroup[] = [
   { cat: 'Software Engineering', items: ['C# / .NET', 'Python', 'TypeScript', 'React', 'Angular', 'Nuxt', 'FastAPI', 'REST APIs'] },
   { cat: 'Delivery & Platform', items: ['Git / GitHub', 'TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'AWS', 'Harbor', 'Coder'] },
   { cat: 'AI / ML Integration', items: ['PyTorch', 'MLflow', 'MLOps', 'FastAPI', 'LangGraph', 'RAG'] },
-  { cat: 'Architecture / Engineering Practice', items: ['System design', 'service-based architecture', 'relational modeling', 'SQL', 'REST APIs', 'RPC', 'distributed state', 'automated testing', 'architecture documentation', 'code review', 'technical standards', 'reproducibility', 'recovery', 'TLS / certificate trust'] },
+  { cat: 'Architecture / Engineering Practice', items: ['System design', 'service-based architecture', 'relational modeling', 'SQL', 'REST APIs', 'RPC', 'WebSockets', 'distributed state', 'automated testing', 'architecture documentation', 'code review', 'technical standards', 'reproducibility', 'recovery', 'TLS / certificate trust'] },
 ];
 
 const fullstack: CvContent = {
@@ -144,6 +151,106 @@ const fullstack: CvContent = {
   pdfFileName: 'Mario_Wangen_CV_Fullstack.pdf',
 };
 
+const germanRoles = applyRoleOverrides(careerData.roles, {
+  cancilico: {
+    context: 'Healthcare AI · Software Engineering · Platform & MLOps',
+    chapters: [
+      {
+        title: 'Produktstabilität & Delivery Foundations',
+        paragraphs: [
+          'CI/CD-Backbone für eine bestehende Multi-Service-Healthcare-AI-Anwendung aufgebaut. Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline integriert, die die Anwendung validierte, Service-Container baute, das System gegen die Datenbank startete und einen getesteten, deployment-fähigen Release-Kandidaten erzeugte. Die Bereitstellung über Harbor vervollständigte den reproduzierbaren Weg von der Codeänderung bis zum auslieferbaren containerisierten System.',
+          'Die Pipeline machte zuvor verborgene Stabilitätsprobleme sichtbar und etablierte Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
+        ],
+      },
+      {
+        title: 'MLOps-Architektur & Model Delivery',
+        paragraphs: [
+          'Delivery-Architektur rund um die Klassifikations- und Detektionsmodelle des ML-Teams entworfen und aufgebaut. Separate Smoke- und Full-Training-Workflows sowie durchgängiges Source-of-Truth-Tracking decken Code, Umgebungen, Datensätze, Runs, Modelle und Deployments ab; die gestufte Validierung reicht bis zur Deployability und Golden-Snapshot-Regression.',
+          'Vollständige Trainingsläufe und Hyperparameter-Sweeps werden vom ML-Team gestartet; Validierung, Candidate Handling, Promotion und nachgelagerte Auslieferung sind automatisiert. Freigegebene Modelle und ihr FastAPI-Inference-Service werden als versionierte Docker-Images paketiert, über Harbor veröffentlicht und über reproduzierbare TeamCity-Workflows ausgeliefert.',
+          'Die Plattform um Kubernetes-gehostete Services, Terraform-basierte Infrastructure as Code und Coder-Umgebungen erweitert. MLflow schafft Run-/Metrik-Transparenz und Nachvollziehbarkeit automatisierter Modellentscheidungen; Architektur und Betriebsabläufe wurden fortlaufend dokumentiert.',
+        ],
+      },
+    ],
+  },
+  schlegel: {
+    paragraphs: [
+      'Über fünfzehn Jahre vier zentrale Anwendungen für die Tragwerksplanung und mehrere kleinere Produkte entwickelt und weiterentwickelt und komplexe Engineering-Domänen in wartbare Software- und Datenstrukturen übersetzt.',
+      'Eng gekoppelte .NET/WPF-Anwendungen durch MVVM und eine klarere Trennung von Geschäftslogik, UI und Datenzugriff modernisiert. Den mehrjährigen Übergang von Desktop-Software zu servicebasierten Webarchitekturen mitgestaltet und umgesetzt: zentrale Engineering-Daten, dedizierte Backend-Services und REST-APIs sowie anwendungsspezifische Web-Frontends. Bestehende Desktop-Clients wurden schrittweise an dieselben Backend-Berechnungsservices angebunden, sodass sich die Architektur ohne disruptiven Rewrite weiterentwickeln konnte.',
+      'Quellcodeverwaltung, automatisierte Builds und TeamCity CI/CD dort eingeführt, wo diese Grundlagen zuvor fehlten; während der späteren SaaS-Transformation entwickelte sich die Auslieferung weiter in Richtung Git, Docker und automatisierter Deployments in Kubernetes-/Azure-Umgebungen.',
+      'Hands-on-Implementierung über C#/.NET, Backend-Services und APIs, Web-/Full-Stack-Entwicklung, Python, Docker, Datenbanken und interaktive 3D-Visualisierung hinweg. Parallel dazu an Architekturentscheidungen, Code Reviews, technischen Standards und Dokumentation mitgewirkt, während das Team von drei Entwicklern zu einer verteilten europäischen Gruppe von rund acht Personen wuchs.',
+    ],
+  },
+  indanet: {
+    paragraphs: [
+      'Entwicklung operativer Leitstellen- und Störungsmanagementsysteme für den öffentlichen Nahverkehr, in denen Vorfälle, Notrufe, Kameras, Einsatzpersonal und Ereignishistorien koordiniert und dokumentiert wurden. Aufbau des GIS als zentrale Bedien- und Systemschicht für Stationen, Vorfälle, Kameras und mobiles Einsatzpersonal.',
+      'Konzeption und Implementierung RPC-basierter Backup-, Replikations- und Wiederherstellungsmechanismen mit Behandlung von Verbindungsabbrüchen, redundanten oder widersprüchlichen Datenzuständen und wiederholten Wiederherstellungsversuchen bis zum Healthy-State. Produktiv-Rollouts erforderten umfangreiche Tests, Reviews und kontrollierte Wartungsfenster, da Fehler den laufenden ÖPNV-Betrieb unmittelbar beeinträchtigen konnten.',
+    ],
+  },
+  mapguide: { context: '', paragraphs: ['Mitarbeit an der Feature-Entwicklung mobiler Navigationssoftware und GPS-Produkte.'] },
+  mable: { context: 'Mobile CRM', paragraphs: ['Entwicklung eines frühen mobilen CRM-Systems für den Außendienst im Startup-Umfeld. Konzeption und Implementierung der Synchronisation zwischen Mobilgeräten und zentralem Datenbestand unter unzuverlässigen 2G-Netzbedingungen. Umsetzung eines datensatzbezogenen Abgleichs mit Vorrang zentraler Daten und zeitstempelbasierter Konfliktbehandlung zur konsistenten Zusammenführung unterbrochener oder verzögerter mobiler Aktualisierungen.'] },
+});
+
+const germanFullstackRoles = applyRoleOverrides(germanRoles, {
+  cancilico: {
+    chapters: [
+      {
+        title: 'Produktstabilität & Delivery Foundations',
+        paragraphs: [
+          'CI/CD-Backbone für eine bestehende Multi-Service-Healthcare-AI-Anwendung mit zwei Web-Frontends, Backend-Services, Datenbank und separatem Inference-Service aufgebaut. Ergänzend an einem Echtzeit-Chat für Ärzte mit persistenten WebSocket-Verbindungen neben den REST-basierten Services mitgearbeitet. Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline integriert, die die verbundene Anwendung validierte, Service-Container baute, das System gegen die Datenbank startete und einen getesteten, deployment-fähigen Release-Kandidaten erzeugte. Die Bereitstellung über Harbor vervollständigte den reproduzierbaren Weg von der Codeänderung bis zum auslieferbaren containerisierten System.',
+          'Die Pipeline machte zuvor verborgene Stabilitätsprobleme sichtbar und etablierte Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
+        ],
+      },
+      germanRoles[0].chapters![1],
+    ],
+  },
+});
+
+const germanProjects = {
+  spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Entwicklung · Project Design', desc: 'Engineering-Journal in Entwicklung für wiederverwendbares technisches Wissen aus Projektnotizen, Debugging-Historie und Architekturentscheidungen. Ausgangspunkt ist ein strukturiertes Projekt-/Datenmodell; AI wird gezielt für Aufbereitung und Retrieval eingesetzt.' },
+  pulse: { ...careerData.projects.pulse, desc: 'Agentisches Workflow-System mit expliziten Verantwortlichkeiten je Verarbeitungsschritt, definierten Evaluationsgrenzen, Observability und kontrollierter Fehlerbehandlung statt eines einzelnen autonomen Agent-Loops.' },
+};
+
+const germanStack = [
+  { cat: 'Software Engineering', items: ['C# / .NET', 'Python', 'TypeScript', 'React', 'Angular', 'Nuxt', 'FastAPI', 'REST-APIs'] },
+  { cat: 'Delivery & Plattform', items: ['Git / GitHub', 'TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'AWS', 'Harbor', 'Coder'] },
+  { cat: 'AI-/ML-Integration', items: ['PyTorch', 'MLflow', 'MLOps', 'FastAPI', 'LangGraph', 'RAG'] },
+  { cat: 'Architektur & Engineering-Praxis', items: ['Systemdesign', 'servicebasierte Architektur', 'relationale Modellierung', 'SQL', 'REST-APIs', 'RPC', 'WebSockets', 'verteilte Zustände', 'automatisierte Tests', 'Architekturdokumentation', 'Code Reviews', 'technische Standards', 'Reproduzierbarkeit', 'Recovery', 'TLS / Zertifikatsvertrauen'] },
+];
+
+const germanCapabilityRail = ['Systemarchitektur', 'API- & Integrationsdesign', 'Full-Stack Engineering', 'Daten- & Domänenmodellierung', 'Testing & Qualitätssysteme', 'Code Reviews & technische Standards', 'CI/CD & Delivery', 'Produktive AI-/ML-Integration'];
+const germanCanonicalStack = germanStack.map(group => ({ ...group, cat: group.cat === 'AI-/ML-Integration' ? 'AI-/ML-Integration' : group.cat }));
+
+const germanCanonical: CvContent = {
+  ...canonical,
+  locale: 'de', route: '/de', variant: 'canonical',
+  pageTitle: 'Mario Wangen — Senior Software Engineer',
+  metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in Softwarearchitektur, Produktentwicklung, zuverlässiger Auslieferung, Plattformen und produktiven AI-Systemen.',
+  hero: 'Komplexe Softwaresysteme von Architektur und Implementierung bis zur zuverlässigen Auslieferung und zum produktiven Betrieb entwickeln und weiterentwickeln.',
+  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in der Entwicklung und Weiterentwicklung produktiver Systeme – von mobilen Anwendungen über Engineering-Software und Enterprise-SaaS bis zu Healthcare AI. Mein Arbeitsfeld reicht von Systemarchitektur, Domänen- und Datenmodellen über Backend-APIs und Webanwendungen bis zu den Engineering-Grundlagen für eine zuverlässige Auslieferung.\n\nIch bleibe dabei hands-on in der Implementierung und übernehme zugleich Verantwortung für Gesamtsysteme, technische Entscheidungen und die Engineering-Grundlagen, auf denen andere Entwickler und Teams aufbauen. In den vergangenen Jahren hat sich dieser Verantwortungsbereich um cloud-native Plattformen, MLOps und AI-gestützte Systeme erweitert.',
+  roles: germanRoles,
+  projects: [germanProjects.spurwerk, germanProjects.pulse],
+  stack: germanCanonicalStack,
+  capabilityRail: ['Systemarchitektur', 'Daten- & Domänenmodellierung', 'Zuverlässigkeit & Recovery', 'Testing & Qualitätssysteme', 'CI/CD & Delivery', 'Plattform Engineering', 'Cloud / Infrastruktur', 'Produktive AI / MLOps'],
+  page1StackCategories: ['Software Engineering', 'Delivery & Plattform', 'AI-/ML-Integration'],
+  page2StackCategories: ['Architektur & Engineering-Praxis'],
+  labels: germanLabels,
+  pdfFileName: 'Mario_Wangen_CV_DE.pdf',
+};
+
+const germanFullstack: CvContent = {
+  ...germanCanonical,
+  route: '/de/fullstack',
+  pageTitle: 'Mario Wangen — Senior Software Engineer | Full-Stack & Architektur',
+  metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in Systemarchitektur, APIs, Full-Stack-Entwicklung, CI/CD, cloud-nativer Auslieferung und der Integration produktiver AI-/ML-Systeme.',
+  hero: 'Komplexe Softwaresysteme über Architektur, APIs und Full-Stack-Implementierung bis zur zuverlässigen Auslieferung entwickeln und weiterentwickeln.',
+  roles: germanFullstackRoles,
+  projects: [germanProjects.pulse, germanProjects.spurwerk],
+  capabilityRail: germanCapabilityRail,
+  page1StackCategories: ['Software Engineering', 'Delivery & Plattform', 'AI-/ML-Integration'],
+  page2StackCategories: ['Architektur & Engineering-Praxis'],
+  pdfFileName: 'Mario_Wangen_CV_Fullstack_DE.pdf',
+};
+
 // Public views are emphasis overlays, never alternate employment histories.
 // Keeping the same role references prevents factual divergence between routes.
 export const cvViews: Record<CvView, CvContent> = {
@@ -160,9 +267,12 @@ export const cvViews: Record<CvView, CvContent> = {
 };
 
 export const cvRoutes = { '/': 'canonical', '/devops': 'devops', '/fullstack': 'fullstack', '/applied-ai': 'applied-ai', '/fde': 'fde' } satisfies Record<string, CvView>;
+export const localizedCvViews = { 'de:canonical': germanCanonical, 'de:fullstack': germanFullstack } satisfies Record<string, CvContent>;
 const normalizePath = (p: string) => p.length > 1 ? p.replace(/\/+$/, '') : p;
 export function getCvRedirect(p: string): string | undefined { return normalizePath(p) === '/ai' ? '/applied-ai' : undefined; }
 export function getCvContent(p: string): CvContent | undefined {
-  const key = cvRoutes[normalizePath(p) as keyof typeof cvRoutes];
+  const path = normalizePath(p);
+  if (path === '/de' || path === '/de/fullstack') return localizedCvViews[path === '/de' ? 'de:canonical' : 'de:fullstack'];
+  const key = cvRoutes[path as keyof typeof cvRoutes];
   return key ? cvViews[key] : undefined;
 }

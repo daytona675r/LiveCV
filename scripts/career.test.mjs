@@ -65,5 +65,24 @@ test('fullstack is a reusable architecture and delivery overlay', async () => {
   assert.match(roles, /FastAPI-based inference service/);
   assert.match(roles, /service-based web architectures/);
   assert.match(roles, /REST APIs/);
+  assert.match(roles, /WebSocket/);
   assert.doesNotMatch(roles, /Rust|gRPC|GraphQL|OpenShift|Edge AI|Team Lead|Engineering Manager/);
+});
+
+test('German locale overlays preserve facts while localizing canonical and Full-Stack views', async () => {
+  const { careerData, localizedCvViews, getCvContent } = await model();
+  const canonicalDe = getCvContent('/de/');
+  const fullstackDe = getCvContent('/de/fullstack/');
+  assert.equal(canonicalDe, localizedCvViews['de:canonical']);
+  assert.equal(fullstackDe, localizedCvViews['de:fullstack']);
+  assert.notEqual(canonicalDe, getCvContent('/'));
+  assert.equal(canonicalDe?.pdfFileName, 'Mario_Wangen_CV_DE.pdf');
+  assert.equal(fullstackDe?.pdfFileName, 'Mario_Wangen_CV_Fullstack_DE.pdf');
+  assert.match(fullstackDe?.profile ?? '', /mehr als 20 Jahren Erfahrung/);
+  assert.match(fullstackDe?.profile ?? '', /hands-on/);
+  assert.match(JSON.stringify(fullstackDe?.roles), /WebSocket/);
+  assert.deepEqual(fullstackDe?.roles.map(r => [r.id, r.company, r.title, r.dates]), careerData.roles.map(r => [r.id, r.company, r.title, r.dates]));
+  assert.deepEqual(canonicalDe?.projects.map(p => p.name), ['Spurwerk', 'PULSE']);
+  assert.deepEqual(fullstackDe?.projects.map(p => p.name), ['PULSE', 'Spurwerk']);
+  assert.doesNotMatch(JSON.stringify(fullstackDe), /Rust|gRPC|GraphQL|OpenShift|Edge AI|Team Lead|Engineering Manager/);
 });

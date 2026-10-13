@@ -13,6 +13,8 @@ test('public route inventory and unknown-profile behavior stay closed', async ()
   assert.deepEqual(Object.keys(cvRoutes), ['/', '/devops', '/fullstack', '/applied-ai', '/fde']);
   assert.equal(getCvContent('/private/example'), undefined);
   assert.equal(getCvContent('/example-application'), undefined);
+  assert.equal(getCvContent('/de')?.locale, 'de');
+  assert.equal(getCvContent('/de/fullstack/')?.locale, 'de');
 });
 
 test('public import graph never includes private profiles or generated output', async () => {

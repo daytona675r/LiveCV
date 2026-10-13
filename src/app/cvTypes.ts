@@ -9,6 +9,12 @@ export type Education = {
 };
 
 export type CvView = "canonical" | "devops" | "fullstack" | "applied-ai" | "fde";
+export type CvLocale = "en" | "de";
+export type CvLabels = {
+  profile: string; experience: string; capabilities: string; technology: string;
+  technologyPractice: string; earlyExperience: string; education: string; selectedWork: string;
+  download: string; preparing: string; downloadError: string;
+};
 
 export type CapabilityGroup = {
   cat: string;
@@ -51,6 +57,8 @@ export type CvContent = {
   projects: Project[];
   stack: StackGroup[];
   pdfFileName: string;
+  locale?: CvLocale;
+  labels?: CvLabels;
   capabilityRail?: string[];
   page1StackCategories?: string[];
   page2StackCategories?: string[];

@@ -14,7 +14,7 @@ const primitives: CvPrimitives = {
 };
 export function PdfDocument(props: { content: CvContent; presentation?: PdfPresentation; careerDetails?: PdfCareerDetails }) {
   if (props.presentation?.application) return <LegacyPdfDocument {...props} />;
-  return <Document title={props.content.pageTitle} author={careerData.person.name} language="en" subject="Curriculum Vitae">
+  return <Document title={props.content.pageTitle} author={careerData.person.name} language={props.content.locale ?? 'en'} subject="Curriculum Vitae">
     <CvPages content={props.content} primitives={primitives} />
   </Document>;
 }

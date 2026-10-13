@@ -7,16 +7,21 @@ import { randomUUID } from 'node:crypto';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const args = process.argv.slice(2);
 let profileImport;
-if (args.length === 0 || (args.length === 2 && args[0] === '--view' && ['canonical', 'devops', 'fullstack', 'applied-ai', 'fde'].includes(args[1]))) {
+const supportedViews = ['canonical', 'devops', 'fullstack', 'applied-ai', 'fde'];
+if (args.length === 0 || (args.length === 2 && args[0] === '--view' && supportedViews.includes(args[1])) || (args.length === 4 && args[0] === '--view' && supportedViews.includes(args[1]) && args[2] === '--locale' && args[3] === 'de')) {
   const view = args[1] ?? 'canonical';
-  profileImport = `import { cvViews } from './src/app/cvViews'; const profile = { content: cvViews[${JSON.stringify(view)}] };`;
+  const locale = args[3];
+  if (locale === 'de' && !['canonical', 'fullstack'].includes(view)) throw new Error('German PDF views currently support canonical and fullstack only.');
+  profileImport = locale === 'de'
+    ? `import { localizedCvViews } from './src/app/cvViews'; const profile = { content: localizedCvViews[${JSON.stringify(`de:${view}`)}] };`
+    : `import { cvViews } from './src/app/cvViews'; const profile = { content: cvViews[${JSON.stringify(view)}] };`;
 } else if (args.length === 2 && args[0] === '--profile' && /^[a-z0-9][a-z0-9-]*$/.test(args[1])) {
   const privateRoot = await realpath(path.join(root, 'profiles/private'));
   const profile = await realpath(path.join(privateRoot, `${args[1]}.ts`));
   if (path.dirname(profile) !== privateRoot) throw new Error('Profile must be inside profiles/private.');
   profileImport = `import profile from ${JSON.stringify(profile)};`;
 } else {
-  throw new Error('Usage: npm run cv:pdf -- [--view canonical|devops|fullstack|applied-ai|fde | --profile <local-profile-name>]');
+  throw new Error('Usage: npm run cv:pdf -- [--view canonical|devops|fullstack|applied-ai|fde [--locale de] | --profile <local-profile-name>]');
 }
 const output = path.join(root, 'output');
 await mkdir(output, { recursive: true });

@@ -23,6 +23,7 @@ export default function App() {
   useEffect(() => {
     document.title = content?.pageTitle ?? 'CV view not found — Mario Wangen';
     document.querySelector('meta[name="description"]')?.setAttribute('content', content?.metaDescription ?? 'This CV view is not available.');
+    document.documentElement.lang = content?.locale ?? 'en';
   }, [content]);
   if (!content) return <main className="not-found"><h1>CV view not found</h1><a href="/">Open the canonical CV</a></main>;
   const primitives: CvPrimitives = {
@@ -40,7 +41,7 @@ export default function App() {
   return <main className="cv-preview" data-cv-variant={content.variant}>
     <CvPages content={content} primitives={primitives} />
     <PDFDownloadLink className="download-cv" document={<PdfDocument content={content} />} fileName={content.pdfFileName}>
-      {({ loading, error }) => error ? 'PDF generation failed — reload to retry' : loading ? 'Preparing PDF…' : 'Download CV as PDF'}
+      {({ loading, error }) => error ? content.labels?.downloadError ?? 'PDF generation failed — reload to retry' : loading ? content.labels?.preparing ?? 'Preparing PDF…' : content.labels?.download ?? 'Download CV as PDF'}
     </PDFDownloadLink>
   </main>;
 }

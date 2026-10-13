@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { careerData } from './careerData';
-import type { CareerRole, CvContent, CapabilityGroup } from './cvTypes';
+import type { CareerRole, CvContent, CapabilityGroup, CvLabels } from './cvTypes';
 
 // One editorial tree in PDF points for both HTML preview and React-PDF.
 export type LayoutStyle = Record<string, string | number>;
@@ -34,11 +34,12 @@ export const layout = {
 export function CvPages({ content, primitives }: { content: CvContent; primitives: CvPrimitives }) {
   const { Box, Text, Link, Page } = primitives;
   const { person, education, engineeringScope } = careerData;
+  const labels: CvLabels = content.labels ?? { profile: 'PROFESSIONAL PROFILE', experience: 'PROFESSIONAL EXPERIENCE', capabilities: 'ENGINEERING CAPABILITIES', technology: 'TECHNOLOGY', technologyPractice: 'TECHNOLOGY & PRACTICE', earlyExperience: 'EARLY ENGINEERING FOUNDATIONS', education: 'EDUCATION', selectedWork: 'SELECTED ENGINEERING WORK', download: 'Download CV as PDF', preparing: 'Preparing PDF…', downloadError: 'PDF generation failed — reload to retry' };
   const capabilityRail = content.capabilityRail ?? engineeringScope;
   const page1StackCategories = content.page1StackCategories ?? ['Software Engineering', 'Delivery & Platform', 'AI Systems'];
   const page2StackCategories = content.page2StackCategories ?? ['Architecture & Data', 'Engineering Practice'];
-  const bodyStyle = content.variant === 'devops' ? { ...layout.body, fontSize: 9.1, lineHeight: 1.24, marginBottom: 5 } : content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
-  const chapterStyle = { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 };
+  const bodyStyle = content.locale === 'de' ? { ...layout.body, fontSize: 8.9, lineHeight: 1.2, marginBottom: 4 } : content.variant === 'devops' ? { ...layout.body, fontSize: 9.1, lineHeight: 1.24, marginBottom: 5 } : content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
+  const chapterStyle = content.locale === 'de' ? { ...layout.chapter, fontSize: 9.8, marginTop: 6, marginBottom: 4 } : { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 };
   const Label = ({ children }: { children: string }) => <Text heading={2} style={layout.label}>{children}</Text>;
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
     <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -76,18 +77,18 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       <Box style={layout.columns}>
         <Box style={layout.main}>
           <Box style={{ marginBottom: 12 }}>
-            <Label>PROFESSIONAL PROFILE</Label>
+            <Label>{labels.profile}</Label>
             {content.profile.split('\n\n').map((p, i) => <Text key={i} style={bodyStyle}>{p}</Text>)}
           </Box>
-          <Label>PROFESSIONAL EXPERIENCE</Label>
+          <Label>{labels.experience}</Label>
           <Role role={content.roles[0]} />
         </Box>
         <Box style={layout.rail}>
           <Box style={{ marginBottom: 24 }}>
-            <Label>ENGINEERING CAPABILITIES</Label>
+            <Label>{labels.capabilities}</Label>
             {capabilityRail.map(s => <Text key={s} style={layout.railText}>{s}</Text>)}
           </Box>
-          <Label>TECHNOLOGY</Label>
+          <Label>{labels.technology}</Label>
           {content.stack.filter(g => page1StackCategories.includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
         </Box>
       </Box>
@@ -99,7 +100,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
           {content.roles.slice(1, 3).map(r => <Role key={r.id} role={r} />)}
         </Box>
         <Box style={layout.rail}>
-          <Label>TECHNOLOGY & PRACTICE</Label>
+          <Label>{labels.technologyPractice}</Label>
           {content.stack.filter(g => page2StackCategories.includes(g.cat)).map(g => <Group key={g.cat} group={g} />)}
 
         </Box>
@@ -110,10 +111,10 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       <MiniHeader page={3} />
       <Box style={layout.columns}>
         <Box style={layout.main}>
-          <Label>EARLY ENGINEERING FOUNDATIONS</Label>
+          <Label>{labels.earlyExperience}</Label>
           {content.roles.slice(3).map(r => <Role key={r.id} role={r} />)}
           <Box style={{ marginTop: 8 }}>
-            <Label>EDUCATION</Label>
+            <Label>{labels.education}</Label>
             {education.map(e => <Text key={e.school} style={{ ...layout.minor, marginBottom: 5 }}>
               <Text inline style={{ fontWeight: 700, color: '#505B6B' }}>{e.degree}</Text>{` · ${e.school}\n${e.dates}${e.qualification ? ` · ${e.qualification}` : ''}${e.result ? ` · ${e.result}` : ''}`}
             </Text>)}
@@ -121,7 +122,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         </Box>
         <Box style={layout.rail}>
           <Box style={{ marginTop: 7 }}>
-            <Label>SELECTED ENGINEERING WORK</Label>
+            <Label>{labels.selectedWork}</Label>
             {content.projects.map(p => <Box key={p.name} style={{ borderLeftWidth: 2, borderLeftColor: '#2563EB', borderLeftStyle: 'solid', paddingLeft: 9, marginBottom: 22 }}>
               <Text heading={3} style={{ ...layout.railTitle, color: '#263244' }}>{p.name}</Text>
               {Boolean(p.pattern) && <Text style={{ ...layout.minor, color: '#8993A2', marginBottom: 6 }}>{p.pattern}</Text>}
