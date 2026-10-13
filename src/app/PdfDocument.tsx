@@ -10,7 +10,7 @@ const primitives: CvPrimitives = {
   Box: ({ style, children }) => <View style={style}>{children}</View>,
   Text: ({ style, children }) => <Text style={style}>{children}</Text>,
   Link: ({ style, children, href }) => <Link src={href} style={style}>{children}</Link>,
-  Image: ({ style, src }) => <Image src={src ? `public/${src}` : undefined} style={style} />,
+  Image: ({ style, src }) => <Image src={src ? (typeof window === 'undefined' ? `public/${src}` : `/${src}`) : undefined} style={style} />,
   Page: ({ style, children }) => <Page size="A4" style={style}>{children}</Page>,
 };
 export function PdfDocument(props: { content: CvContent; presentation?: PdfPresentation; careerDetails?: PdfCareerDetails }) {
