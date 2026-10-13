@@ -74,6 +74,7 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   const canonicalDe = getCvContent('/de/');
   const fullstackDe = getCvContent('/de/fullstack/');
   const devopsDe = getCvContent('/de/devops/');
+  const appliedAiDe = getCvContent('/de/applied-ai/');
   assert.equal(canonicalDe, localizedCvViews['de:canonical']);
   assert.equal(fullstackDe, localizedCvViews['de:fullstack']);
   assert.notEqual(canonicalDe, getCvContent('/'));
@@ -86,6 +87,15 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.match(devopsDe?.hero ?? '', /^Entwicklung zuverlässiger Softwaresysteme/);
   assert.match(JSON.stringify(devopsDe?.roles), /Bash\/Shell/);
   assert.doesNotMatch(JSON.stringify(devopsDe), /OpenShift|Ansible|ArgoCD|GitLab CI|Jenkins|Nexus|Quay|SonarQube|Backstage|Eggplant/);
+  assert.equal(appliedAiDe, localizedCvViews['de:applied-ai']);
+  assert.equal(appliedAiDe?.variant, 'applied-ai');
+  assert.equal(appliedAiDe?.locale, 'de');
+  assert.equal(appliedAiDe?.pdfFileName, 'Mario_Wangen_CV_Applied_AI_DE.pdf');
+  assert.match(appliedAiDe?.hero ?? '', /^Entwicklung produktiver AI-Systeme/);
+  assert.match(appliedAiDe?.profile ?? '', /Coding Agents/);
+  assert.match(JSON.stringify(appliedAiDe?.projects), /RAG-basierter Chat-Assistent für ein Solarunternehmen/);
+  assert.match(JSON.stringify(appliedAiDe?.roles), /Klassifikations- und Detektionsmodelle/);
+  assert.doesNotMatch(JSON.stringify(appliedAiDe), /3\+ Jahre|Master|OpenShift|Ansible|ArgoCD/);
   assert.match(canonicalDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);
   assert.match(fullstackDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);
   assert.doesNotMatch(`${canonicalDe?.hero}\n${fullstackDe?.hero}`, /entwickeln und weiterentwickeln/);

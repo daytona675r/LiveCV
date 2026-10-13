@@ -215,6 +215,7 @@ const germanFullstackRoles = applyRoleOverrides(germanRoles, {
 const germanProjects = {
   spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Entwicklung · Projektkonzeption', desc: 'Engineering-Journal in Entwicklung für wiederverwendbares technisches Wissen aus Projektnotizen, Debugging-Historie und Architekturentscheidungen. Ausgangspunkt ist ein strukturiertes Projekt-/Datenmodell; AI wird gezielt für Wissensaufbereitung und Retrieval eingesetzt.', tags: ['Geplant: FastAPI', 'PostgreSQL', 'Docker', 'Web-Frontend', 'LLM-gestützte Wissensaufbereitung'] },
   pulse: { ...careerData.projects.pulse, desc: 'Agentisches Workflow-System mit expliziten Verantwortlichkeiten je Verarbeitungsschritt, definierten Evaluationsgrenzen, Observability und kontrollierter Fehlerbehandlung statt eines einzelnen autonomen Agent-Loops.' },
+  solarRagAssistant: { ...careerData.projects.solarRagAssistant, pattern: 'Freelance · AI-Anwendung' },
 };
 
 const germanStack = [
@@ -327,6 +328,54 @@ const germanDevops: CvContent = {
   pdfFileName: 'Mario_Wangen_CV_DevOps_DE.pdf',
 };
 
+const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
+  cancilico: {
+    context: 'Healthcare AI · Software Engineering · Platform & MLOps',
+    chapters: [
+      {
+        title: 'Produktive AI-Integration & Delivery',
+        paragraphs: [
+          'Integration bestehender Klassifikations- und Detektionsmodelle des ML-Teams in eine produktive Healthcare-AI-Anwendung mit FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Plattform.',
+          'Aufbau der Test- und Delivery-Grundlagen über Unit-, Integrations- und End-to-End-Validierung. Die Pipeline startet die verbundene Anwendung gegen die Datenbank, prüft die Service-Container und macht Stabilitätsprobleme vor der Auslieferung sichtbar.',
+        ],
+      },
+      {
+        title: 'MLOps-Architektur & Modellbereitstellung',
+        paragraphs: [
+          'Entwurf und Aufbau der Delivery-Architektur mit separaten Smoke- und Full-Training-Workflows, durchgängiger Nachverfolgbarkeit von Code, Umgebungen, Datensätzen, Runs, Modellen und Deployments sowie gestufter Validierung bis zur Deployability und Golden-Snapshot-Regression.',
+          'Vollständige Trainingsläufe und Hyperparameter-Sweeps werden vom ML-Team gestartet; Validierung, Verwaltung der Modellkandidaten, Freigabe und nachgelagerte Auslieferung sind automatisiert. MLflow schafft Run-/Metrik-Transparenz und Nachvollziehbarkeit automatisierter Modellentscheidungen; Coder-Umgebungen unterstützen CPU-Validierung und GPU-Training.',
+        ],
+      },
+    ],
+  },
+  schlegel: { context: 'Engineering-Software · Tragwerksplanung' },
+  indanet: { context: 'Leitstellen- und Störungsmanagement im öffentlichen Nahverkehr' },
+});
+
+const germanAppliedAiStack: StackGroup[] = [
+  { cat: 'AI & Agentic Systems', items: ['LangGraph', 'RAG', 'LLM APIs', 'ChromaDB / Vektordatenbanken', 'PyTorch', 'MLflow', 'MLOps'] },
+  { cat: 'Agentische Softwareentwicklung', items: ['Codex', 'Claude Code', 'Cursor', 'AI-gestützte Architektur', 'Implementierung', 'Tests', 'Debugging', 'Refactoring'] },
+  { cat: 'Software Engineering', items: ['Python', 'TypeScript', 'C# / .NET', 'FastAPI', 'REST-APIs', 'React', 'Angular', 'Nuxt'] },
+  { cat: 'Delivery & Plattform', items: ['TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'Harbor', 'AWS', 'Coder'] },
+  { cat: 'Engineering-Praxis', items: ['Systemarchitektur', 'automatisierte Tests', 'Evaluationsgrenzen', 'Observability', 'Reproduzierbarkeit', 'Code Reviews', 'technische Standards', 'kontrollierte Fehlerbehandlung'] },
+];
+
+const germanAppliedAi: CvContent = {
+  ...germanCanonical,
+  variant: 'applied-ai', route: '/de/applied-ai',
+  pageTitle: 'Mario Wangen — Senior Software Engineer | Applied AI & Agentic Development',
+  metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Engineering-Erfahrung und Schwerpunkt auf produktiven AI-Systemen, MLOps, RAG, agentischen Workflows und coding-agent-gestützter Softwareentwicklung.',
+  hero: 'Entwicklung produktiver AI-Systeme – mit Software-Engineering-Disziplin, agentischen Workflows, MLOps und coding-agent-gestützter Umsetzung.',
+  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in produktiven Softwaresystemen. Mein Schwerpunkt liegt weiterhin auf Architektur, Implementierung, Qualität und zuverlässiger Auslieferung; in den vergangenen Jahren habe ich diese Engineering-Erfahrung gezielt auf AI-Systeme, MLOps, RAG und agentische Workflows erweitert.\n\nIch arbeite hands-on und nutze moderne Coding Agents als zentrales Entwicklungswerkzeug, ohne technische Verantwortung an sie abzugeben: Architektur, Änderungen und Tests werden bewusst gesteuert, überprüft und über automatisierte Qualitätssicherung und CI/CD abgesichert.',
+  roles: germanAppliedAiRoles,
+  projects: [germanProjects.pulse, germanProjects.solarRagAssistant],
+  stack: germanAppliedAiStack,
+  capabilityRail: ['Systemarchitektur', 'Agentische Softwareentwicklung', 'Applied AI / LLM Systems', 'RAG & Agent Workflows', 'MLOps & Model Delivery', 'APIs & Integration', 'Testing & Evaluation', 'CI/CD & Production Delivery'],
+  page1StackCategories: ['AI & Agentic Systems', 'Agentische Softwareentwicklung', 'Software Engineering'],
+  page2StackCategories: ['Delivery & Plattform', 'Engineering-Praxis'],
+  pdfFileName: 'Mario_Wangen_CV_Applied_AI_DE.pdf',
+};
+
 // Public views are emphasis overlays, never alternate employment histories.
 // Keeping the same role references prevents factual divergence between routes.
 export const cvViews: Record<CvView, CvContent> = {
@@ -343,12 +392,12 @@ export const cvViews: Record<CvView, CvContent> = {
 };
 
 export const cvRoutes = { '/': 'canonical', '/devops': 'devops', '/fullstack': 'fullstack', '/applied-ai': 'applied-ai', '/fde': 'fde' } satisfies Record<string, CvView>;
-export const localizedCvViews = { 'de:canonical': germanCanonical, 'de:fullstack': germanFullstack, 'de:devops': germanDevops } satisfies Record<string, CvContent>;
+export const localizedCvViews = { 'de:canonical': germanCanonical, 'de:fullstack': germanFullstack, 'de:devops': germanDevops, 'de:applied-ai': germanAppliedAi } satisfies Record<string, CvContent>;
 const normalizePath = (p: string) => p.length > 1 ? p.replace(/\/+$/, '') : p;
 export function getCvRedirect(p: string): string | undefined { return normalizePath(p) === '/ai' ? '/applied-ai' : undefined; }
 export function getCvContent(p: string): CvContent | undefined {
   const path = normalizePath(p);
-  if (path === '/de' || path === '/de/fullstack' || path === '/de/devops') return localizedCvViews[path === '/de' ? 'de:canonical' : path === '/de/fullstack' ? 'de:fullstack' : 'de:devops'];
+  if (path === '/de' || path === '/de/fullstack' || path === '/de/devops' || path === '/de/applied-ai') return localizedCvViews[path === '/de' ? 'de:canonical' : path === '/de/fullstack' ? 'de:fullstack' : path === '/de/devops' ? 'de:devops' : 'de:applied-ai'];
   const key = cvRoutes[path as keyof typeof cvRoutes];
   return key ? cvViews[key] : undefined;
 }

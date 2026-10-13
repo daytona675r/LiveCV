@@ -9,7 +9,7 @@ The primary identity is **Senior Software Engineer**. Experience leads: ownershi
 - `src/app/careerData.ts` holds the person, employers, official titles, dates, engineering chapters, education, project facts and capability inventory.
 - `src/app/cvTypes.ts` defines the shared records and view contract.
 - `src/app/cvViews.ts` contains presentation overlays: value statements, emphasis, selection/order and PDF filenames. Every public view references the same factual role records. Tailoring changes emphasis, not career identity or facts.
-- `cvViews` also resolves locale overlays independently from role emphasis: `/de`, `/de/fullstack` and `/de/devops` use the same factual records with German narrative and structural labels.
+- `cvViews` also resolves locale overlays independently from role emphasis: `/de`, `/de/fullstack`, `/de/devops` and `/de/applied-ai` use the same factual records with German narrative and structural labels.
 - `src/app/CvPages.tsx` defines one three-page content tree and layout in PDF points. Both the browser and React-PDF render this tree, keeping copy, hierarchy and page boundaries aligned.
 - `src/app/App.tsx` adapts that tree to HTML, scales A4 pages responsively, updates metadata and provides the PDF download.
 - `src/app/PdfDocument.tsx` adapts it to `@react-pdf/renderer`. `LegacyPdfDocument.tsx` retains compatibility with existing private application profiles.
@@ -27,6 +27,7 @@ The canonical layout uses a roughly 67/33 narrative/supporting-rail split. Page 
 | `/fullstack` | Product and full-stack emphasis |
 | `/de/fullstack` | German Full-Stack and architecture emphasis |
 | `/de/devops` | German CI/CD, platform and DevOps emphasis |
+| `/de/applied-ai` | German Applied AI and agentic development emphasis |
 | `/applied-ai` | Applied AI emphasis within the same engineering career |
 | `/fde` | Requirements-to-production emphasis |
 
@@ -65,6 +66,7 @@ npm run cv:pdf -- --view fde
 npm run cv:pdf -- --view canonical --locale de
 npm run cv:pdf -- --view fullstack --locale de
 npm run cv:pdf -- --view devops --locale de
+npm run cv:pdf -- --view applied-ai --locale de
 
 # Private application profile
 npm run cv:pdf -- --profile <name>

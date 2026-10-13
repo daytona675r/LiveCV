@@ -11,7 +11,7 @@ const supportedViews = ['canonical', 'devops', 'fullstack', 'applied-ai', 'fde']
 if (args.length === 0 || (args.length === 2 && args[0] === '--view' && supportedViews.includes(args[1])) || (args.length === 4 && args[0] === '--view' && supportedViews.includes(args[1]) && args[2] === '--locale' && args[3] === 'de')) {
   const view = args[1] ?? 'canonical';
   const locale = args[3];
-  if (locale === 'de' && !['canonical', 'fullstack', 'devops'].includes(view)) throw new Error('German PDF views currently support canonical, fullstack and devops.');
+  if (locale === 'de' && !['canonical', 'fullstack', 'devops', 'applied-ai'].includes(view)) throw new Error('German PDF views currently support canonical, fullstack, devops and applied-ai.');
   profileImport = locale === 'de'
     ? `import { localizedCvViews } from './src/app/cvViews'; const profile = { content: localizedCvViews[${JSON.stringify(`de:${view}`)}] };`
     : `import { cvViews } from './src/app/cvViews'; const profile = { content: cvViews[${JSON.stringify(view)}] };`;

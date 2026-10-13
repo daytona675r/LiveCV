@@ -72,6 +72,11 @@ export const projects: Record<string, Project> = {
     desc: 'Agentic workflow system built around explicit stage responsibilities, evaluation boundaries, observability and controlled failure behavior rather than a single autonomous agent loop.',
     pattern: '', tags: ['LangGraph', 'Python', 'FastAPI', 'ChromaDB'],
   },
+  solarRagAssistant: {
+    name: 'RAG-Chat-Assistent',
+    desc: 'RAG-basierter Chat-Assistent für ein Solarunternehmen, als Freelancer umgesetzt.',
+    pattern: 'Freelance · AI-Anwendung', tags: ['RAG'],
+  },
   atlas: {
     name: 'Atlas',
     desc: 'Independent reference implementation for reproducible ML delivery, staged validation and automated model promotion, exploring production-oriented MLOps patterns independently from professional codebases.',
