@@ -78,6 +78,12 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.notEqual(canonicalDe, getCvContent('/'));
   assert.equal(canonicalDe?.pdfFileName, 'Mario_Wangen_CV_DE.pdf');
   assert.equal(fullstackDe?.pdfFileName, 'Mario_Wangen_CV_Fullstack_DE.pdf');
+  assert.match(canonicalDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);
+  assert.match(fullstackDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);
+  assert.doesNotMatch(`${canonicalDe?.hero}\n${fullstackDe?.hero}`, /entwickeln und weiterentwickeln/);
+  assert.equal(canonicalDe?.location, 'Dresden, Deutschland');
+  assert.equal(fullstackDe?.displayDates?.cancilico, '01/2026 — heute');
+  assert.match(JSON.stringify(canonicalDe?.educationMeta), /berufsbegleitend/);
   assert.match(fullstackDe?.profile ?? '', /mehr als 20 Jahren Erfahrung/);
   assert.match(fullstackDe?.profile ?? '', /hands-on/);
   assert.match(JSON.stringify(fullstackDe?.roles), /WebSocket/);

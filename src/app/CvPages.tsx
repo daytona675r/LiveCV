@@ -44,7 +44,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
     <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
       <Text heading={3} style={layout.employer}>{role.company}</Text>
-      <Text style={layout.dates}>{role.dates}</Text>
+      <Text style={layout.dates}>{content.displayDates?.[role.id] ?? role.dates}</Text>
     </Box>
     <Text style={layout.roleTitle}>{role.title}</Text>
     {Boolean(role.context) && <Text style={layout.context}>{role.context}</Text>}
@@ -71,7 +71,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         <Link style={layout.contact} href={person.linkedin}>linkedin.com/in/mariowangen</Link>
         <Link style={layout.contact} href={person.github}>github.com/daytona675r</Link>
         <Link style={layout.contact} href={`mailto:${person.email}`}>{person.email}</Link>
-        <Text style={layout.contact}>{person.location}</Text>
+        <Text style={layout.contact}>{content.location ?? person.location}</Text>
       </Box>
       <Box style={layout.rule} />
       <Box style={layout.columns}>
@@ -116,7 +116,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
           <Box style={{ marginTop: 8 }}>
             <Label>{labels.education}</Label>
             {education.map(e => <Text key={e.school} style={{ ...layout.minor, marginBottom: 5 }}>
-              <Text inline style={{ fontWeight: 700, color: '#505B6B' }}>{e.degree}</Text>{` · ${e.school}\n${e.dates}${e.qualification ? ` · ${e.qualification}` : ''}${e.result ? ` · ${e.result}` : ''}`}
+              <Text inline style={{ fontWeight: 700, color: '#505B6B' }}>{e.degree}</Text>{` · ${e.school}\n${content.educationMeta?.[e.school] ?? `${e.dates}${e.qualification ? ` · ${e.qualification}` : ''}${e.result ? ` · ${e.result}` : ''}`}`}
             </Text>)}
           </Box>
         </Box>

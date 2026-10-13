@@ -10,6 +10,11 @@ const germanLabels: CvLabels = {
   preparing: 'PDF wird vorbereitet…', downloadError: 'PDF-Erstellung fehlgeschlagen — bitte Seite neu laden',
 };
 
+// German CV copy: write German as German. Heroes prefer compact nominal phrasing;
+// role achievements may use Aufbau, Konzeption, Integration and Einführung where natural.
+// Keep first-person profiles as complete sentences, retain standard technical terms,
+// localize ordinary administrative metadata, and avoid translating English gerund syntax literally.
+
 type RoleNarrativeOverride = { context?: string; paragraphs?: string[]; chapters?: CareerChapter[] };
 function applyRoleOverrides(roles: CareerRole[], overrides: Record<string, RoleNarrativeOverride>): CareerRole[] {
   return roles.map(role => {
@@ -156,34 +161,34 @@ const germanRoles = applyRoleOverrides(careerData.roles, {
     context: 'Healthcare AI · Software Engineering · Platform & MLOps',
     chapters: [
       {
-        title: 'Produktstabilität & Delivery Foundations',
+        title: 'Produktstabilität & CI/CD',
         paragraphs: [
-          'CI/CD-Backbone für eine bestehende Multi-Service-Healthcare-AI-Anwendung aufgebaut. Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline integriert, die die Anwendung validierte, Service-Container baute, das System gegen die Datenbank startete und einen getesteten, deployment-fähigen Release-Kandidaten erzeugte. Die Bereitstellung über Harbor vervollständigte den reproduzierbaren Weg von der Codeänderung bis zum auslieferbaren containerisierten System.',
-          'Die Pipeline machte zuvor verborgene Stabilitätsprobleme sichtbar und etablierte Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
+          'Aufbau des CI/CD-Backbones für eine bestehende Multi-Service-Healthcare-AI-Anwendung. Integration von Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline zur Validierung der Anwendung, zum Bau der Service-Container, zum Start des Systems gegen die Datenbank und zur Erzeugung eines getesteten, auslieferbaren Release-Kandidaten. Die Veröffentlichung der Container-Images über Harbor schloss den reproduzierbaren Weg von der Codeänderung bis zum containerisierten System.',
+          'Sichtbarmachung zuvor verborgener Stabilitätsprobleme durch die Pipeline und Etablierung von Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
         ],
       },
       {
-        title: 'MLOps-Architektur & Model Delivery',
+        title: 'MLOps-Architektur & Modellbereitstellung',
         paragraphs: [
-          'Delivery-Architektur rund um die Klassifikations- und Detektionsmodelle des ML-Teams entworfen und aufgebaut. Separate Smoke- und Full-Training-Workflows sowie durchgängiges Source-of-Truth-Tracking decken Code, Umgebungen, Datensätze, Runs, Modelle und Deployments ab; die gestufte Validierung reicht bis zur Deployability und Golden-Snapshot-Regression.',
-          'Vollständige Trainingsläufe und Hyperparameter-Sweeps werden vom ML-Team gestartet; Validierung, Candidate Handling, Promotion und nachgelagerte Auslieferung sind automatisiert. Freigegebene Modelle und ihr FastAPI-Inference-Service werden als versionierte Docker-Images paketiert, über Harbor veröffentlicht und über reproduzierbare TeamCity-Workflows ausgeliefert.',
-          'Die Plattform um Kubernetes-gehostete Services, Terraform-basierte Infrastructure as Code und Coder-Umgebungen erweitert. MLflow schafft Run-/Metrik-Transparenz und Nachvollziehbarkeit automatisierter Modellentscheidungen; Architektur und Betriebsabläufe wurden fortlaufend dokumentiert.',
+          'Entwurf und Aufbau der Bereitstellungsarchitektur rund um die Klassifikations- und Detektionsmodelle des ML-Teams. Separate Smoke- und Full-Training-Workflows sowie die durchgängige Nachverfolgbarkeit von Code, Umgebungen, Datensätzen, Runs, Modellen und Deployments bilden die Grundlage; die gestufte Validierung reicht bis zur Deployability und Golden-Snapshot-Regression.',
+          'Vollständige Trainingsläufe und Hyperparameter-Sweeps werden vom ML-Team gestartet; Validierung, Verwaltung der Modellkandidaten, Freigabe und nachgelagerte Auslieferung sind automatisiert. Freigegebene Modelle und ihr FastAPI-Inference-Service werden als versionierte Docker-Images paketiert, über Harbor veröffentlicht und über reproduzierbare TeamCity-Workflows ausgeliefert.',
+          'Erweiterung der Plattform um Services in Kubernetes, Terraform-basiertes Infrastructure as Code und Coder-Umgebungen. MLflow schafft Run-/Metrik-Transparenz und Nachvollziehbarkeit automatisierter Modellentscheidungen; Architektur und Betriebsabläufe wurden fortlaufend dokumentiert.',
         ],
       },
     ],
   },
   schlegel: {
     paragraphs: [
-      'Über fünfzehn Jahre vier zentrale Anwendungen für die Tragwerksplanung und mehrere kleinere Produkte entwickelt und weiterentwickelt und komplexe Engineering-Domänen in wartbare Software- und Datenstrukturen übersetzt.',
+      'Entwicklung und kontinuierliche Weiterentwicklung von vier zentralen Anwendungen für die Tragwerksplanung sowie mehreren kleineren Produkten über fünfzehn Jahre. Überführung komplexer Engineering-Domänen in wartbare Software- und Datenstrukturen.',
       'Eng gekoppelte .NET/WPF-Anwendungen durch MVVM und eine klarere Trennung von Geschäftslogik, UI und Datenzugriff modernisiert. Den mehrjährigen Übergang von Desktop-Software zu servicebasierten Webarchitekturen mitgestaltet und umgesetzt: zentrale Engineering-Daten, dedizierte Backend-Services und REST-APIs sowie anwendungsspezifische Web-Frontends. Bestehende Desktop-Clients wurden schrittweise an dieselben Backend-Berechnungsservices angebunden, sodass sich die Architektur ohne disruptiven Rewrite weiterentwickeln konnte.',
       'Quellcodeverwaltung, automatisierte Builds und TeamCity CI/CD dort eingeführt, wo diese Grundlagen zuvor fehlten; während der späteren SaaS-Transformation entwickelte sich die Auslieferung weiter in Richtung Git, Docker und automatisierter Deployments in Kubernetes-/Azure-Umgebungen.',
-      'Hands-on-Implementierung über C#/.NET, Backend-Services und APIs, Web-/Full-Stack-Entwicklung, Python, Docker, Datenbanken und interaktive 3D-Visualisierung hinweg. Parallel dazu an Architekturentscheidungen, Code Reviews, technischen Standards und Dokumentation mitgewirkt, während das Team von drei Entwicklern zu einer verteilten europäischen Gruppe von rund acht Personen wuchs.',
+      'Hands-on-Entwicklung mit C#/.NET, Backend-Services und APIs, Web-/Full-Stack-Technologien, Python, Docker, Datenbanken und interaktiver 3D-Visualisierung. Parallel dazu Mitwirkung an Architekturentscheidungen, Code Reviews, technischen Standards und Dokumentation, während das Team von drei Entwicklern zu einer verteilten europäischen Gruppe von rund acht Personen wuchs.',
     ],
   },
   indanet: {
     paragraphs: [
       'Entwicklung operativer Leitstellen- und Störungsmanagementsysteme für den öffentlichen Nahverkehr, in denen Vorfälle, Notrufe, Kameras, Einsatzpersonal und Ereignishistorien koordiniert und dokumentiert wurden. Aufbau des GIS als zentrale Bedien- und Systemschicht für Stationen, Vorfälle, Kameras und mobiles Einsatzpersonal.',
-      'Konzeption und Implementierung RPC-basierter Backup-, Replikations- und Wiederherstellungsmechanismen mit Behandlung von Verbindungsabbrüchen, redundanten oder widersprüchlichen Datenzuständen und wiederholten Wiederherstellungsversuchen bis zum Healthy-State. Produktiv-Rollouts erforderten umfangreiche Tests, Reviews und kontrollierte Wartungsfenster, da Fehler den laufenden ÖPNV-Betrieb unmittelbar beeinträchtigen konnten.',
+      'Konzeption und Implementierung RPC-basierter Backup-, Replikations- und Wiederherstellungsmechanismen mit Behandlung von Verbindungsabbrüchen, redundanten oder widersprüchlichen Datenzuständen und wiederholten Wiederherstellungsversuchen bis zum wiederhergestellten Betriebszustand. Produktive Einführungen erforderten umfangreiche Tests, Code Reviews und kontrollierte Wartungsfenster, da Fehler den laufenden ÖPNV-Betrieb unmittelbar beeinträchtigen konnten.',
     ],
   },
   mapguide: { context: '', paragraphs: ['Mitarbeit an der Feature-Entwicklung mobiler Navigationssoftware und GPS-Produkte.'] },
@@ -194,10 +199,10 @@ const germanFullstackRoles = applyRoleOverrides(germanRoles, {
   cancilico: {
     chapters: [
       {
-        title: 'Produktstabilität & Delivery Foundations',
+        title: 'Produktstabilität & CI/CD',
         paragraphs: [
-          'CI/CD-Backbone für eine bestehende Multi-Service-Healthcare-AI-Anwendung mit zwei Web-Frontends, Backend-Services, Datenbank und separatem Inference-Service aufgebaut. Ergänzend an einem Echtzeit-Chat für Ärzte mit persistenten WebSocket-Verbindungen neben den REST-basierten Services mitgearbeitet. Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline integriert, die die verbundene Anwendung validierte, Service-Container baute, das System gegen die Datenbank startete und einen getesteten, deployment-fähigen Release-Kandidaten erzeugte. Die Bereitstellung über Harbor vervollständigte den reproduzierbaren Weg von der Codeänderung bis zum auslieferbaren containerisierten System.',
-          'Die Pipeline machte zuvor verborgene Stabilitätsprobleme sichtbar und etablierte Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
+          'Aufbau des CI/CD-Backbones für eine bestehende Multi-Service-Healthcare-AI-Anwendung mit zwei Web-Frontends, Backend-Services, Datenbank und separatem Inference-Service. Mitarbeit an einem Echtzeit-Chat für Ärzte auf Basis persistenter WebSocket-Verbindungen neben den REST-basierten Services. Integration von Unit-, Integrations- und End-to-End-Tests in eine gestufte Pipeline zur Validierung der verbundenen Anwendung, zum Bau der Service-Container, zum Start des Systems gegen die Datenbank und zur Erzeugung eines getesteten, auslieferbaren Release-Kandidaten. Die Veröffentlichung der Container-Images über Harbor schloss den reproduzierbaren Weg bis zum containerisierten System.',
+          'Sichtbarmachung zuvor verborgener Stabilitätsprobleme durch die Pipeline und Etablierung von Tests als kontinuierliche Engineering-Feedbackschleife und Release-Gate.',
         ],
       },
       germanRoles[0].chapters![1],
@@ -206,7 +211,7 @@ const germanFullstackRoles = applyRoleOverrides(germanRoles, {
 });
 
 const germanProjects = {
-  spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Entwicklung · Project Design', desc: 'Engineering-Journal in Entwicklung für wiederverwendbares technisches Wissen aus Projektnotizen, Debugging-Historie und Architekturentscheidungen. Ausgangspunkt ist ein strukturiertes Projekt-/Datenmodell; AI wird gezielt für Aufbereitung und Retrieval eingesetzt.' },
+  spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Entwicklung · Projektkonzeption', desc: 'Engineering-Journal in Entwicklung für wiederverwendbares technisches Wissen aus Projektnotizen, Debugging-Historie und Architekturentscheidungen. Ausgangspunkt ist ein strukturiertes Projekt-/Datenmodell; AI wird gezielt für Wissensaufbereitung und Retrieval eingesetzt.', tags: ['Geplant: FastAPI', 'PostgreSQL', 'Docker', 'Web-Frontend', 'LLM-gestützte Wissensaufbereitung'] },
   pulse: { ...careerData.projects.pulse, desc: 'Agentisches Workflow-System mit expliziten Verantwortlichkeiten je Verarbeitungsschritt, definierten Evaluationsgrenzen, Observability und kontrollierter Fehlerbehandlung statt eines einzelnen autonomen Agent-Loops.' },
 };
 
@@ -225,7 +230,7 @@ const germanCanonical: CvContent = {
   locale: 'de', route: '/de', variant: 'canonical',
   pageTitle: 'Mario Wangen — Senior Software Engineer',
   metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in Softwarearchitektur, Produktentwicklung, zuverlässiger Auslieferung, Plattformen und produktiven AI-Systemen.',
-  hero: 'Komplexe Softwaresysteme von Architektur und Implementierung bis zur zuverlässigen Auslieferung und zum produktiven Betrieb entwickeln und weiterentwickeln.',
+  hero: 'Entwicklung komplexer Softwaresysteme – von Architektur und Implementierung bis zur zuverlässigen Auslieferung und zum produktiven Betrieb.',
   profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in der Entwicklung und Weiterentwicklung produktiver Systeme – von mobilen Anwendungen über Engineering-Software und Enterprise-SaaS bis zu Healthcare AI. Mein Arbeitsfeld reicht von Systemarchitektur, Domänen- und Datenmodellen über Backend-APIs und Webanwendungen bis zu den Engineering-Grundlagen für eine zuverlässige Auslieferung.\n\nIch bleibe dabei hands-on in der Implementierung und übernehme zugleich Verantwortung für Gesamtsysteme, technische Entscheidungen und die Engineering-Grundlagen, auf denen andere Entwickler und Teams aufbauen. In den vergangenen Jahren hat sich dieser Verantwortungsbereich um cloud-native Plattformen, MLOps und AI-gestützte Systeme erweitert.',
   roles: germanRoles,
   projects: [germanProjects.spurwerk, germanProjects.pulse],
@@ -234,6 +239,9 @@ const germanCanonical: CvContent = {
   page1StackCategories: ['Software Engineering', 'Delivery & Plattform', 'AI-/ML-Integration'],
   page2StackCategories: ['Architektur & Engineering-Praxis'],
   labels: germanLabels,
+  location: 'Dresden, Deutschland',
+  displayDates: { cancilico: '01/2026 — heute' },
+  educationMeta: { 'Turing College': '04/2025 — 08/2025 · 96/100', 'Academy of Administration and Economics, Munich': '2005 — 2008 · berufsbegleitend · Wirtschaftsinformatiker (VWA)', 'Eckert Schools': '2000 — 2004 · Abschlussnote: 1,09' },
   pdfFileName: 'Mario_Wangen_CV_DE.pdf',
 };
 
@@ -242,7 +250,7 @@ const germanFullstack: CvContent = {
   route: '/de/fullstack',
   pageTitle: 'Mario Wangen — Senior Software Engineer | Full-Stack & Architektur',
   metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in Systemarchitektur, APIs, Full-Stack-Entwicklung, CI/CD, cloud-nativer Auslieferung und der Integration produktiver AI-/ML-Systeme.',
-  hero: 'Komplexe Softwaresysteme über Architektur, APIs und Full-Stack-Implementierung bis zur zuverlässigen Auslieferung entwickeln und weiterentwickeln.',
+  hero: 'Entwicklung komplexer Softwaresysteme – von Architektur und APIs über Full-Stack-Implementierung bis zur zuverlässigen Auslieferung.',
   roles: germanFullstackRoles,
   projects: [germanProjects.pulse, germanProjects.spurwerk],
   capabilityRail: germanCapabilityRail,

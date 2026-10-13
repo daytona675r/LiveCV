@@ -59,6 +59,9 @@ export type CvContent = {
   pdfFileName: string;
   locale?: CvLocale;
   labels?: CvLabels;
+  location?: string;
+  displayDates?: Record<string, string>;
+  educationMeta?: Record<string, string>;
   capabilityRail?: string[];
   page1StackCategories?: string[];
   page2StackCategories?: string[];
