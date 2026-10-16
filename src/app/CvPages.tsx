@@ -4,7 +4,8 @@ import type { CareerRole, CvContent, CapabilityGroup, CvLabels } from './cvTypes
 
 // One editorial tree in PDF points for both HTML preview and React-PDF.
 export type LayoutStyle = Record<string, string | number>;
-type PrimitiveProps = { children?: ReactNode; style?: LayoutStyle; inline?: boolean; heading?: 1 | 2 | 3; href?: string; pageNumber?: number; src?: string };
+export type HyphenationCallback = (word: string | null, fallback: (word: string | null) => string[]) => string[];
+type PrimitiveProps = { children?: ReactNode; style?: LayoutStyle; inline?: boolean; heading?: 1 | 2 | 3; href?: string; pageNumber?: number; src?: string; hyphenationCallback?: HyphenationCallback };
 export type CvPrimitives = { Box: ComponentType<PrimitiveProps>; Text: ComponentType<PrimitiveProps>; Link: ComponentType<PrimitiveProps>; Image: ComponentType<PrimitiveProps>; Page: ComponentType<PrimitiveProps> };
 export const A4 = { width: 595.28, height: 841.89 };
 export const layout = {
@@ -41,6 +42,9 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
   const page2StackCategories = content.page2StackCategories ?? ['Architecture & Data', 'Engineering Practice'];
   const bodyStyle = content.locale === 'de' ? { ...layout.body, fontSize: 8.9, lineHeight: 1.2, marginBottom: 4 } : content.variant === 'devops' ? { ...layout.body, fontSize: 9.1, lineHeight: 1.24, marginBottom: 5 } : content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
   const chapterStyle = content.locale === 'de' ? { ...layout.chapter, fontSize: 9.8, marginTop: 6, marginBottom: 4 } : { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 };
+  const projectHyphenation = content.route === '/de/applied-ai'
+    ? ((word: string | null) => word ? [word] : []) as HyphenationCallback
+    : undefined;
   const Label = ({ children }: { children: string }) => <Text heading={2} style={layout.label}>{children}</Text>;
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
     <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -130,10 +134,10 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
           <Box style={{ marginTop: 7 }}>
             <Label>{labels.selectedWork}</Label>
             {content.projects.map(p => <Box key={p.name} style={{ borderLeftWidth: 2, borderLeftColor: '#2563EB', borderLeftStyle: 'solid', paddingLeft: 9, marginBottom: 22 }}>
-              <Text heading={3} style={{ ...layout.railTitle, color: '#263244' }}>{p.name}</Text>
-              {Boolean(p.pattern) && <Text style={{ ...layout.minor, color: '#8993A2', marginBottom: 6 }}>{p.pattern}</Text>}
-              <Text style={{ ...layout.railText, color: '#414B59' }}>{p.desc}</Text>
-              <Text style={{ ...layout.minor, color: '#8993A2', marginTop: 6 }}>{p.tags.join(' · ')}</Text>
+              <Text heading={3} style={{ ...layout.railTitle, color: '#263244' }} hyphenationCallback={projectHyphenation}>{p.name}</Text>
+              {Boolean(p.pattern) && <Text style={{ ...layout.minor, color: '#8993A2', marginBottom: 6 }} hyphenationCallback={projectHyphenation}>{p.pattern}</Text>}
+              <Text style={{ ...layout.railText, color: '#414B59' }} hyphenationCallback={projectHyphenation}>{p.desc}</Text>
+              <Text style={{ ...layout.minor, color: '#8993A2', marginTop: 6 }} hyphenationCallback={projectHyphenation}>{p.tags.join(' · ')}</Text>
             </Box>)}
           </Box>
         </Box>
