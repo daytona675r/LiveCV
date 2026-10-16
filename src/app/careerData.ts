@@ -62,7 +62,7 @@ export const roles: CareerRole[] = [
 
 export const freelanceEngagements: CareerRole[] = [
   {
-    id: 'freelance-rag-sales-assistant', company: 'Freelance AI Engineer', title: 'RAG Sales Assistant', dates: '', context: 'Solar / Technical Sales',
+    id: 'freelance-rag-sales-assistant', company: 'Freelance AI Engineer', title: 'RAG Sales Assistant', dates: '2025', context: 'Solar / Technical Sales',
     paragraphs: ['Designed and implemented a RAG-based assistant for the technical sales team of a solar company. Product manuals, specifications and technical documentation for solar modules, inverters and related components formed the knowledge base; sales staff could ask questions about technical characteristics and compatibility during customer conversations and receive context-aware information for the sales process.'],
   },
 ];

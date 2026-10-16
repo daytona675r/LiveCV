@@ -334,7 +334,7 @@ const germanAppliedAiRoleBase = applyRoleOverrides(germanRoles, {
       {
         title: 'Produktive AI-Integration & Delivery',
         paragraphs: [
-          'Aufbau der Delivery- und Integrationsarchitektur rund um bestehende Klassifikations- und Detektionsmodelle des ML-Teams und deren FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Plattform.',
+          'Aufbau der Delivery-, Integrations- und Plattformarchitektur rund um bestehende Klassifikations- und Detektionsmodelle des ML-Teams und deren FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Infrastruktur.',
           'Aufbau der Test- und Delivery-Grundlagen über Unit-, Integrations- und End-to-End-Validierung. Die Pipeline startet die verbundene Anwendung gegen die Datenbank, prüft die Service-Container und macht Stabilitätsprobleme vor der Auslieferung sichtbar.',
           'Konzeption und Umsetzung dieser Delivery-, MLOps- und Validierungssysteme erfolgten mit intensiver Nutzung und Steuerung moderner Coding Agents über Architektur, Implementierung, Testing, Debugging und Refactoring hinweg. Architekturentscheidungen, Änderungen und Qualitätssicherung blieben dabei bewusst in meiner Verantwortung.',
         ],
@@ -370,8 +370,8 @@ const germanAppliedAi: CvContent = {
   variant: 'applied-ai', route: '/de/applied-ai',
   pageTitle: 'Mario Wangen — Senior Software Engineer | Applied AI & Agentic Development',
   metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Engineering-Erfahrung und Schwerpunkt auf produktiven AI-Systemen, MLOps, RAG, agentischen Workflows und coding-agent-gestützter Softwareentwicklung.',
-  hero: 'Produktive AI-Systeme entwickeln – von Architektur und Integration über MLOps und Evaluation bis zur zuverlässigen Auslieferung.',
-  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in produktiven Softwaresystemen. Mein Schwerpunkt liegt weiterhin auf Architektur, Implementierung, Qualität und zuverlässiger Auslieferung; in den vergangenen Jahren habe ich diese Engineering-Erfahrung gezielt auf AI-Systeme, MLOps, RAG und agentische Workflows erweitert.',
+  hero: 'Entwicklung produktiver AI-Systeme – von Architektur und Integration über MLOps und Evaluation bis zur zuverlässigen Auslieferung.',
+  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in produktiven Softwaresystemen. Mein Schwerpunkt liegt auf Architektur, Implementierung, Qualität und zuverlässiger Auslieferung. In den vergangenen Jahren habe ich diese Engineering-Erfahrung gezielt auf AI-Systeme, MLOps, RAG und agentische Workflows erweitert.',
   roles: germanAppliedAiRoles,
   projects: [germanProjects.pulse, germanProjects.spurwerk],
   stack: germanAppliedAiStack,

@@ -91,7 +91,7 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.equal(appliedAiDe?.variant, 'applied-ai');
   assert.equal(appliedAiDe?.locale, 'de');
   assert.equal(appliedAiDe?.pdfFileName, 'Mario_Wangen_CV_Applied_AI_DE.pdf');
-  assert.match(appliedAiDe?.hero ?? '', /^Produktive AI-Systeme entwickeln/);
+  assert.match(appliedAiDe?.hero ?? '', /^Entwicklung produktiver AI-Systeme – von Architektur und Integration über MLOps und Evaluation/);
   assert.doesNotMatch(`${appliedAiDe?.hero}\n${appliedAiDe?.profile}`, /Coding Agents|coding-agent/);
   assert.match(JSON.stringify(appliedAiDe?.roles), /RAG-basierten Assistenzsystems für den technischen Vertrieb/);
   assert.deepEqual(appliedAiDe?.projects.map(p => p.name), ['PULSE', 'Spurwerk']);
@@ -99,6 +99,7 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.match(appliedAiDe?.projects[0]?.tags.join(' ') ?? '', /LangSmith/);
   assert.match(appliedAiDe?.projects[1]?.pattern ?? '', /In Umsetzung/);
   assert.match(JSON.stringify(appliedAiDe?.roles), /Freelance AI Engineer/);
+  assert.equal(appliedAiDe?.roles.find(r => r.id === 'freelance-rag-sales-assistant')?.dates, '2025');
   assert.match(appliedAiDe?.educationMeta?.['Turing College'] ?? '', /516 Stunden · 96\/100/);
   assert.doesNotMatch(JSON.stringify(appliedAiDe?.capabilityRail), /Coding Agents|AI-gestützte Softwareentwicklung/);
   assert.doesNotMatch(JSON.stringify(appliedAiDe?.stack), /Coding Agents|Codex|Claude Code|Cursor/);
