@@ -94,6 +94,14 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.match(appliedAiDe?.hero ?? '', /^Entwicklung produktiver AI-Systeme/);
   assert.match(appliedAiDe?.profile ?? '', /Coding Agents/);
   assert.match(JSON.stringify(appliedAiDe?.projects), /RAG-basierter Chat-Assistent für ein Solarunternehmen/);
+  assert.deepEqual(appliedAiDe?.projects.map(p => p.name), ['PULSE', 'RAG-Chat-Assistent']);
+  assert.match(appliedAiDe?.projects[0]?.desc ?? '', /Multi-Agenten-System/);
+  assert.match(appliedAiDe?.projects[0]?.tags.join(' ') ?? '', /LangSmith/);
+  assert.match(appliedAiDe?.projects[1]?.pattern ?? '', /Freelance/);
+  assert.match(appliedAiDe?.educationMeta?.['Turing College'] ?? '', /516 Stunden · 96\/100/);
+  assert.match(JSON.stringify(appliedAiDe?.capabilityRail), /AI-gestützte Softwareentwicklung/);
+  assert.match(JSON.stringify(appliedAiDe?.stack), /Coding Agents & Development/);
+  assert.match(JSON.stringify(appliedAiDe?.roles), /intensiver Nutzung und Steuerung moderner Coding Agents/);
   assert.match(JSON.stringify(appliedAiDe?.roles), /Klassifikations- und Detektionsmodelle/);
   assert.doesNotMatch(JSON.stringify(appliedAiDe), /3\+ Jahre|Master|OpenShift|Ansible|ArgoCD/);
   assert.match(canonicalDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);

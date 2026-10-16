@@ -213,8 +213,8 @@ const germanFullstackRoles = applyRoleOverrides(germanRoles, {
 });
 
 const germanProjects = {
-  spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Entwicklung · Projektkonzeption', desc: 'Engineering-Journal in Entwicklung für wiederverwendbares technisches Wissen aus Projektnotizen, Debugging-Historie und Architekturentscheidungen. Ausgangspunkt ist ein strukturiertes Projekt-/Datenmodell; AI wird gezielt für Wissensaufbereitung und Retrieval eingesetzt.', tags: ['Geplant: FastAPI', 'PostgreSQL', 'Docker', 'Web-Frontend', 'LLM-gestützte Wissensaufbereitung'] },
-  pulse: { ...careerData.projects.pulse, desc: 'Agentisches Workflow-System mit expliziten Verantwortlichkeiten je Verarbeitungsschritt, definierten Evaluationsgrenzen, Observability und kontrollierter Fehlerbehandlung statt eines einzelnen autonomen Agent-Loops.' },
+  spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Umsetzung · AI-gestütztes Engineering-Knowledge-System', desc: 'System zur kontinuierlichen Erfassung von Architekturentscheidungen, Debugging-Erkenntnissen, Fehlerursachen und technischen Learnings direkt während der Projektarbeit. Ein strukturiertes Projekt- und Datenmodell schafft die Grundlage, um dieses Wissen später über einen RAG-basierten Assistenten kontextbezogen wiederzufinden und weiterzuverwenden.', tags: ['FastAPI', 'PostgreSQL', 'Docker', 'RAG', 'LLM APIs'] },
+  pulse: { ...careerData.projects.pulse, desc: 'Multi-Agenten-System zur Recherche, Bewertung und Erstellung von Social-Media-Inhalten. Spezialisierte Agenten analysieren Themen und Nachfrage über mehrere Quellen, erzeugen Inhalte und verfeinern diese iterativ über einen LLM-as-a-Judge-Workflow, bis definierte Qualitäts- und Relevanzschwellen erreicht sind. Anschließend erfolgt die kanalspezifische Auslieferung.', tags: ['LangGraph', 'Python', 'FastAPI', 'ChromaDB', 'LLM APIs', 'LangSmith'] },
   solarRagAssistant: { ...careerData.projects.solarRagAssistant, pattern: 'Freelance · AI-Anwendung' },
 };
 
@@ -245,7 +245,7 @@ const germanCanonical: CvContent = {
   portraitSrc: 'mario-wangen-portrait-cv.jpg',
   location: 'Dresden, Deutschland',
   displayDates: { cancilico: '01/2026 — heute' },
-  educationMeta: { 'Turing College': '04/2025 — 08/2025 · 96/100', 'Academy of Administration and Economics, Munich': '2005 — 2008 · berufsbegleitend · Wirtschaftsinformatiker (VWA)', 'Eckert Schools': '2000 — 2004 · Abschlussnote: 1,09' },
+  educationMeta: { 'Turing College': '04/2025 — 08/2025 · 516 Stunden · 96/100', 'Academy of Administration and Economics, Munich': '2005 — 2008 · berufsbegleitend · Wirtschaftsinformatiker (VWA)', 'Eckert Schools': '2000 — 2004 · Abschlussnote: 1,09' },
   pdfFileName: 'Mario_Wangen_CV_DE.pdf',
 };
 
@@ -335,8 +335,9 @@ const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
       {
         title: 'Produktive AI-Integration & Delivery',
         paragraphs: [
-          'Integration bestehender Klassifikations- und Detektionsmodelle des ML-Teams in eine produktive Healthcare-AI-Anwendung mit FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Plattform.',
+          'Aufbau der Delivery- und Integrationsarchitektur rund um bestehende Klassifikations- und Detektionsmodelle des ML-Teams und deren FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Plattform.',
           'Aufbau der Test- und Delivery-Grundlagen über Unit-, Integrations- und End-to-End-Validierung. Die Pipeline startet die verbundene Anwendung gegen die Datenbank, prüft die Service-Container und macht Stabilitätsprobleme vor der Auslieferung sichtbar.',
+          'Konzeption und Umsetzung dieser Delivery-, MLOps- und Validierungssysteme erfolgten mit intensiver Nutzung und Steuerung moderner Coding Agents über Architektur, Implementierung, Testing, Debugging und Refactoring hinweg. Die technische Verantwortung für Architekturentscheidungen, Änderungen und Qualitätssicherung blieb dabei bewusst beim Engineer.',
         ],
       },
       {
@@ -354,7 +355,7 @@ const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
 
 const germanAppliedAiStack: StackGroup[] = [
   { cat: 'AI & Agentic Systems', items: ['LangGraph', 'RAG', 'LLM APIs', 'ChromaDB / Vektordatenbanken', 'PyTorch', 'MLflow', 'MLOps'] },
-  { cat: 'Agentische Softwareentwicklung', items: ['Codex', 'Claude Code', 'Cursor', 'AI-gestützte Architektur', 'Implementierung', 'Tests', 'Debugging', 'Refactoring'] },
+  { cat: 'Coding Agents & Development', items: ['Codex', 'Claude Code', 'Cursor', 'Architektur', 'Implementierung', 'Review', 'Testing', 'Debugging', 'Refactoring'] },
   { cat: 'Software Engineering', items: ['Python', 'TypeScript', 'C# / .NET', 'FastAPI', 'REST-APIs', 'React', 'Angular', 'Nuxt'] },
   { cat: 'Delivery & Plattform', items: ['TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'Harbor', 'AWS', 'Coder'] },
   { cat: 'Engineering-Praxis', items: ['Systemarchitektur', 'automatisierte Tests', 'Evaluationsgrenzen', 'Observability', 'Reproduzierbarkeit', 'Code Reviews', 'technische Standards', 'kontrollierte Fehlerbehandlung'] },
@@ -370,8 +371,8 @@ const germanAppliedAi: CvContent = {
   roles: germanAppliedAiRoles,
   projects: [germanProjects.pulse, germanProjects.solarRagAssistant],
   stack: germanAppliedAiStack,
-  capabilityRail: ['Systemarchitektur', 'Agentische Softwareentwicklung', 'Applied AI / LLM Systems', 'RAG & Agent Workflows', 'MLOps & Model Delivery', 'APIs & Integration', 'Testing & Evaluation', 'CI/CD & Production Delivery'],
-  page1StackCategories: ['AI & Agentic Systems', 'Agentische Softwareentwicklung', 'Software Engineering'],
+  capabilityRail: ['Systemarchitektur', 'AI-gestützte Softwareentwicklung', 'Applied AI / LLM Systems', 'RAG & Agent Workflows', 'MLOps & Model Delivery', 'APIs & Integration', 'Testing & Evaluation', 'CI/CD & Production Delivery'],
+  page1StackCategories: ['AI & Agentic Systems', 'Coding Agents & Development', 'Software Engineering'],
   page2StackCategories: ['Delivery & Plattform', 'Engineering-Praxis'],
   pdfFileName: 'Mario_Wangen_CV_Applied_AI_DE.pdf',
 };
