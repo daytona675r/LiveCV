@@ -215,7 +215,6 @@ const germanFullstackRoles = applyRoleOverrides(germanRoles, {
 const germanProjects = {
   spurwerk: { ...careerData.projects.spurwerk, pattern: 'In Umsetzung · AI-gestütztes Engineering-Knowledge-System', desc: 'System zur kontinuierlichen Erfassung von Architekturentscheidungen, Debugging-Erkenntnissen, Fehlerursachen und technischen Learnings direkt während der Projektarbeit. Ein strukturiertes Projekt- und Datenmodell schafft die Grundlage, um dieses Wissen später über einen RAG-basierten Assistenten kontextbezogen wiederzufinden und weiterzuverwenden.', tags: ['FastAPI', 'PostgreSQL', 'Docker', 'RAG', 'LLM APIs'] },
   pulse: { ...careerData.projects.pulse, desc: 'Multi-Agenten-System zur Recherche, Bewertung und Erstellung von Social-Media-Inhalten. Spezialisierte Agenten analysieren Themen und Nachfrage über mehrere Quellen, erzeugen Inhalte und verfeinern diese iterativ über einen LLM-as-a-Judge-Workflow, bis definierte Qualitäts- und Relevanzschwellen erreicht sind. Anschließend erfolgt die kanalspezifische Auslieferung.', tags: ['LangGraph', 'Python', 'FastAPI', 'ChromaDB', 'LLM APIs', 'LangSmith'] },
-  solarRagAssistant: { ...careerData.projects.solarRagAssistant, pattern: 'Freelance · AI-Anwendung' },
 };
 
 const germanStack = [
@@ -328,7 +327,7 @@ const germanDevops: CvContent = {
   pdfFileName: 'Mario_Wangen_CV_DevOps_DE.pdf',
 };
 
-const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
+const germanAppliedAiRoleBase = applyRoleOverrides(germanRoles, {
   cancilico: {
     context: 'Healthcare AI · Software Engineering · Platform & MLOps',
     chapters: [
@@ -337,7 +336,7 @@ const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
         paragraphs: [
           'Aufbau der Delivery- und Integrationsarchitektur rund um bestehende Klassifikations- und Detektionsmodelle des ML-Teams und deren FastAPI-Inference-Service. Versionierte Modellartefakte und Container-Images werden über Harbor und TeamCity reproduzierbar validiert, freigegeben und ausgeliefert; Kubernetes, Terraform und Release-Gates verbinden Anwendung, Modell und Plattform.',
           'Aufbau der Test- und Delivery-Grundlagen über Unit-, Integrations- und End-to-End-Validierung. Die Pipeline startet die verbundene Anwendung gegen die Datenbank, prüft die Service-Container und macht Stabilitätsprobleme vor der Auslieferung sichtbar.',
-          'Konzeption und Umsetzung dieser Delivery-, MLOps- und Validierungssysteme erfolgten mit intensiver Nutzung und Steuerung moderner Coding Agents über Architektur, Implementierung, Testing, Debugging und Refactoring hinweg. Die technische Verantwortung für Architekturentscheidungen, Änderungen und Qualitätssicherung blieb dabei bewusst beim Engineer.',
+          'Konzeption und Umsetzung dieser Delivery-, MLOps- und Validierungssysteme erfolgten mit intensiver Nutzung und Steuerung moderner Coding Agents über Architektur, Implementierung, Testing, Debugging und Refactoring hinweg. Architekturentscheidungen, Änderungen und Qualitätssicherung blieben dabei bewusst in meiner Verantwortung.',
         ],
       },
       {
@@ -352,10 +351,15 @@ const germanAppliedAiRoles = applyRoleOverrides(germanRoles, {
   schlegel: { context: 'Engineering-Software · Tragwerksplanung' },
   indanet: { context: 'Leitstellen- und Störungsmanagement im öffentlichen Nahverkehr' },
 });
+const germanFreelanceRag = applyRoleOverrides(careerData.freelanceEngagements, {
+  'freelance-rag-sales-assistant': {
+    paragraphs: ['Konzeption und Umsetzung eines RAG-basierten Assistenzsystems für den technischen Vertrieb eines Solarunternehmens. Produkthandbücher, Spezifikationen und technische Dokumentation zu Solarmodulen, Wechselrichtern und weiteren Komponenten wurden als Wissensbasis erschlossen. Vertriebsmitarbeiter konnten während Kundengesprächen technische Produkt- und Kompatibilitätsfragen stellen; das System recherchierte relevante Informationen und stellte sie kontextbezogen für den laufenden Sales-Prozess bereit.'],
+  },
+})[0];
+const germanAppliedAiRoles = [germanAppliedAiRoleBase[0], germanFreelanceRag, ...germanAppliedAiRoleBase.slice(1)];
 
 const germanAppliedAiStack: StackGroup[] = [
   { cat: 'AI & Agentic Systems', items: ['LangGraph', 'RAG', 'LLM APIs', 'ChromaDB / Vektordatenbanken', 'PyTorch', 'MLflow', 'MLOps'] },
-  { cat: 'Coding Agents & Development', items: ['Codex', 'Claude Code', 'Cursor', 'Architektur', 'Implementierung', 'Review', 'Testing', 'Debugging', 'Refactoring'] },
   { cat: 'Software Engineering', items: ['Python', 'TypeScript', 'C# / .NET', 'FastAPI', 'REST-APIs', 'React', 'Angular', 'Nuxt'] },
   { cat: 'Delivery & Plattform', items: ['TeamCity', 'Docker', 'Kubernetes', 'Terraform', 'Harbor', 'AWS', 'Coder'] },
   { cat: 'Engineering-Praxis', items: ['Systemarchitektur', 'automatisierte Tests', 'Evaluationsgrenzen', 'Observability', 'Reproduzierbarkeit', 'Code Reviews', 'technische Standards', 'kontrollierte Fehlerbehandlung'] },
@@ -366,14 +370,16 @@ const germanAppliedAi: CvContent = {
   variant: 'applied-ai', route: '/de/applied-ai',
   pageTitle: 'Mario Wangen — Senior Software Engineer | Applied AI & Agentic Development',
   metaDescription: 'Senior Software Engineer mit mehr als 20 Jahren Engineering-Erfahrung und Schwerpunkt auf produktiven AI-Systemen, MLOps, RAG, agentischen Workflows und coding-agent-gestützter Softwareentwicklung.',
-  hero: 'Entwicklung produktiver AI-Systeme – mit Software-Engineering-Disziplin, agentischen Workflows, MLOps und coding-agent-gestützter Umsetzung.',
-  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in produktiven Softwaresystemen. Mein Schwerpunkt liegt weiterhin auf Architektur, Implementierung, Qualität und zuverlässiger Auslieferung; in den vergangenen Jahren habe ich diese Engineering-Erfahrung gezielt auf AI-Systeme, MLOps, RAG und agentische Workflows erweitert.\n\nIch arbeite hands-on und nutze moderne Coding Agents als zentrales Entwicklungswerkzeug, ohne technische Verantwortung an sie abzugeben: Architektur, Änderungen und Tests werden bewusst gesteuert, überprüft und über automatisierte Qualitätssicherung und CI/CD abgesichert.',
+  hero: 'Produktive AI-Systeme entwickeln – von Architektur und Integration über MLOps und Evaluation bis zur zuverlässigen Auslieferung.',
+  profile: 'Senior Software Engineer mit mehr als 20 Jahren Erfahrung in produktiven Softwaresystemen. Mein Schwerpunkt liegt weiterhin auf Architektur, Implementierung, Qualität und zuverlässiger Auslieferung; in den vergangenen Jahren habe ich diese Engineering-Erfahrung gezielt auf AI-Systeme, MLOps, RAG und agentische Workflows erweitert.',
   roles: germanAppliedAiRoles,
-  projects: [germanProjects.pulse, germanProjects.solarRagAssistant],
+  projects: [germanProjects.pulse, germanProjects.spurwerk],
   stack: germanAppliedAiStack,
-  capabilityRail: ['Systemarchitektur', 'AI-gestützte Softwareentwicklung', 'Applied AI / LLM Systems', 'RAG & Agent Workflows', 'MLOps & Model Delivery', 'APIs & Integration', 'Testing & Evaluation', 'CI/CD & Production Delivery'],
-  page1StackCategories: ['AI & Agentic Systems', 'Coding Agents & Development', 'Software Engineering'],
+  capabilityRail: ['Systemarchitektur', 'Applied AI / LLM Systems', 'RAG & Agent Workflows', 'MLOps & Model Delivery', 'APIs & Integration', 'Testing & Evaluation', 'CI/CD & Production Delivery'],
+  page1StackCategories: ['AI & Agentic Systems', 'Software Engineering'],
   page2StackCategories: ['Delivery & Plattform', 'Engineering-Praxis'],
+  page2RoleEnd: 4,
+  page3RoleStart: 4,
   pdfFileName: 'Mario_Wangen_CV_Applied_AI_DE.pdf',
 };
 

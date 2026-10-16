@@ -66,4 +66,6 @@ export type CvContent = {
   capabilityRail?: string[];
   page1StackCategories?: string[];
   page2StackCategories?: string[];
+  page2RoleEnd?: number;
+  page3RoleStart?: number;
 };

@@ -60,6 +60,13 @@ export const roles: CareerRole[] = [
   },
 ];
 
+export const freelanceEngagements: CareerRole[] = [
+  {
+    id: 'freelance-rag-sales-assistant', company: 'Freelance AI Engineer', title: 'RAG Sales Assistant', dates: '', context: 'Solar / Technical Sales',
+    paragraphs: ['Designed and implemented a RAG-based assistant for the technical sales team of a solar company. Product manuals, specifications and technical documentation for solar modules, inverters and related components formed the knowledge base; sales staff could ask questions about technical characteristics and compatibility during customer conversations and receive context-aware information for the sales process.'],
+  },
+];
+
 export const projects: Record<string, Project> = {
   spurwerk: {
     name: 'Spurwerk',
@@ -71,11 +78,6 @@ export const projects: Record<string, Project> = {
     name: 'PULSE',
     desc: 'Agentic workflow system built around explicit stage responsibilities, evaluation boundaries, observability and controlled failure behavior rather than a single autonomous agent loop.',
     pattern: '', tags: ['LangGraph', 'Python', 'FastAPI', 'ChromaDB'],
-  },
-  solarRagAssistant: {
-    name: 'RAG-Chat-Assistent',
-    desc: 'RAG-basierter Chat-Assistent für ein Solarunternehmen, als Freelancer umgesetzt.',
-    pattern: 'Freelance · AI-Anwendung', tags: ['RAG'],
   },
   atlas: {
     name: 'Atlas',
@@ -107,7 +109,7 @@ export const engineeringScope = [
   'Cloud / Infrastructure', 'Production AI / MLOps',
 ];
 
-export const careerData = { person, roles, projects, capabilities, engineeringScope, education };
+export const careerData = { person, roles, freelanceEngagements, projects, capabilities, engineeringScope, education };
 
 // Derived adapters keep existing local application profiles source-compatible.
 export const earlierRoles = roles.slice(2).map(r => ({ ...r, role: r.title, desc: r.paragraphs.join(' ') }));

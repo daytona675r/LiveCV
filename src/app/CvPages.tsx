@@ -103,7 +103,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       <MiniHeader page={2} />
       <Box style={layout.columns}>
         <Box style={layout.main}>
-          {content.roles.slice(1, 3).map(r => <Role key={r.id} role={r} />)}
+          {content.roles.slice(1, content.page2RoleEnd ?? 3).map(r => <Role key={r.id} role={r} />)}
         </Box>
         <Box style={layout.rail}>
           <Label>{labels.technologyPractice}</Label>
@@ -118,7 +118,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       <Box style={layout.columns}>
         <Box style={layout.main}>
           <Label>{labels.earlyExperience}</Label>
-          {content.roles.slice(3).map(r => <Role key={r.id} role={r} />)}
+          {content.roles.slice(content.page3RoleStart ?? 3).map(r => <Role key={r.id} role={r} />)}
           <Box style={{ marginTop: 8 }}>
             <Label>{labels.education}</Label>
             {education.map(e => <Text key={e.school} style={{ ...layout.minor, marginBottom: 5 }}>
