@@ -1,41 +1,21 @@
 # Mario Wangen
 
-**Senior Software Engineer** building production systems from architecture and implementation through validation, reliable delivery and operation.
+**Senior Software Engineer | AI Infrastructure & MLOps**
 
-I work across software architecture, product engineering, CI/CD, platform systems and applied AI. The common thread is building the engineering foundations around a product: data models, testing, reproducibility, deployment automation and operational safeguards.
-
-## What I build
-
-- Production-oriented software systems with explicit domain models, reliable workflows and maintainable interfaces.
-- AI-enabled systems where retrieval, orchestration and evaluation are integrated into usable products.
-- Delivery and platform foundations that make systems reproducible and easier for other engineers to operate.
+I build reliable software systems—from architecture and backend engineering to CI/CD, deployment and operational safeguards. My recent work applies that experience to AI infrastructure: reproducible model pipelines, explicit quality gates and verifiable AI workflows.
 
 ## Featured projects
 
-- [SignalLoop](https://github.com/daytona675r/signal-loop) — deterministic backend and domain engineering with provenance, versioning, PostgreSQL constraints and transactional workflows.
-- [Atlas AI Platform](https://github.com/daytona675r/atlas-ai-platform) — production-oriented MLOps reference implementation with validation gates and model-lifecycle automation.
-- [PULSE / ContentAgent](https://github.com/daytona675r/ContentAgent) — LangGraph-based multi-stage content generation with business-context retrieval, multi-persona evaluation and bounded refinement.
-- [LiveCV](https://github.com/daytona675r/LiveCV) — the React and React-PDF CV system documenting the engineering trajectory and reusable role-oriented views.
-- [StartupCoach](https://github.com/daytona675r/StartupCoach) — applied-AI startup assistance project from the Turing College AI Engineering programme; currently being hardened for public review.
+**[Atlas AI Platform](https://github.com/daytona675r/atlas-ai-platform)** · [Live demo](https://atlas-ai-platform-demo.onrender.com/)
 
-## Technology
+An end-to-end MLOps reference implementation with reproducible training, MLflow model lineage, four validation layers and controlled deployment verified against a hosted FastAPI model.
 
-Python · C#/.NET · TypeScript · React · FastAPI · PostgreSQL · Docker · Kubernetes · Terraform · CI/CD · MLflow · LangGraph · RAG
+**[PULSE / ContentAgent](https://github.com/daytona675r/ContentAgent)** · [Live demo](https://pulse-demo-web.onrender.com)
 
-## Links
+A LangGraph-based generate → evaluate → refine workflow with explicit scoring and bounded iteration. The public demonstration runs the orchestration with deterministic replay data; it does not claim live LLM judging.
 
-- [LinkedIn](https://linkedin.com/in/mariowangen)
-- [GitHub](https://github.com/daytona675r)
+## Engineering focus
 
-## Suggested profile repository pins
+Software architecture & backend systems · Python / FastAPI · C#/.NET · TypeScript / React · CI/CD & Docker · MLflow & MLOps · LangGraph & applied AI
 
-When the special profile repository is created, name it exactly `daytona675r` so GitHub renders it as the profile README. A concise pinning order is:
-
-1. SignalLoop
-2. Atlas AI Platform
-3. PULSE / ContentAgent
-4. LiveCV
-5. StartupCoach after its hardening pass
-6. Spurwerk once its portfolio-ready v0.1 milestone is complete
-
-The descriptions above deliberately distinguish implemented systems from work still in progress. The profile README can be copied into `daytona675r/daytona675r` unchanged once that repository exists.
+[LinkedIn](https://www.linkedin.com/in/mariowangen/) · [CV & career narrative](https://github.com/daytona675r/LiveCV)
