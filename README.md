@@ -1,5 +1,7 @@
 # LiveCV
 
+[![LiveCV — One career, multiple perspectives](docs/assets/livecv-banner.svg)](https://livecv-mariowangen.vercel.app/)
+
 Mario Wangen's canonical career narrative, rendered as a React web preview and a selectable three-page A4 PDF.
 
 The primary identity is **Senior Software Engineer**. Experience leads: ownership of systems, architecture evolution, reliable delivery and the foundations other engineers depend on. AI/MLOps is the newest domain in that trajectory. Technologies remain a compact reference section rather than the main narrative.
