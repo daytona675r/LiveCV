@@ -11,13 +11,14 @@ export const person = {
 export const roles: CareerRole[] = [
   {
     id: 'cancilico', company: 'Cancilico GmbH', title: 'Senior Software Engineer',
-    dates: '01/2026 — Present', context: 'Healthcare AI · Medical Computer Vision · Platform & MLOps',
+    dates: '01/2026 — 08/2026', context: 'Healthcare AI · Medical Computer Vision · Platform & MLOps',
     paragraphs: [],
     chapters: [
       {
         title: 'Product Reliability & Delivery Foundations',
         paragraphs: [
           'Built the CI/CD backbone for an existing multi-service healthcare AI application, integrating unit, integration and end-to-end tests into a staged pipeline that validated the application, built its service containers, brought the connected system up against the database and produced a tested, deployment-ready release. Harbor-based delivery then completed the reproducible path from code change to deployable containerized system.',
+          'Also contributed to a real-time physician chat feature using persistent WebSocket connections alongside REST-based backend services.',
           'The resulting pipeline exposed previously hidden stability defects, turning testing from an isolated activity into a continuous engineering feedback loop and release gate.',
         ],
       },
@@ -25,6 +26,7 @@ export const roles: CareerRole[] = [
         title: 'MLOps Architecture & Model Delivery',
         paragraphs: [
           'Designed and built the delivery system around the ML team’s classification and detection models: separate smoke and full-training workflows, source-of-truth tracking across code, environments, datasets, runs, models and deployments, and staged validation from data integrity through deployability and golden-snapshot regression.',
+          'Golden-snapshot regression compares fixed reference inputs and predictions to detect unexpected case-level changes between model versions before deployment, complementing aggregate performance metrics.',
           'Full training and hyperparameter sweeps remain manually initiated by the ML team; validation, candidate handling, promotion and downstream delivery are automated. Approved models and their FastAPI inference service are packaged into versioned Docker images, published through Harbor and delivered through reproducible CI/CD workflows.',
           'Extended the platform with Kubernetes-hosted services, Terraform-based Infrastructure as Code and Coder environments: CPU for lightweight validation, GPU for full training. Documented architecture decisions continuously; an operational handbook enables the ML team to use the workflows independently.',
         ],
@@ -36,10 +38,10 @@ export const roles: CareerRole[] = [
     id: 'schlegel', company: 'Ing. Büro Schlegel', title: 'Senior Software Development Engineer',
     dates: '2010 — 2025', context: 'Engineering Software · Structural Analysis',
     paragraphs: [
-      'Developed and evolved four core structural-engineering applications and several smaller products over fifteen years, translating components, load cases, forces, moments and calculation results into maintainable software and data structures.',
-      'Modernized tightly coupled .NET/WPF applications through MVVM and cleaner separation of business logic, UI and data access. Introduced SVN, automated builds and TeamCity CI/CD where these foundations had not previously existed.',
-      'Co-designed and implemented the multi-year transition to service-based web architectures: central engineering data, dedicated backend APIs and application-specific frontends. Desktop development continued in parallel, progressively reusing backend calculation services instead of requiring a disruptive rewrite.',
-      'Hands-on implementation spanned C#/.NET, web/full-stack development, APIs, Python, Docker, databases and interactive 3D visualization, alongside architecture decisions, reviews, standards and documentation as the team grew from three developers to a distributed European group of around eight.',
+      'Developed and evolved four core structural-engineering applications and several smaller products over fifteen years. These were essential professional tools for demanding civil and structural engineers. The software modeled structural components, load cases, forces, moments and calculation results, supporting engineering decisions about real buildings and structures where accuracy and reliable behavior mattered.',
+      'Built sophisticated engineering interfaces combining extensive parameter input, configurable calculation workflows, real-time progress reporting, interactive 2D/3D visualization and direct editing of structural components and properties within graphical views, complemented by detailed PDF calculation reports.',
+      'Co-designed and implemented the gradual modernization of tightly coupled .NET/WPF applications through MVVM and clearer separation of domain logic, UI and data access. The architecture evolved toward centralized engineering data, shared calculation services, backend APIs and application-specific web frontends, allowing existing desktop applications to reuse the same services without a disruptive rewrite.',
+      'In parallel, evolved the engineering delivery infrastructure from SVN, automated builds and TeamCity CI/CD toward Git, Docker and cloud-based deployment workflows targeting Kubernetes on Azure. Remained hands-on in full-stack development while contributing architectural decisions, code reviews, technical standards and documentation across a growing distributed engineering team.',
     ],
   },
   {
@@ -76,8 +78,18 @@ export const projects: Record<string, Project> = {
   },
   pulse: {
     name: 'PULSE',
-    desc: 'Agentic workflow system built around explicit stage responsibilities, evaluation boundaries, observability and controlled failure behavior rather than a single autonomous agent loop.',
+    desc: 'Two LangGraph workflows for business/context research and social-content generation, with provider/LLM integration, structured evaluation, conditional refinement and re-evaluation through explicit workflow states.',
     pattern: '', tags: ['LangGraph', 'Python', 'FastAPI', 'ChromaDB'],
+    links: [
+      { label: 'Source: github.com/daytona675r/ContentAgent', url: 'https://github.com/daytona675r/ContentAgent' },
+      { label: 'Live demo: pulse-demo-web.onrender.com', url: 'https://pulse-demo-web.onrender.com' },
+    ],
+  },
+  signalloop: {
+    name: 'SignalLoop',
+    desc: 'Evidence-driven product discovery: investigate product ideas through versioned hypotheses, attributable research findings and explicit human review. The goal is to preserve what was learned, what changed between iterations and why a product decision was made.',
+    pattern: '', tags: ['FastAPI', 'PostgreSQL', 'versioned evidence', 'provenance'],
+    links: [{ label: 'Source: github.com/daytona675r/signal-loop', url: 'https://github.com/daytona675r/signal-loop' }],
   },
   atlas: {
     name: 'Atlas',

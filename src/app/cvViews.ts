@@ -1,7 +1,22 @@
 import { careerData } from './careerData';
 import type { CareerChapter, CareerRole, CvContent, CvLabels, CvView, StackGroup } from './cvTypes';
 
-const profile = 'Senior software engineer with more than 20 years of experience building and evolving production systems across mobile applications, engineering software, enterprise SaaS and healthcare AI.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. In recent years, that scope has extended into cloud-native platforms, MLOps and AI-enabled systems.';
+const profile = 'Senior software engineer with more than 20 years of experience building and evolving production systems across mobile applications, engineering software, enterprise SaaS and healthcare AI.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. As my work has expanded into cloud-native platforms, MLOps and production AI, the same systems engineering principles remain central: sound architecture, observable behavior, failure handling and reliable delivery.';
+const canonicalProjects = [
+  {
+    ...careerData.projects.pulse,
+    tagLines: ['LangGraph · Python', 'FastAPI · ChromaDB'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/daytona675r/ContentAgent' },
+      { label: 'Live Demo', url: 'https://pulse-demo-web.onrender.com' },
+    ],
+  },
+  {
+    ...careerData.projects.signalloop,
+    tagLines: ['FastAPI · PostgreSQL', 'versioned evidence · provenance'],
+    links: [{ label: 'GitHub', url: 'https://github.com/daytona675r/signal-loop' }],
+  },
+];
 const germanLabels: CvLabels = {
   profile: 'PROFIL', experience: 'BERUFSERFAHRUNG', capabilities: 'ENGINEERING-KOMPETENZEN',
   technology: 'TECHNOLOGIEN', technologyPractice: 'TECHNOLOGIEN & PRAXIS',
@@ -30,7 +45,10 @@ const canonical: CvContent = {
   headline: careerData.person.title,
   hero: 'Building and evolving complex software systems from architecture and implementation to reliable delivery and production.',
   profile, profileNote: '', roles: careerData.roles,
-  projects: [careerData.projects.spurwerk, careerData.projects.pulse],
+  projects: canonicalProjects,
+  hiddenChapterParagraphs: {
+    cancilico: ['Also contributed to a real-time physician chat feature using persistent WebSocket connections alongside REST-based backend services.'],
+  },
   capabilities: careerData.capabilities, stack: careerData.capabilities,
   pdfFileName: 'Mario_Wangen_CV.pdf',
   // Derived compatibility fields for existing private application profiles.
@@ -94,6 +112,7 @@ const devops: CvContent = {
   hero: 'Building reliable software systems across architecture, implementation, delivery, platform automation and production.',
   profile: 'Senior software engineer with more than 20 years of experience building and evolving production systems across enterprise software, engineering applications, operational systems and healthcare AI. Alongside application development, my work has repeatedly included the delivery and platform foundations required to run those systems reliably: automated testing, CI/CD, container platforms, Infrastructure as Code, recovery and reproducible deployments.\n\nI stay hands-on in implementation while taking ownership of complete systems, technical decisions and the engineering foundations other developers and teams depend on. In recent years, that scope has extended further into cloud-native platforms, MLOps and AI-enabled systems.',
   roles: devopsRoles,
+  projects: [careerData.projects.spurwerk, careerData.projects.pulse],
   stack: devopsStack,
   capabilities: [{ cat: 'Engineering Capabilities', items: ['System Architecture', 'CI/CD & Delivery', 'Platform Engineering', 'Infrastructure as Code', 'Container Platforms', 'Deployment Automation', 'Reliability & Recovery', 'Testing & Quality Systems', 'Cloud Infrastructure', 'Production AI / MLOps'] }],
   capabilityRail: ['System Architecture', 'CI/CD & Delivery', 'Platform Engineering', 'Infrastructure as Code', 'Container Platforms', 'Deployment Automation', 'Reliability & Recovery', 'Testing & Quality Systems', 'Cloud Infrastructure', 'Production AI / MLOps'],
@@ -243,7 +262,7 @@ const germanCanonical: CvContent = {
   labels: germanLabels,
   portraitSrc: 'mario-wangen-portrait-cv.jpg',
   location: 'Dresden, Deutschland',
-  displayDates: { cancilico: '01/2026 — heute' },
+  displayDates: { cancilico: '01/2026 — 08/2026' },
   educationMeta: { 'Turing College': '04/2025 — 08/2025 · 516 Stunden · 96/100', 'Academy of Administration and Economics, Munich': '2005 — 2008 · berufsbegleitend · Wirtschaftsinformatiker (VWA)', 'Eckert Schools': '2000 — 2004 · Abschlussnote: 1,09' },
   pdfFileName: 'Mario_Wangen_CV_DE.pdf',
 };
@@ -391,10 +410,12 @@ export const cvViews: Record<CvView, CvContent> = {
   fullstack,
   'applied-ai': { ...canonical, variant: 'applied-ai', route: '/applied-ai',
     hero: 'Bringing long-standing software engineering discipline to practical AI systems, workflows and reliable model delivery.',
+    projects: [careerData.projects.spurwerk, careerData.projects.pulse],
     stack: [careerData.capabilities[3], ...careerData.capabilities.filter(c => c !== careerData.capabilities[3])],
     pdfFileName: 'Mario_Wangen_CV_Applied_AI.pdf' },
   fde: { ...canonical, variant: 'fde', route: '/fde',
     hero: 'Turning complex domain requirements into working systems, with ownership across architecture, implementation and production.',
+    projects: [careerData.projects.spurwerk, careerData.projects.pulse],
     pdfFileName: 'Mario_Wangen_CV_AI_Solutions.pdf' },
 };
 

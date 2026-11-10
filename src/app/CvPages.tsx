@@ -7,6 +7,7 @@ export type LayoutStyle = Record<string, string | number>;
 export type HyphenationCallback = (word: string | null, fallback: (word: string | null) => string[]) => string[];
 type PrimitiveProps = { children?: ReactNode; style?: LayoutStyle; inline?: boolean; heading?: 1 | 2 | 3; href?: string; pageNumber?: number; src?: string; hyphenationCallback?: HyphenationCallback };
 export type CvPrimitives = { Box: ComponentType<PrimitiveProps>; Text: ComponentType<PrimitiveProps>; Link: ComponentType<PrimitiveProps>; Image: ComponentType<PrimitiveProps>; Page: ComponentType<PrimitiveProps> };
+const keepWholeWord: HyphenationCallback = (word, fallback) => word === null ? fallback(word) : [word];
 export const A4 = { width: 595.28, height: 841.89 };
 export const layout = {
   page: { paddingTop: 30, paddingBottom: 30, paddingLeft: 37, paddingRight: 37, backgroundColor: '#ffffff', color: '#414B59', fontFamily: 'Helvetica' },
@@ -41,10 +42,16 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
   const page1StackCategories = content.page1StackCategories ?? ['Software Engineering', 'Delivery & Platform', 'AI Systems'];
   const page2StackCategories = content.page2StackCategories ?? ['Architecture & Data', 'Engineering Practice'];
   const bodyStyle = content.locale === 'de' ? { ...layout.body, fontSize: 8.9, lineHeight: 1.2, marginBottom: 4 } : content.variant === 'devops' ? { ...layout.body, fontSize: 9.1, lineHeight: 1.24, marginBottom: 5 } : content.variant === 'fullstack' ? { ...layout.body, fontSize: 9.3, lineHeight: 1.28, marginBottom: 6 } : { ...layout.body, fontSize: 9.6, lineHeight: 1.34, marginBottom: 7 };
+  const profileParagraphStyle = (index: number) => content.route === '/'
+    ? index === 0 ? { ...bodyStyle, marginBottom: 0 } : { ...bodyStyle, marginTop: 6 }
+    : bodyStyle;
+  const page1Main = content.route === '/' ? { ...layout.main, width: 345 } : layout.main;
+  const page1Rail = content.route === '/' ? { ...layout.rail, width: 152.28 } : layout.rail;
   const chapterStyle = content.locale === 'de' ? { ...layout.chapter, fontSize: 9.8, marginTop: 6, marginBottom: 4 } : { ...layout.chapter, fontSize: 10.2, marginTop: 7, marginBottom: 5 };
-  const projectHyphenation = content.route === '/de/applied-ai'
-    ? ((word: string | null) => word ? [word] : []) as HyphenationCallback
-    : undefined;
+  const projectHyphenation = content.route === '/de/applied-ai' ? keepWholeWord : undefined;
+  const roleBodyStyle = (role: CareerRole) => content.route === '/' && role.id === 'cancilico'
+    ? { ...bodyStyle, lineHeight: 1.25, marginBottom: 5 }
+    : bodyStyle;
   const Label = ({ children }: { children: string }) => <Text heading={2} style={layout.label}>{children}</Text>;
   const Role = ({ role }: { role: CareerRole }) => <Box style={{ marginBottom: 18 }}>
     <Box style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -53,15 +60,24 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
     </Box>
     <Text style={layout.roleTitle}>{role.title}</Text>
     {Boolean(role.context) && <Text style={layout.context}>{role.context}</Text>}
-    {role.paragraphs.map((p, i) => <Text key={i} style={bodyStyle}>{p}</Text>)}
+    {role.paragraphs.map((p, i) => <Text key={i} style={roleBodyStyle(role)}>{p}</Text>)}
     {role.chapters?.map(ch => <Box key={ch.title}>
       <Text heading={3} style={chapterStyle}>{ch.title}</Text>
-      {ch.paragraphs.map((p, i) => <Text key={i} style={i === 1 && ch.title.startsWith('Product') ? { ...bodyStyle, color: '#667182' } : bodyStyle}>{p}</Text>)}
+      {ch.paragraphs.filter(p => !(content.route === '/' && (content.hiddenChapterParagraphs?.[role.id] ?? []).includes(p))).map((p, i) => <Text key={i} style={i === 1 && ch.title.startsWith('Product') ? { ...roleBodyStyle(role), color: '#667182' } : roleBodyStyle(role)}>{p}</Text>)}
     </Box>)}
   </Box>;
   const Group = ({ group }: { group: CapabilityGroup }) => <Box style={{ marginBottom: 20 }}>
     <Text heading={3} style={layout.railTitle}>{group.cat}</Text>
     {Array.from({ length: Math.ceil(group.items.length / 2) }, (_, i) => <Text key={i} style={layout.railText}>{group.items.slice(i * 2, i * 2 + 2).join(' · ')}</Text>)}
+  </Box>;
+  const ProjectTile = ({ project }: { project: CvContent['projects'][number] }) => <Box style={{ borderLeftWidth: 2, borderLeftColor: '#2563EB', borderLeftStyle: 'solid', paddingLeft: 9, marginBottom: 18 }}>
+    <Text heading={3} hyphenationCallback={projectHyphenation} style={{ ...layout.railTitle, color: '#263244' }}>{project.name}</Text>
+    {Boolean(project.pattern) && <Text hyphenationCallback={projectHyphenation} style={{ ...layout.minor, color: '#8993A2', marginBottom: 5 }}>{project.pattern}</Text>}
+    <Text hyphenationCallback={projectHyphenation} style={{ ...layout.railText, color: '#414B59' }}>{project.desc}</Text>
+    {(project.tagLines ?? [project.tags.join(' · ')]).map((line, index) => <Text key={index} hyphenationCallback={keepWholeWord} style={{ ...layout.minor, color: '#8993A2', marginTop: index === 0 ? 5 : 0 }}>{line}</Text>)}
+    {project.links?.length ? <Box style={{ flexDirection: 'row', columnGap: 8 }}>
+      {project.links.map(link => <Link key={link.url} href={link.url} hyphenationCallback={keepWholeWord} style={{ ...layout.minor, color: '#2563EB', marginTop: 3 }}>{link.label}</Link>)}
+    </Box> : null}
   </Box>;
   const MiniHeader = ({ page }: { page: number }) => <>
     <Box style={layout.mini}><Text style={layout.minor}>{person.name} · {person.title}</Text><Text style={layout.minor}>{page} / 3</Text></Box>
@@ -85,15 +101,15 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       </Box>
       <Box style={layout.rule} />
       <Box style={layout.columns}>
-        <Box style={layout.main}>
+        <Box style={page1Main}>
           <Box style={{ marginBottom: 12 }}>
             <Label>{labels.profile}</Label>
-            {content.profile.split('\n\n').map((p, i) => <Text key={i} style={bodyStyle}>{p}</Text>)}
+            {content.profile.split('\n\n').map((p, i) => <Text key={i} style={profileParagraphStyle(i)}>{p}</Text>)}
           </Box>
           <Label>{labels.experience}</Label>
           <Role role={content.roles[0]} />
         </Box>
-        <Box style={layout.rail}>
+        <Box style={page1Rail}>
           <Box style={{ marginBottom: 24 }}>
             <Label>{labels.capabilities}</Label>
             {capabilityRail.map(s => <Text key={s} style={layout.railText}>{s}</Text>)}
@@ -108,6 +124,10 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
       <Box style={layout.columns}>
         <Box style={layout.main}>
           {content.roles.slice(1, content.page2RoleEnd ?? 3).map(r => <Role key={r.id} role={r} />)}
+          {content.page2Projects?.length ? <Box style={{ marginTop: 4 }}>
+            <Label>{labels.selectedWork}</Label>
+            {content.page2Projects.map(project => <ProjectTile key={project.name} project={project} />)}
+          </Box> : null}
         </Box>
         <Box style={layout.rail}>
           <Label>{labels.technologyPractice}</Label>
@@ -133,12 +153,7 @@ export function CvPages({ content, primitives }: { content: CvContent; primitive
         <Box style={layout.rail}>
           <Box style={{ marginTop: 7 }}>
             <Label>{labels.selectedWork}</Label>
-            {content.projects.map(p => <Box key={p.name} style={{ borderLeftWidth: 2, borderLeftColor: '#2563EB', borderLeftStyle: 'solid', paddingLeft: 9, marginBottom: 22 }}>
-              <Text heading={3} style={{ ...layout.railTitle, color: '#263244' }} hyphenationCallback={projectHyphenation}>{p.name}</Text>
-              {Boolean(p.pattern) && <Text style={{ ...layout.minor, color: '#8993A2', marginBottom: 6 }} hyphenationCallback={projectHyphenation}>{p.pattern}</Text>}
-              <Text style={{ ...layout.railText, color: '#414B59' }} hyphenationCallback={projectHyphenation}>{p.desc}</Text>
-              <Text style={{ ...layout.minor, color: '#8993A2', marginTop: 6 }} hyphenationCallback={projectHyphenation}>{p.tags.join(' · ')}</Text>
-            </Box>)}
+            {(content.page3Projects ?? content.projects).map(p => <ProjectTile key={p.name} project={p} />)}
           </Box>
         </Box>
       </Box>

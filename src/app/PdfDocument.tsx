@@ -9,7 +9,7 @@ export type { PdfPresentation, PdfCareerDetails } from './LegacyPdfDocument';
 const primitives: CvPrimitives = {
   Box: ({ style, children }) => <View style={style}>{children}</View>,
   Text: ({ style, children, hyphenationCallback }) => <Text style={style} hyphenationCallback={hyphenationCallback}>{children}</Text>,
-  Link: ({ style, children, href }) => <Link src={href} style={style}>{children}</Link>,
+  Link: ({ style, children, href, hyphenationCallback }) => <Link src={href} style={style} hyphenationCallback={hyphenationCallback}>{children}</Link>,
   Image: ({ style, src }) => <Image src={src ? (typeof window === 'undefined' ? `public/${src}` : `/${src}`) : undefined} style={style} />,
   Page: ({ style, children }) => <Page size="A4" style={style}>{children}</Page>,
 };

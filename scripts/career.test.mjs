@@ -18,7 +18,7 @@ test('all public presentations share the same factual career records and identit
     assert.equal(view.headline, 'Senior Software Engineer');
   }
   assert.deepEqual(careerData.roles.map(r => [r.company, r.title, r.dates]), [
-    ['Cancilico GmbH', 'Senior Software Engineer', '01/2026 — Present'],
+    ['Cancilico GmbH', 'Senior Software Engineer', '01/2026 — 08/2026'],
     ['Ing. Büro Schlegel', 'Senior Software Development Engineer', '2010 — 2025'],
     ['Indanet AG', 'Software Engineer', '2008 — 2010'],
     ['MAP&GUIDE GmbH', 'Software Developer', '2006 — 2007'],
@@ -27,11 +27,19 @@ test('all public presentations share the same factual career records and identit
 });
 
 test('canonical preserves the training boundary and preserves unfinished project status', async () => {
-  const { cvViews } = await model();
+  const { careerData, cvViews } = await model();
   const c = cvViews.canonical;
   assert.equal(c.pdfFileName, 'Mario_Wangen_CV.pdf');
   assert.equal(c.profileNote, '');
-  assert.deepEqual(c.projects.map(p => p.name), ['Spurwerk', 'PULSE']);
+  assert.deepEqual(c.projects.map(p => p.name), ['PULSE', 'SignalLoop']);
+  assert.deepEqual(c.projects[0].links?.map(link => link.url), ['https://github.com/daytona675r/ContentAgent', 'https://pulse-demo-web.onrender.com']);
+  assert.deepEqual(c.projects[1].links?.map(link => link.url), ['https://github.com/daytona675r/signal-loop']);
+  assert.deepEqual(c.projects[0].tagLines, ['LangGraph · Python', 'FastAPI · ChromaDB']);
+  assert.deepEqual(c.projects[1].tagLines, ['FastAPI · PostgreSQL', 'versioned evidence · provenance']);
+  assert.deepEqual(c.projects[0].links?.map(link => link.label), ['GitHub', 'Live Demo']);
+  assert.deepEqual(c.projects[1].links?.map(link => link.label), ['GitHub']);
+  assert.equal(c.hiddenChapterParagraphs?.cancilico?.length, 1);
+  assert.match(JSON.stringify(cvViews.fullstack.roles), /WebSocket/);
   assert.deepEqual(c.roles[0].chapters.map(c => c.title), ['Product Reliability & Delivery Foundations', 'MLOps Architecture & Model Delivery']);
   const current = JSON.stringify(c.roles[0]);
   assert.match(current, /manually initiated by the ML team/);
@@ -39,8 +47,8 @@ test('canonical preserves the training boundary and preserves unfinished project
   assert.match(current, /golden-snapshot/i);
   assert.match(current, /CI\/CD backbone/);
   assert.doesNotMatch(current, /Atlas/);
-  assert.match(c.projects[0].desc, /in development/);
-  assert.match(c.projects[0].desc, /planned/);
+  assert.match(careerData.projects.spurwerk.desc, /in development/);
+  assert.match(careerData.projects.spurwerk.desc, /planned/);
 });
 
 test('root is canonical and legacy redirect preserves its route contract', async () => {
@@ -110,7 +118,7 @@ test('German locale overlays preserve facts while localizing canonical and Full-
   assert.match(fullstackDe?.hero ?? '', /^Entwicklung komplexer Softwaresysteme/);
   assert.doesNotMatch(`${canonicalDe?.hero}\n${fullstackDe?.hero}`, /entwickeln und weiterentwickeln/);
   assert.equal(canonicalDe?.location, 'Dresden, Deutschland');
-  assert.equal(fullstackDe?.displayDates?.cancilico, '01/2026 — heute');
+  assert.equal(fullstackDe?.displayDates?.cancilico, '01/2026 — 08/2026');
   assert.match(JSON.stringify(canonicalDe?.educationMeta), /berufsbegleitend/);
   assert.equal(canonicalDe?.portraitSrc, 'mario-wangen-portrait-cv.jpg');
   assert.equal(fullstackDe?.portraitSrc, canonicalDe?.portraitSrc);

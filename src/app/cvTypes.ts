@@ -31,6 +31,8 @@ export type Project = {
   desc: string;
   pattern: string;
   tags: string[];
+  tagLines?: string[];
+  links?: { label: string; url: string }[];
 };
 
 export type StackGroup = {
@@ -68,4 +70,7 @@ export type CvContent = {
   page2StackCategories?: string[];
   page2RoleEnd?: number;
   page3RoleStart?: number;
+  page2Projects?: Project[];
+  page3Projects?: Project[];
+  hiddenChapterParagraphs?: Record<string, string[]>;
 };
